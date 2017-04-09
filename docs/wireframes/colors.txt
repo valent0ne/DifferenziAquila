@@ -1,6 +1,0 @@
-17a165 --> background menu
-5fd9a5 --> background
-e6ffce --> day
-d7ffb3 --> special day
-138d59 --> buttons
-0e6e41 --> header
