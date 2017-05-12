@@ -3,6 +3,10 @@ logs
 *.log
 npm-debug.log*
 
+#cordova
+platforms/
+plugins/
+
 # Runtime data
 pids
 *.pid
