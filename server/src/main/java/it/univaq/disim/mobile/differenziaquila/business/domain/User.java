@@ -1,11 +1,10 @@
 package it.univaq.disim.mobile.differenziaquila.business.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +26,14 @@ public class User implements java.io.Serializable {
     
     @Column(name = "address", nullable = false, length = 255)
     private String address;
+
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<SpecialWasteRequest> specialwasterequests = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<RecyclingSackRequest> recyclingsackequests = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -67,5 +74,28 @@ public class User implements java.io.Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
+    public Set<SpecialWasteRequest> getSpecialwasterequests() {
+        return specialwasterequests;
+    }
+
+    public Set<RecyclingSackRequest> getRecyclingsackequests() {
+        return recyclingsackequests;
+    }
+
+    public void setSpecialwasterequests(Set<SpecialWasteRequest> specialwasterequests) {
+        this.specialwasterequests = specialwasterequests;
+    }
+
+    public void setRecyclingsackequests(Set<RecyclingSackRequest> recyclingsackequests) {
+        this.recyclingsackequests = recyclingsackequests;
+    }
+
+    public void addSpecialwasterequest(/* ? */){
+        //TODO
+    }
+
+    public void addRecyclingsackrequest(/* ? */){
+        //TODO
+    }
 }
