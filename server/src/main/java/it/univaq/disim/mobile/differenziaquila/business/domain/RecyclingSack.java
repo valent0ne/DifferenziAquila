@@ -30,13 +30,13 @@ public class RecyclingSack {
     public void setId(Long id) { this.id = id; }
 
 
+
     public WasteCategory getWastecategory() {return wastecategory;}
 
     public void setWastecategory(WasteCategory wastecategory) { this.wastecategory = wastecategory;}
 
 
     public String getIcon() { return icon;}
-
     public void setIcon(String icon) { this.icon = icon;}
 
 

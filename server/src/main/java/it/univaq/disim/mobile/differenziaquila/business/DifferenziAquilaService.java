@@ -1,5 +1,6 @@
 package it.univaq.disim.mobile.differenziaquila.business;
 
+import it.univaq.disim.mobile.differenziaquila.business.domain.RecyclingSack;
 import it.univaq.disim.mobile.differenziaquila.business.domain.News;
 import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
 import it.univaq.disim.mobile.differenziaquila.business.domain.User;
@@ -30,4 +31,16 @@ public interface DifferenziAquilaService {
     News findNewsById(Long id);
     //news
 
+
+    //START: RecyclingSack
+    void createRecyclingSack(RecyclingSack recyclingsack);
+
+    RecyclingSack updateRecyclingSack(String token, RecyclingSack recyclingsack);
+
+    List<RecyclingSack> findAllRecyclingSacks();
+
+    RecyclingSack findRecyclingSackById(Long id);
+
+    void deleteRecyclingSack( String token,Long id);
+    //END: RecyclingSack
 }

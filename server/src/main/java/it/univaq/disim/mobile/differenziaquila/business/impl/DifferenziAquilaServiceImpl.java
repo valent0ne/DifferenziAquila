@@ -4,6 +4,7 @@ package it.univaq.disim.mobile.differenziaquila.business.impl;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
 import it.univaq.disim.mobile.differenziaquila.business.domain.News;
+import it.univaq.disim.mobile.differenziaquila.business.domain.RecyclingSack;
 import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
 import it.univaq.disim.mobile.differenziaquila.business.domain.User;
 
@@ -28,6 +29,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
 
     @Autowired
     private NewsRepository newsRepository;
+
+    @Autowired
+    private RecyclingSackRepository recyclingsackRepository;
 
     @Override
     public Session login(String clientcode) {
@@ -118,5 +122,47 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     //end news
+
+
+    //START: RecyclingSack
+    @Override
+    public void createRecyclingSack(RecyclingSack recyclingsack) {
+        recyclingsackRepository.save(recyclingsack);
+    }
+
+    @Override
+    public RecyclingSack updateRecyclingSack(String token, RecyclingSack newRecyclingsack) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+           RecyclingSack recyclingsack= recyclingsackRepository.findOne(newRecyclingsack.getId());
+           if (recyclingsack!=null){
+               recyclingsack.setWastecategory(newRecyclingsack.getWastecategory());
+               recyclingsack.setIcon(newRecyclingsack.getIcon());
+               recyclingsack.setColor(newRecyclingsack.getColor());
+               return recyclingsack;
+           }
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<RecyclingSack> findAllRecyclingSacks(){
+        return recyclingsackRepository.findAll();
+    }
+
+    @Override
+    public RecyclingSack findRecyclingSackById(Long id){
+        return recyclingsackRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteRecyclingSack(String token, Long id) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            recyclingsackRepository.delete(id);
+            }
+    }
+    //END: RecyclingSack
 
 }
