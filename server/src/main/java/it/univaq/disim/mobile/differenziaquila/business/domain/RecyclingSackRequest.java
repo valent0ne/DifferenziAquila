@@ -5,7 +5,7 @@ import java.sql.Date;
 
 @Entity
 @Table (name="recycling_sacks_requests")
-public class RecyclingSacksRequest implements java.io.Serializable{
+public class RecyclingSackRequest implements java.io.Serializable{
 
 
     @Id

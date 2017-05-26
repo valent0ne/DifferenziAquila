@@ -1,13 +1,17 @@
 
 package it.univaq.disim.mobile.differenziaquila.business.impl;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
+import it.univaq.disim.mobile.differenziaquila.business.domain.News;
 import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
 import it.univaq.disim.mobile.differenziaquila.business.domain.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +25,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private NewsRepository newsRepository;
 
     @Override
     public Session login(String clientcode) {
@@ -44,6 +51,8 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
         }
     }
 
+    //user
+
     @Override
     public void createUser(User user) {
         userRepository.save(user);
@@ -60,5 +69,54 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
         }
 
     }
+
+    //end user
+
+    //news
+
+    @Override
+    public List<News> findAllNews() {
+        return newsRepository.findAll();
+    }
+
+    @Override
+    public void createNews(String token, News news) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            newsRepository.save(news);
+
+        }
+    }
+
+    @Override
+    public void deleteNews(String token, Long id) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            newsRepository.delete(id);
+        }
+
+    }
+
+    @Override
+    public News updateNews(String token, News newNews) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            News news = newsRepository.findOne(newNews.getId());
+            if(news !=null){
+                news.setTitle(newNews.getTitle());
+                news.setBody(newNews.getBody());
+                news.setDate(newNews.getDate());
+                return news;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public News findNewsById(Long id){
+        return newsRepository.findOne(id);
+    }
+
+    //end news
 
 }

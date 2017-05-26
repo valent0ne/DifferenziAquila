@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private DifferenziAquilaService service;
 
-    /*da modificare*/
+
     @PostMapping("/login")
     public Response login(@RequestBody User u) {
         Session session = service.login(u.getClientcode());
