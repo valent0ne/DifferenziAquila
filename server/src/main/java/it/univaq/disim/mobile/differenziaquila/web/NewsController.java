@@ -2,13 +2,10 @@ package it.univaq.disim.mobile.differenziaquila.web;
 
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
 import it.univaq.disim.mobile.differenziaquila.business.domain.News;
-import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
-import it.univaq.disim.mobile.differenziaquila.business.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/news")
@@ -27,9 +24,11 @@ public class NewsController {
     }
 
     @PostMapping("/{token}")
-    public Response createNews(@RequestBody News news, @PathVariable String token) {
+    public Response createNews(@RequestBody News news, @PathVariable(value = "token") String token) {
         service.createNews(token, news);
-        return Response.DEFAULT_RESPONSE_OK;
+        Response<News> response = new Response<>(true, "news created");
+        response.setData(news);
+        return response;
     }
 
     @PutMapping("/{token}/{id}")
@@ -49,7 +48,7 @@ public class NewsController {
     }
 
     @GetMapping("/{id}")
-    public Response findNewsById(@PathVariable Long id){
+    public Response findNewsById(@PathVariable(value = "id") Long id){
         News news = service.findNewsById(id);
         Response<News> response = new Response<>(true, "news by id");
         response.setData(news);

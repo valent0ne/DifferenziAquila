@@ -15,16 +15,21 @@ public class CalendarController {
     @Autowired
     private DifferenziAquilaService service;
 
-    @PostMapping("/")
-    public Response createCalendar(@RequestBody Calendar calendar){
-        service.createCalendar(calendar);
-        return Response.DEFAULT_RESPONSE_OK;
+    @PostMapping("/{token}")
+    public Response createCalendar(@RequestBody Calendar calendar, @PathVariable(value = "token") String token){
+        service.createCalendar(token, calendar);
+        Response<Calendar> response=new Response<>(true, "calendar creared");
+        response.setData(calendar);
+        return response;
     }
 
-    @PutMapping("/{token}")
-    public Response updateCalendar(@RequestBody Calendar calendar, @PathVariable String token) {
-        service.updateCalendar(token, calendar);
-        return Response.DEFAULT_RESPONSE_OK;
+    @PutMapping("/{token}/{id}")
+    public Response updateCalendar(@RequestBody Calendar calendar, @PathVariable(value="token") String token, @PathVariable(value="id") Long id) {
+        calendar.setId(id);
+        Calendar c=service.updateCalendar(token, calendar);
+        Response<Calendar> response=new Response<>(true, "calendar updated");
+        response.setData(c);
+        return response;
     }
 
     @GetMapping("/")
@@ -38,7 +43,7 @@ public class CalendarController {
     @GetMapping ("/{id}")
     public Response findCalendarById(@PathVariable(value="id") Long id){
         Calendar calendar= service.findCalendarById(id);
-        Response<Calendar> response= new Response<>(true, "find calendar by id");
+        Response<Calendar> response= new Response<>(true, "calendar by id");
         response.setData(calendar);
         return response;
     }

@@ -1,5 +1,6 @@
 package it.univaq.disim.mobile.differenziaquila.web;
 
+import com.sun.org.apache.regexp.internal.RE;
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
 import it.univaq.disim.mobile.differenziaquila.business.domain.RecyclingSack;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,21 @@ public class RecyclingSackController {
     @Autowired
     private DifferenziAquilaService service;
 
-    @PostMapping ("/")
-    public Response createRecyclingSack(@RequestBody RecyclingSack recyclingsack){
-        service.createRecyclingSack(recyclingsack);
-        return Response.DEFAULT_RESPONSE_OK;
+    @PostMapping ("/{token}")
+    public Response createRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable(value = "token") String token){
+        service.createRecyclingSack(token, recyclingsack);
+        Response<RecyclingSack> response = new Response<>(true, "recycling sack created");
+        response.setData(recyclingsack);
+        return response;
     }
 
-    @PutMapping("/{token}")
-    public Response updateRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable String token) {
-        service.updateRecyclingSack(token, recyclingsack);
-        return Response.DEFAULT_RESPONSE_OK;
+    @PutMapping("/{token}/{id}")
+    public Response updateRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable(value="token") String token, @PathVariable (value="id") Long id) {
+        recyclingsack.setId(id);
+        RecyclingSack newRecyclingsack = service.updateRecyclingSack(token, recyclingsack);
+        Response<RecyclingSack> response = new Response<>(true, "recycling sack updated");
+        response.setData(newRecyclingsack);
+        return response;
     }
 
     @GetMapping ("/")
@@ -37,7 +43,7 @@ public class RecyclingSackController {
     @GetMapping ("/{id}")
     public Response findRecyclingSackById(@PathVariable(value="id") Long id){
         RecyclingSack recyclingsack= service.findRecyclingSackById(id);
-        Response<RecyclingSack> response= new Response<>(true, "find recycling sack by id");
+        Response<RecyclingSack> response= new Response<>(true, "recycling sack by id");
         response.setData(recyclingsack);
         return response;
     }

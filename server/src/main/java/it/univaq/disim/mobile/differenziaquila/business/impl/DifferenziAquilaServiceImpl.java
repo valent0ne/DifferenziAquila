@@ -36,6 +36,12 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     @Autowired
     private CalendarRepository calendarRepository;
 
+    @Autowired
+    private SpecialWasteRepository specialwasteRepository;
+
+    @Autowired
+    private CollectionPointRepository collectionPointRepository;
+
     @Override
     public Session login(String clientcode) {
         User user = userRepository.findByClientcode(clientcode);
@@ -87,12 +93,12 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public void createNews(String token, News news) {
+    public News createNews(String token, News news) {
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
-            newsRepository.save(news);
-
+            return newsRepository.save(news);
         }
+        return null;
     }
 
     @Override
@@ -124,13 +130,17 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
         return newsRepository.findOne(id);
     }
 
-    //end news
+    //end ews
 
 
-    //START: RecyclingSack
+    //RecyclingSack
     @Override
-    public void createRecyclingSack(RecyclingSack recyclingsack) {
-        recyclingsackRepository.save(recyclingsack);
+    public RecyclingSack createRecyclingSack(String token, RecyclingSack recyclingsack) {
+        Session session = sessionRepository.findByToken(token);
+        if(session!=null) {
+            return recyclingsackRepository.save(recyclingsack);
+        }
+        return null;
     }
 
     @Override
@@ -166,14 +176,150 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
             recyclingsackRepository.delete(id);
             }
     }
-    //END: RecyclingSack
+    //end RecyclingSack
 
+    //SpecialWaste
+    @Override
+    public SpecialWaste createSpecialWaste(String token, SpecialWaste specialwaste) {
+        Session session = sessionRepository.findByToken(token);
+        if(session!=null) {
+            return specialwasteRepository.save(specialwaste);
+        }
+        return null;
+    }
+
+    @Override
+    public SpecialWaste updateSpecialWaste(String token, SpecialWaste newSpecialwaste) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            SpecialWaste specialwaste= specialwasteRepository.findOne(newSpecialwaste.getId());
+            if (specialwaste!=null){
+                specialwaste.setDescription(newSpecialwaste.getDescription());
+                specialwaste.setName(newSpecialwaste.getName());
+                return specialwaste;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<SpecialWaste> findAllSpecialWastes(){
+        return specialwasteRepository.findAll();
+    }
+
+    @Override
+    public SpecialWaste findSpecialWasteById(Long id){
+        return specialwasteRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteSpecialWaste(String token, Long id) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            specialwasteRepository.delete(id);
+        }
+    }
+    //end SpecialWaste
+
+    //collectionPoint
+    @Override
+    public CollectionPoint createCollectionPoint(String token, CollectionPoint collectionPoint){
+        Session session = sessionRepository.findByToken(token);
+        if(session!=null) {
+            return collectionPointRepository.save(collectionPoint);
+        }
+        return null;
+    }
+
+    @Override
+    public List<CollectionPoint> findAllCollectionPoints(){
+        return collectionPointRepository.findAll();
+    }
+
+    @Override
+    public CollectionPoint findCollectionPointById(Long id){
+        return collectionPointRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteCollectionPoint(String token, Long id){
+        Session session =sessionRepository.findByToken(token);
+        if(session!=null){
+            collectionPointRepository.delete(id);
+        }
+    }
+
+    @Override
+    public CollectionPoint updateCollectionPoint(String token, CollectionPoint newCollectionpoint){
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            CollectionPoint collectionPoint= collectionPointRepository.findOne(newCollectionpoint.getId());
+            if (collectionPoint!=null){
+                collectionPoint.setLatitude(newCollectionpoint.getLatitude());
+                collectionPoint.setLongitude(newCollectionpoint.getLongitude());
+                collectionPoint.setSpecialwaste(newCollectionpoint.getSpecialwaste());
+                return collectionPoint;
+            }
+        }
+        return null;
+    }
+
+    //end collectionPoint
+
+    //START: Calendar
+    @Override
+    public Calendar createCalendar(String token, Calendar calendar) {
+        Session session = sessionRepository.findByToken(token);
+        if(session!=null) {
+            return calendarRepository.save(calendar);
+        }
+        return null;
+    }
+
+    @Override
+    public Calendar updateCalendar(String token, Calendar newCalendar) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            Calendar calendar=calendarRepository.findOne(newCalendar.getId());
+            if (calendar!=null){
+                calendar.setWastecategory(newCalendar.getWastecategory());
+                calendar.setDay(newCalendar.getDay());
+                return calendar;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<Calendar> findAllCalendars(){
+        return calendarRepository.findAll();
+    }
+
+    @Override
+    public Calendar findCalendarById(Long id){
+        return calendarRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteCalendar(String token, Long id) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            calendarRepository.delete(id);
+        }
+    }
+    //END: Calendar
 
 
     //START:WasteCategory
     @Override
-    public void createWasteCategory(WasteCategory wastecategory) {
-        wastecategoryRepository.save(wastecategory);
+    public WasteCategory createWasteCategory(String token, WasteCategory wastecategory) {
+        Session session = sessionRepository.findByToken(token);
+        if(session!=null) {
+            return wastecategoryRepository.save(wastecategory);
+        }
+        return null;
     }
 
     @Override
@@ -212,43 +358,4 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     //END: WsateCategory
 
 
-    //START: Calendar
-    @Override
-    public void createCalendar(Calendar calendar) {
-        calendarRepository.save(calendar);
-    }
-
-    @Override
-    public Calendar updateCalendar(String token, Calendar newCalendar) {
-        Session session = sessionRepository.findByToken(token);
-        if (session != null) {
-            Calendar calendar= calendarRepository.findOne(newCalendar.getId());
-            if (calendar!=null){
-                calendar.setWastecategory(newCalendar.getWastecategory());
-                calendar.setDay(newCalendar.getDay());
-                return calendar;
-            }
-        }
-        return null;
-    }
-
-
-    @Override
-    public List<Calendar> findAllCalendars(){
-        return calendarRepository.findAll();
-    }
-
-    @Override
-    public Calendar findCalendarById(Long id){
-        return calendarRepository.findOne(id);
-    }
-
-    @Override
-    public void deleteCalendar(String token, Long id) {
-        Session session = sessionRepository.findByToken(token);
-        if (session != null) {
-            calendarRepository.delete(id);
-        }
-    }
-    //END: Calendar
 }

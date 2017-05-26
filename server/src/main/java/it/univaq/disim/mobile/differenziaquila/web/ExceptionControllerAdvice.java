@@ -8,7 +8,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public Response exception(Exception e) {
-        Response<Object> result = new Response<>(false, "error=" + e.getMessage());
-        return result;
+        Response<Object> response = new Response<>(false, "error = " + e.getMessage());
+        return response;
     }
 }

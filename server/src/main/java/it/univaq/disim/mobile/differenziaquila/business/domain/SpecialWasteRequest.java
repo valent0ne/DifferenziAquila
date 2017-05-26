@@ -1,7 +1,5 @@
 package it.univaq.disim.mobile.differenziaquila.business.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

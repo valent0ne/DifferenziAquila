@@ -91,11 +91,13 @@ public class User implements java.io.Serializable {
         this.recyclingsackequests = recyclingsackequests;
     }
 
-    public void addSpecialwasterequest(/* ? */){
-        //TODO
+    public void addSpecialwasterequest(SpecialWasteRequest swr){
+        this.specialwasterequests.add(swr);
+        swr.setUser(this);
     }
 
-    public void addRecyclingsackrequest(/* ? */){
-        //TODO
+    public void addRecyclingsackrequest(RecyclingSackRequest rsr){
+        this.recyclingsackequests.add(rsr);
+        rsr.setUser(this);
     }
 }

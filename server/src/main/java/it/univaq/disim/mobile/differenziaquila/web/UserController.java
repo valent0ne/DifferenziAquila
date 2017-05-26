@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/logout/{token}")
-    public Response logout(@PathVariable String token) {
+    public Response logout(@PathVariable(value = "token") String token) {
         service.logout(token);
         return Response.DEFAULT_RESPONSE_OK;
     }
@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{token}")
-    public Response updateUser(@RequestBody User user, @PathVariable String token) {
+    public Response updateUser(@RequestBody User user, @PathVariable(value = "token") String token) {
         service.updateUser(token, user);
         return Response.DEFAULT_RESPONSE_OK;
     }

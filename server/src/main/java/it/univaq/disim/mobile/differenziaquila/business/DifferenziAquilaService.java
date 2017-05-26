@@ -15,23 +15,22 @@ public interface DifferenziAquilaService {
     void createUser(User user);
 
     void updateUser(String token, User user);
-    //user
+    //end user
 
     //news
     List<News> findAllNews();
 
-    void createNews(String token, News news);
+    News createNews(String token, News news);
 
     void deleteNews(String token, Long id);
 
     News updateNews (String token, News newNews);
 
     News findNewsById(Long id);
-    //news
+    //end news
 
-
-    //START: RecyclingSack
-    void createRecyclingSack(RecyclingSack recyclingsack);
+    //RecyclingSack
+    RecyclingSack createRecyclingSack(String token, RecyclingSack recyclingsack);
 
     RecyclingSack updateRecyclingSack(String token, RecyclingSack recyclingsack);
 
@@ -40,11 +39,12 @@ public interface DifferenziAquilaService {
     RecyclingSack findRecyclingSackById(Long id);
 
     void deleteRecyclingSack( String token,Long id);
+
     //END: RecyclingSack
 
 
     //START: WasteCategory
-    void createWasteCategory(WasteCategory wastecategory);
+    WasteCategory createWasteCategory(String token, WasteCategory wastecategory);
 
     WasteCategory updateWasteCategory(String token, WasteCategory wastecategory);
 
@@ -56,7 +56,7 @@ public interface DifferenziAquilaService {
     //END: RecyclingSack
 
     //START: Calendar
-    void createCalendar(Calendar calendar);
+    Calendar createCalendar(String token, Calendar calendar);
 
     Calendar updateCalendar(String token, Calendar calendar);
 
@@ -66,4 +66,30 @@ public interface DifferenziAquilaService {
 
     void deleteCalendar( String token,Long id);
     //END: Calendar
+
+
+    //SpecialWaste
+    SpecialWaste createSpecialWaste(String token, SpecialWaste specialwaste);
+
+    SpecialWaste updateSpecialWaste(String token, SpecialWaste specialwaste);
+
+    List<SpecialWaste> findAllSpecialWastes();
+
+    SpecialWaste findSpecialWasteById(Long id);
+
+    void deleteSpecialWaste(String token, Long id);
+    //end SpecialWaste
+
+    //collectionPoint
+    CollectionPoint createCollectionPoint(String token, CollectionPoint collectionPoint);
+
+    CollectionPoint updateCollectionPoint(String token, CollectionPoint collectionPoint);
+
+    List<CollectionPoint> findAllCollectionPoints();
+
+    CollectionPoint findCollectionPointById(Long id);
+
+    void deleteCollectionPoint(String token, Long id);
+    //end collectionPoint
+
 }
