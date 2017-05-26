@@ -3,10 +3,7 @@ package it.univaq.disim.mobile.differenziaquila.business.impl;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
-import it.univaq.disim.mobile.differenziaquila.business.domain.News;
-import it.univaq.disim.mobile.differenziaquila.business.domain.RecyclingSack;
-import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
-import it.univaq.disim.mobile.differenziaquila.business.domain.User;
+import it.univaq.disim.mobile.differenziaquila.business.domain.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +29,12 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
 
     @Autowired
     private RecyclingSackRepository recyclingsackRepository;
+
+    @Autowired
+    private WasteCategoryRepository wastecategoryRepository;
+
+    @Autowired
+    private CalendarRepository calendarRepository;
 
     @Override
     public Session login(String clientcode) {
@@ -165,4 +168,87 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
     //END: RecyclingSack
 
+
+
+    //START:WasteCategory
+    @Override
+    public void createWasteCategory(WasteCategory wastecategory) {
+        wastecategoryRepository.save(wastecategory);
+    }
+
+    @Override
+    public WasteCategory updateWasteCategory(String token, WasteCategory newWasteCategory) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            WasteCategory wastecategory= wastecategoryRepository.findOne(newWasteCategory.getId());
+            if (wastecategory!=null){
+                wastecategory.setDescription(newWasteCategory.getDescription());
+                wastecategory.setIcon(newWasteCategory.getIcon());
+                wastecategory.setName(newWasteCategory.getName());
+                return wastecategory;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<WasteCategory> findAllWasteCategories(){
+        return wastecategoryRepository.findAll();
+    }
+
+    @Override
+    public WasteCategory findWasteCategoryById(Long id){
+        return wastecategoryRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteWasteCategory(String token, Long id) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            wastecategoryRepository.delete(id);
+        }
+    }
+    //END: WsateCategory
+
+
+    //START: Calendar
+    @Override
+    public void createCalendar(Calendar calendar) {
+        calendarRepository.save(calendar);
+    }
+
+    @Override
+    public Calendar updateCalendar(String token, Calendar newCalendar) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            Calendar calendar= calendarRepository.findOne(newCalendar.getId());
+            if (calendar!=null){
+                calendar.setWastecategory(newCalendar.getWastecategory());
+                calendar.setDay(newCalendar.getDay());
+                return calendar;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<Calendar> findAllCalendars(){
+        return calendarRepository.findAll();
+    }
+
+    @Override
+    public Calendar findCalendarById(Long id){
+        return calendarRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteCalendar(String token, Long id) {
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            calendarRepository.delete(id);
+        }
+    }
+    //END: Calendar
 }

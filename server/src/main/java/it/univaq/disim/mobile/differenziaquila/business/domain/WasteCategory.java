@@ -16,7 +16,7 @@ public class WasteCategory {
     private String name;
 
     @Column(name = "description", nullable = false, length = 255)
-    private String descrition;
+    private String description;
 
     @Column(name = "icon", nullable = false, length = 255)
     private String icon;
@@ -37,12 +37,12 @@ public class WasteCategory {
         this.name = name;
     }
 
-    public String getDescrition() {
-        return descrition;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrition(String descrition) {
-        this.descrition = descrition;
+    public void setDescription(String descrition) {
+        this.description = descrition;
     }
 
     public String getIcon() {

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RecyclingSackRepository  extends JpaRepository<RecyclingSack,Long>{
 
-    RecyclingSack findById(Long id);
+    RecyclingSack findOne(Long id);
 
     List<RecyclingSack> findAll();
 }

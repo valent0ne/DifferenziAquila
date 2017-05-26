@@ -1,9 +1,7 @@
 package it.univaq.disim.mobile.differenziaquila.business;
 
-import it.univaq.disim.mobile.differenziaquila.business.domain.RecyclingSack;
-import it.univaq.disim.mobile.differenziaquila.business.domain.News;
-import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
-import it.univaq.disim.mobile.differenziaquila.business.domain.User;
+import it.univaq.disim.mobile.differenziaquila.business.domain.*;
+
 import java.util.List;
 
 public interface DifferenziAquilaService {
@@ -43,4 +41,29 @@ public interface DifferenziAquilaService {
 
     void deleteRecyclingSack( String token,Long id);
     //END: RecyclingSack
+
+
+    //START: WasteCategory
+    void createWasteCategory(WasteCategory wastecategory);
+
+    WasteCategory updateWasteCategory(String token, WasteCategory wastecategory);
+
+    List<WasteCategory> findAllWasteCategories();
+
+    WasteCategory findWasteCategoryById(Long id);
+
+    void deleteWasteCategory( String token,Long id);
+    //END: RecyclingSack
+
+    //START: Calendar
+    void createCalendar(Calendar calendar);
+
+    Calendar updateCalendar(String token, Calendar calendar);
+
+    List<Calendar> findAllCalendars();
+
+    Calendar findCalendarById(Long id);
+
+    void deleteCalendar( String token,Long id);
+    //END: Calendar
 }
