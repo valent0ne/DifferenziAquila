@@ -16,7 +16,7 @@ public class RecyclingSackController {
     private DifferenziAquilaService service;
 
     @PostMapping ("/{token}")
-    public Response createRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable(value = "token") String token){
+    public Response createRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable(value = "token") String token)throws Exception{
         service.createRecyclingSack(token, recyclingsack);
         Response<RecyclingSack> response = new Response<>(true, "recycling sack created");
         response.setData(recyclingsack);
@@ -24,7 +24,7 @@ public class RecyclingSackController {
     }
 
     @PutMapping("/{token}/{id}")
-    public Response updateRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable(value="token") String token, @PathVariable (value="id") Long id) {
+    public Response updateRecyclingSack(@RequestBody RecyclingSack recyclingsack, @PathVariable(value="token") String token, @PathVariable (value="id") Long id) throws Exception{
         recyclingsack.setId(id);
         RecyclingSack newRecyclingsack = service.updateRecyclingSack(token, recyclingsack);
         Response<RecyclingSack> response = new Response<>(true, "recycling sack updated");
@@ -49,7 +49,7 @@ public class RecyclingSackController {
     }
 
     @DeleteMapping ("/{token}/{id}")
-    public Response deleteRecyclingSack(@PathVariable(value="token") String token,@PathVariable(value="id") Long id) {
+    public Response deleteRecyclingSack(@PathVariable(value="token") String token,@PathVariable(value="id") Long id) throws Exception{
         service.deleteRecyclingSack(token, id);
         Response<Object> response = new Response<>(true, "recycling sack deleted");
         return response;

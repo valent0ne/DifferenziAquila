@@ -17,7 +17,7 @@ public class WasteCategoryController {
     private DifferenziAquilaService service;
 
     @PostMapping("/{token}")
-    public Response createWasteCategory(@RequestBody WasteCategory wastecategory, @PathVariable(value = "token") String token){
+    public Response createWasteCategory(@RequestBody WasteCategory wastecategory, @PathVariable(value = "token") String token)throws Exception{
         service.createWasteCategory(token, wastecategory);
         Response<WasteCategory> response = new Response<>(true, "waste category created");
         response.setData(wastecategory);
@@ -25,7 +25,7 @@ public class WasteCategoryController {
       }
 
     @PutMapping("/{token}/{id}")
-    public Response updateWasteCategory(@RequestBody WasteCategory wastecategory, @PathVariable(value="token") String token, @PathVariable(value = "id") Long id) {
+    public Response updateWasteCategory(@RequestBody WasteCategory wastecategory, @PathVariable(value="token") String token, @PathVariable(value = "id") Long id)throws Exception {
         wastecategory.setId(id);
         WasteCategory w = service.updateWasteCategory(token, wastecategory);
         Response<WasteCategory> response = new Response<>(true, "waste category updated");
@@ -50,7 +50,7 @@ public class WasteCategoryController {
     }
 
     @DeleteMapping ("/{token}/{id}")
-    public Response deleteWasteCategory(@PathVariable(value="token") String token,@PathVariable(value="id") Long id) {
+    public Response deleteWasteCategory(@PathVariable(value="token") String token,@PathVariable(value="id") Long id) throws Exception{
         service.deleteWasteCategory(token, id);
         Response<Object> response = new Response<>(true, "waste category deleted");
         return response;

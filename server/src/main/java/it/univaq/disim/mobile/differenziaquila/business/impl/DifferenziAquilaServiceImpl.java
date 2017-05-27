@@ -43,7 +43,7 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     private CollectionPointRepository collectionPointRepository;
 
     @Override
-    public Session login(String clientcode) {
+    public Session login(String clientcode) throws Exception {
         User user = userRepository.findByClientcode(clientcode);
         if (user != null) {
             Session session = new Session();
@@ -51,36 +51,38 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
             session.setToken(Utility.generateToken());
             Session newSession = sessionRepository.save(session);
             return newSession;
-        } else {
-            return null;
         }
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public void logout(String token) {
-        Session session = sessionRepository.findByToken(token);
-        if (session != null) {
-            sessionRepository.delete(session);
+    public void logout(String token) throws Exception{
+        List<Session> sessions = sessionRepository.findAllByUser(sessionRepository.findByToken(token).getUser());
+        if (sessions.size()>0) {
+            sessionRepository.delete(sessions);
+            return;
         }
+        throw new Exception("unauthorized");
     }
 
     //user
 
     @Override
-    public void createUser(User user) {
-        userRepository.save(user);
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public void updateUser(String token, User user) {
+    public User updateUser(String token, User user) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             User oldUser = session.getUser();
             oldUser.setFirstname(user.getFirstname());
             oldUser.setLastname(user.getLastname());
             oldUser.setAddress(user.getAddress());
+            return oldUser;
         }
-
+        throw new Exception("unauthorized");
     }
 
     //end user
@@ -93,25 +95,26 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public News createNews(String token, News news) {
+    public News createNews(String token, News news) throws Exception {
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             return newsRepository.save(news);
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public void deleteNews(String token, Long id) {
+    public void deleteNews(String token, Long id) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             newsRepository.delete(id);
+            return;
         }
-
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public News updateNews(String token, News newNews) {
+    public News updateNews(String token, News newNews) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             News news = newsRepository.findOne(newNews.getId());
@@ -121,8 +124,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
                 news.setDate(newNews.getDate());
                 return news;
             }
+            throw new Exception("news not found");
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
@@ -135,16 +139,16 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
 
     //RecyclingSack
     @Override
-    public RecyclingSack createRecyclingSack(String token, RecyclingSack recyclingsack) {
+    public RecyclingSack createRecyclingSack(String token, RecyclingSack recyclingsack) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if(session!=null) {
             return recyclingsackRepository.save(recyclingsack);
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public RecyclingSack updateRecyclingSack(String token, RecyclingSack newRecyclingsack) {
+    public RecyclingSack updateRecyclingSack(String token, RecyclingSack newRecyclingsack) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
            RecyclingSack recyclingsack= recyclingsackRepository.findOne(newRecyclingsack.getId());
@@ -154,8 +158,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
                recyclingsack.setColor(newRecyclingsack.getColor());
                return recyclingsack;
            }
+            throw new Exception("recycling sack not found");
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
 
@@ -170,26 +175,28 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public void deleteRecyclingSack(String token, Long id) {
+    public void deleteRecyclingSack(String token, Long id) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             recyclingsackRepository.delete(id);
+            return;
             }
+        throw new Exception("unauthorized");
     }
     //end RecyclingSack
 
     //SpecialWaste
     @Override
-    public SpecialWaste createSpecialWaste(String token, SpecialWaste specialwaste) {
+    public SpecialWaste createSpecialWaste(String token, SpecialWaste specialwaste) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if(session!=null) {
             return specialwasteRepository.save(specialwaste);
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public SpecialWaste updateSpecialWaste(String token, SpecialWaste newSpecialwaste) {
+    public SpecialWaste updateSpecialWaste(String token, SpecialWaste newSpecialwaste) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             SpecialWaste specialwaste= specialwasteRepository.findOne(newSpecialwaste.getId());
@@ -198,8 +205,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
                 specialwaste.setName(newSpecialwaste.getName());
                 return specialwaste;
             }
+            throw new Exception("special waste not found");
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
 
@@ -214,22 +222,24 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public void deleteSpecialWaste(String token, Long id) {
+    public void deleteSpecialWaste(String token, Long id) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             specialwasteRepository.delete(id);
+            return;
         }
+        throw new Exception("unauthorized");
     }
     //end SpecialWaste
 
     //collectionPoint
     @Override
-    public CollectionPoint createCollectionPoint(String token, CollectionPoint collectionPoint){
+    public CollectionPoint createCollectionPoint(String token, CollectionPoint collectionPoint)throws Exception{
         Session session = sessionRepository.findByToken(token);
         if(session!=null) {
             return collectionPointRepository.save(collectionPoint);
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
@@ -243,15 +253,17 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public void deleteCollectionPoint(String token, Long id){
+    public void deleteCollectionPoint(String token, Long id)throws Exception{
         Session session =sessionRepository.findByToken(token);
         if(session!=null){
             collectionPointRepository.delete(id);
+            return;
         }
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public CollectionPoint updateCollectionPoint(String token, CollectionPoint newCollectionpoint){
+    public CollectionPoint updateCollectionPoint(String token, CollectionPoint newCollectionpoint)throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             CollectionPoint collectionPoint= collectionPointRepository.findOne(newCollectionpoint.getId());
@@ -261,24 +273,25 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
                 collectionPoint.setSpecialwaste(newCollectionpoint.getSpecialwaste());
                 return collectionPoint;
             }
+            throw new Exception("collection point not found");
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     //end collectionPoint
 
     //START: Calendar
     @Override
-    public Calendar createCalendar(String token, Calendar calendar) {
+    public Calendar createCalendar(String token, Calendar calendar)throws Exception {
         Session session = sessionRepository.findByToken(token);
         if(session!=null) {
             return calendarRepository.save(calendar);
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public Calendar updateCalendar(String token, Calendar newCalendar) {
+    public Calendar updateCalendar(String token, Calendar newCalendar) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             Calendar calendar=calendarRepository.findOne(newCalendar.getId());
@@ -287,8 +300,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
                 calendar.setDay(newCalendar.getDay());
                 return calendar;
             }
+            throw new Exception("calendar not found");
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
 
@@ -303,27 +317,29 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public void deleteCalendar(String token, Long id) {
+    public void deleteCalendar(String token, Long id) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             calendarRepository.delete(id);
+            return;
         }
+        throw new Exception("unauthorized");
     }
     //END: Calendar
 
 
     //START:WasteCategory
     @Override
-    public WasteCategory createWasteCategory(String token, WasteCategory wastecategory) {
+    public WasteCategory createWasteCategory(String token, WasteCategory wastecategory) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if(session!=null) {
             return wastecategoryRepository.save(wastecategory);
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
     @Override
-    public WasteCategory updateWasteCategory(String token, WasteCategory newWasteCategory) {
+    public WasteCategory updateWasteCategory(String token, WasteCategory newWasteCategory) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             WasteCategory wastecategory= wastecategoryRepository.findOne(newWasteCategory.getId());
@@ -333,8 +349,9 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
                 wastecategory.setName(newWasteCategory.getName());
                 return wastecategory;
             }
+            throw new Exception("waste category not found");
         }
-        return null;
+        throw new Exception("unauthorized");
     }
 
 
@@ -349,13 +366,14 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
-    public void deleteWasteCategory(String token, Long id) {
+    public void deleteWasteCategory(String token, Long id) throws Exception{
         Session session = sessionRepository.findByToken(token);
         if (session != null) {
             wastecategoryRepository.delete(id);
+            return;
         }
+        throw new Exception("unauthorized");
     }
     //END: WsateCategory
-
 
 }

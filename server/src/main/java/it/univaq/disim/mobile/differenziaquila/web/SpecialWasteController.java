@@ -17,7 +17,7 @@ public class SpecialWasteController {
 
 
     @PostMapping("/{token}")
-    public Response createSpecialWaste(@RequestBody SpecialWaste specialwaste, @PathVariable(value = "token") String token) {
+    public Response createSpecialWaste(@RequestBody SpecialWaste specialwaste, @PathVariable(value = "token") String token) throws Exception{
         service.createSpecialWaste(token, specialwaste);
         Response<SpecialWaste> response = new Response<>(true, "special waste created ");
         response.setData(specialwaste);
@@ -25,7 +25,7 @@ public class SpecialWasteController {
     }
 
     @PutMapping("/{token}")
-    public Response updateSpecialWaste(@RequestBody SpecialWaste specialwaste, @PathVariable(value="token") String token, @PathVariable(value="id") Long id) {
+    public Response updateSpecialWaste(@RequestBody SpecialWaste specialwaste, @PathVariable(value="token") String token, @PathVariable(value="id") Long id)throws Exception {
         specialwaste.setId(id);
         SpecialWaste s = service.updateSpecialWaste(token, specialwaste);
         Response<SpecialWaste> response = new Response<>(true, "special waste updated");
@@ -50,7 +50,7 @@ public class SpecialWasteController {
     }
 
     @DeleteMapping("/{token}/{id}")
-    public Response deleteSpecialWaste(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
+    public Response deleteSpecialWaste(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) throws Exception{
         service.deleteSpecialWaste(token, id);
         Response<Object> response = new Response<>(true, "recycling sack deleted");
         return response;

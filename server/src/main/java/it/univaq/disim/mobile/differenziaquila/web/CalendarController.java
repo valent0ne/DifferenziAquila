@@ -16,7 +16,7 @@ public class CalendarController {
     private DifferenziAquilaService service;
 
     @PostMapping("/{token}")
-    public Response createCalendar(@RequestBody Calendar calendar, @PathVariable(value = "token") String token){
+    public Response createCalendar(@RequestBody Calendar calendar, @PathVariable(value = "token") String token)throws Exception{
         service.createCalendar(token, calendar);
         Response<Calendar> response=new Response<>(true, "calendar creared");
         response.setData(calendar);
@@ -24,7 +24,7 @@ public class CalendarController {
     }
 
     @PutMapping("/{token}/{id}")
-    public Response updateCalendar(@RequestBody Calendar calendar, @PathVariable(value="token") String token, @PathVariable(value="id") Long id) {
+    public Response updateCalendar(@RequestBody Calendar calendar, @PathVariable(value="token") String token, @PathVariable(value="id") Long id) throws Exception{
         calendar.setId(id);
         Calendar c=service.updateCalendar(token, calendar);
         Response<Calendar> response=new Response<>(true, "calendar updated");
@@ -49,7 +49,7 @@ public class CalendarController {
     }
 
     @DeleteMapping ("/{token}/{id}")
-    public Response deleteCalendar(@PathVariable(value="token") String token,@PathVariable(value="id") Long id) {
+    public Response deleteCalendar(@PathVariable(value="token") String token,@PathVariable(value="id") Long id)throws Exception {
         service.deleteCalendar(token, id);
         Response<Object> response = new Response<>(true, "calendar deleted");
         return response;

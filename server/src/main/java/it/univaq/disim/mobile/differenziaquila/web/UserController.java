@@ -21,7 +21,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public Response login(@RequestBody User u) {
+    public Response login(@RequestBody User u) throws Exception{
         Session session = service.login(u.getClientcode());
         if (session != null) {
             Response<Login> result = new Response<>(true, Response.DEFAULT_RESPONSE_OK.getMessage());
@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/logout/{token}")
-    public Response logout(@PathVariable(value = "token") String token) {
+    public Response logout(@PathVariable(value = "token") String token) throws Exception{
         service.logout(token);
         return Response.DEFAULT_RESPONSE_OK;
     }
@@ -48,13 +48,17 @@ public class UserController {
     @PostMapping("/users")
     public Response createUser(@RequestBody User user) {
         service.createUser(user);
-        return Response.DEFAULT_RESPONSE_OK;
+        Response<User> response= new Response<>(true, "user created");
+        response.setData(user);
+        return response;
     }
 
     @PutMapping("/users/{token}")
-    public Response updateUser(@RequestBody User user, @PathVariable(value = "token") String token) {
-        service.updateUser(token, user);
-        return Response.DEFAULT_RESPONSE_OK;
+    public Response updateUser(@RequestBody User user, @PathVariable(value = "token") String token) throws Exception{
+        User newUser = service.updateUser(token, user);
+        Response<User> response= new Response<>(true, "user updated");
+        response.setData(newUser);
+        return response;
     }
 
 }

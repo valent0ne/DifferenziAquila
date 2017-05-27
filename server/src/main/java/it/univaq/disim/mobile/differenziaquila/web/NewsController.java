@@ -24,15 +24,16 @@ public class NewsController {
     }
 
     @PostMapping("/{token}")
-    public Response createNews(@RequestBody News news, @PathVariable(value = "token") String token) {
+    public Response createNews(@RequestBody News news, @PathVariable(value = "token") String token) throws Exception{
         service.createNews(token, news);
         Response<News> response = new Response<>(true, "news created");
         response.setData(news);
         return response;
     }
 
+
     @PutMapping("/{token}/{id}")
-    public Response updateNews(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id, @RequestBody News news) {
+    public Response updateNews(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id, @RequestBody News news) throws Exception{
         news.setId(id);
         News newNews = service.updateNews(token, news);
         Response<News> response = new Response<>(true, "news updated");
@@ -41,14 +42,14 @@ public class NewsController {
     }
 
     @DeleteMapping("/{token}/{id}")
-    public Response deleteNews(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
+    public Response deleteNews(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id)throws Exception {
         service.deleteNews(token, id);
         Response<Object> response = new Response<>(true, "news deleted");
         return response;
     }
 
     @GetMapping("/{id}")
-    public Response findNewsById(@PathVariable(value = "id") Long id){
+    public Response findNewsById(@PathVariable(value = "id") Long id) {
         News news = service.findNewsById(id);
         Response<News> response = new Response<>(true, "news by id");
         response.setData(news);
