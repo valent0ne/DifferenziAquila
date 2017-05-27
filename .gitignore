@@ -20,7 +20,7 @@ out/
 *.classpath
 *.project
 target/
-application.properties
+*.properties
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
