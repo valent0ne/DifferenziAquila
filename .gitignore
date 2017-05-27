@@ -19,6 +19,7 @@ out/
 *.iml
 *.classpath
 *.project
+/server/target/
 target/
 *.properties
 
