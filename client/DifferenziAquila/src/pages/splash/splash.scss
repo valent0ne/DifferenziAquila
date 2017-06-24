@@ -1,0 +1,33 @@
+page-splash {
+
+  ion-content{
+    background-color: map-get($colors, tertiary)!important;
+  }
+
+    .logo-container{
+      text-align: center;
+      img{
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+      }
+    }
+
+  .splash-text-container{
+    text-transform: none!important;
+    font-size: 24px;
+    text-shadow: -1px 0 map-get($colors, dark), 0 1px map-get($colors, dark), 1px 0 map-get($colors, dark), 0 -1px map-get($colors, dark);
+    color: map-get($colors, secondary)!important;
+  }
+
+
+
+  .splash-spinner{
+    width: 28px;
+    height: 28px;
+    margin:0 auto;
+  }
+  .splash-spinner *{
+    stroke: map-get($colors, secondary)!important;
+  }
+}
