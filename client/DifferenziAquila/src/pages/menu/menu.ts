@@ -21,4 +21,8 @@ export class MenuPage {
     console.log('ionViewDidLoad MenuPage');
   }
 
+  goLogin(){
+    this.navCtrl.push('LoginPage');
+  }
+
 }

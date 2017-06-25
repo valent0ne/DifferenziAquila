@@ -76,5 +76,17 @@
       text-transform: none;
       text-decoration: underline;
     }
+
+
   }
+}
+
+.background{
+  background-color: map-get($colors,secondary)!important;
+}
+
+.sub-navbar{
+  background-color: map-get($colors, primary)!important;
+  background: map-get($colors, primary)!important;
+
 }
