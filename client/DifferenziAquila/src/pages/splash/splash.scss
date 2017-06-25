@@ -26,6 +26,7 @@ page-splash {
     height: 28px;
     margin:0 auto;
   }
+
   .splash-spinner *{
     stroke: map-get($colors, secondary)!important;
   }
