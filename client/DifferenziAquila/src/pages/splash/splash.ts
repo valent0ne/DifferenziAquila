@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {MenuPage} from "../menu/menu";
 
 
 //import {MenuPage} from "../menu/menu";
@@ -19,17 +18,18 @@ import {MenuPage} from "../menu/menu";
 export class SplashPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.ready();
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SplashPage');
+    this.ready();
   }
 
   ready(){
     setTimeout( () => {
-      this.navCtrl.setRoot(MenuPage);
-      this.navCtrl.push(MenuPage);
+      this.navCtrl.setRoot('MenuPage');
+      this.navCtrl.push('MenuPage');
     }, 1750);
   }
 

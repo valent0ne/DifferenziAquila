@@ -47,6 +47,9 @@
   }
 }
 
+.light-text{
+  color: map-get($colors, light);
+}
 
 .my-form {
   ion-list {

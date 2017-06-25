@@ -16,7 +16,6 @@ page-splash {
   .splash-text-container{
     text-transform: none!important;
     font-size: 24px;
-    text-shadow: -1px 0 map-get($colors, dark), 0 1px map-get($colors, dark), 1px 0 map-get($colors, dark), 0 -1px map-get($colors, dark);
     color: map-get($colors, secondary)!important;
   }
 
