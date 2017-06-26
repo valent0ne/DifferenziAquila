@@ -28,7 +28,6 @@ export class SplashPage {
 
   ready(){
     setTimeout( () => {
-      this.navCtrl.setRoot('MenuPage');
       this.navCtrl.push('MenuPage');
     }, 1750);
   }

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="tertiary" hideBackButton="true">
+  <ion-navbar color="primary" hideBackButton="true">
     <ion-title align="center"><span class="light-text">DifferenziAquila</span></ion-title>
   </ion-navbar>
 
@@ -14,6 +14,51 @@
 </ion-header>
 
 
-<ion-content padding>
-<a (click)="goLogin()">login</a>
+<ion-content padding text-center class="vertical-align-content background">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="calendar"></ion-icon>
+          <ion-label>Calendario</ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Mappa</ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="goLogin()">
+          <ion-icon name="trash"></ion-icon>
+          <ion-label>Prenota un ritiro</ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="basket"></ion-icon>
+          <ion-label>Ordina sacchetti</ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="information-circle"></ion-icon>
+          <ion-label>Avvisi</ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="settings"></ion-icon>
+          <ion-label>Impostazioni</ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
