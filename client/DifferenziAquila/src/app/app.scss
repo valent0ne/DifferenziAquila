@@ -28,6 +28,12 @@
   height: 100%;
 }
 
+.vertical-align-content > *{
+  display: flex!important;
+  align-content: center!important;
+  align-items: center!important;
+}
+
 .flex-container {
   display: flex;
   -webkit-align-items: center;
