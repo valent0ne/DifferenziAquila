@@ -37,6 +37,7 @@ $colors: (
   primary:    #17a165,
   secondary:  #5fd9a5,
   tertiary:   #138d59,
+  quaternary: #17a165,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
@@ -54,7 +55,7 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
+$toggle-md-track-background-color-on:  map-get($colors, light);
 
 
 // App Windows Variables

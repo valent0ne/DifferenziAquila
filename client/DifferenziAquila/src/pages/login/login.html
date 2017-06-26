@@ -17,7 +17,35 @@
 
 
 <ion-content class="background" padding>
+
   <div class="logo-container">
     <img src="../assets/icon/icon.png"/>
   </div>
+
+  <br>
+  <ion-item  no-lines class="how-to-login">
+    <ion-title align="center">Enter your client code </ion-title>
+    <ion-title align="center">in the box below</ion-title>
+
+  </ion-item>
+
+  <ion-item class="input-clientcode">
+      <ion-label class="icon-clientcode">
+        <ion-icon name="md-contact" ></ion-icon>
+      </ion-label>
+      <ion-input clearInput type="text"></ion-input>
+  </ion-item>
+
+  <ion-item class="how-to-login" no-lines>
+    <ion-label right color="dark">Remember me</ion-label>
+    <ion-toggle checked="true"></ion-toggle>
+  </ion-item>
+
+  <br>
+
+  <div text-center>
+   <button ion-button color="primary" large >LogIn</button>
+  </div>
+
+
 </ion-content>

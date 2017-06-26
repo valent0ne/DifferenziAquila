@@ -4,8 +4,26 @@ page-login {
     text-align: center;
     img{
       width: 100%;
-      max-width:200px;
+      max-width:275px;
       height: auto;
     }
   }
+
+  .how-to-login{
+    width:100%!important;
+    height: 20px!important;
+    border:0!important;
+    background-color: transparent!important;
+    text-decoration-color: map-get($colors, dark)!important;
+    text-shadow: none!important;
+  }
+
+  .input-clientcode{
+    margin-top: 20px;
+    width:100%;
+    height: auto;
+
+  }
+
+
 }
