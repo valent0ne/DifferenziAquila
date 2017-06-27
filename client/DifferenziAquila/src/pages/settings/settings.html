@@ -4,15 +4,114 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Settings</ion-title>
+  <ion-navbar color="primary">
+    <ion-title align="right"><span class="light-text">DifferenziAquila</span></ion-title>
+  </ion-navbar>
+
+  <ion-navbar color="tertiary">
+    <ion-title text-center>Settings</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content class="background" padding>
 
-<ion-content padding>
+
+  <ion-list>
+    <ion-card>
+      <ion-card-content>
+        <ion-item color="light" no-lines>
+          <ion-label>Notifiche</ion-label>
+          <ion-toggle checked="true"></ion-toggle>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-item color="light" no-lines>
+          <ion-label>Orario in cui ricevere la notifica</ion-label>
+        </ion-item>
+        <ion-item color="light" no-lines>
+          <ion-label align="right" class="padding-right" id="hh">hh</ion-label>
+          <ion-label class="padding-left" id="mm">mm</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-item color="light" no-lines>
+          <ion-label class="title"><strong>Informazioni</strong></ion-label>
+        </ion-item>
+        <ion-item color="light" no-lines>
+          <ion-label>Telefono: </ion-label>
+          <ion-label>0862 123456</ion-label>
+        </ion-item>
+        <ion-item color="light" no-lines>
+          <ion-label>Fax: </ion-label>
+          <ion-label>0862 789012</ion-label>
+        </ion-item>
+        <ion-item color="light" no-lines>
+          <ion-label>Indirizzo: </ion-label>
+          <ion-label>Via Casuale, n°1</ion-label>
+        </ion-item>
+        <ion-item color="light" no-lines>
+          <ion-label>P. IVA: </ion-label>
+          <ion-label>0123456789</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
 
 </ion-content>
+
+
+<!--
+
+    <ion-card>
+      <ion-row>
+        <ion-row>
+
+        </ion-row>
+        <ion-row>
+          <ion-col align-self-end>
+            <ion-input type="number" placeholder="00"></ion-input>
+          </ion-col>
+          <ion-col align-self-start>
+            <ion-input type="number" placeholder="00"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-row>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-row>
+       <ion-row>
+         <ion-label>ama</ion-label>
+       </ion-row>
+        <ion-row>
+         <ion-col align-items-start="">
+           <ion-label text-left>Numero Telefono</ion-label>
+         </ion-col>
+          <ion-col align-items-start="">
+            <ion-label text-left>Partita Iva</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col align-items-start="">
+            <ion-label text-left>Numero Fax</ion-label>
+          </ion-col>
+          <ion-col align-items-start="">
+            <ion-label text-left>Un'altra Info</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-row>
+    </ion-card>
+  </ion-grid>-->
+

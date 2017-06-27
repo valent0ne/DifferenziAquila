@@ -102,4 +102,24 @@
   float:left!important;
 }
 
+ion-card{
+  background-color: map-get($colors, light)!important;
+}
 
+
+.div-float-left{
+   float: left!important;
+  width:50%!important;
+ }
+
+
+.div-float-right{
+  float: right!important;
+  margin:0 auto!important;
+  width:50%!important;
+
+}
+
+ion-label{
+  font-size: medium;
+}
