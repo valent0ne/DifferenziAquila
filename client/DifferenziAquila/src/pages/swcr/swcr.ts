@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { DatePicker } from '@ionic-native/date-picker';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 
 /**
  * Generated class for the SwcrPage page.
@@ -17,7 +16,6 @@ export class SwcrPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public datePicker: DatePicker,
               public alertCtrl: AlertController) {
   }
 
@@ -26,31 +24,71 @@ export class SwcrPage {
   }
 
   presentDatePicker() {
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'date',
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-    }).then(
-      date => console.log('Got date: ', date),
-      err => console.log('Error occurred while getting date: ', err)
-    );
-  }
 
+    var inputs = [];
+    var day = new Date();
 
-  presentTimePicker() {
+    for (var i = 0; i < 30; i++) {
+      inputs[i] = new Array();
+
+      var nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
+      inputs[i]['type'] = 'radio';
+      inputs[i]['label'] = nextDay.toDateString();
+    }
+
     let alert = this.alertCtrl.create({
-      title: 'Confirm purchase',
-      message: 'Do you want to buy this book?',
+      inputs: inputs,
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Annulla',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Buy',
+          text: 'Ok',
+          handler: () => {
+            console.log('Buy clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
+  presentTimePicker(item) {
+    let alert = this.alertCtrl.create({
+      inputs: [
+        {
+          type: 'radio',
+          label: '9-11'
+        },
+        {
+          type: 'radio',
+          label: '11-13'
+        },
+        {
+          type: 'radio',
+          label: '15-17'
+        },
+        {
+          type: 'radio',
+          label: '17-19'
+        }
+
+      ],
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
           handler: () => {
             console.log('Buy clicked');
           }

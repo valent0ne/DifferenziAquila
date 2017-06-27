@@ -25,20 +25,25 @@
 
     <ion-item no-lines (click)="presentDatePicker()">
       <ion-icon name="calendar" item-left></ion-icon>
-      <span id="date">scegli un giorno</span>
+      <ion-label id="date" align="right">scegli un giorno</ion-label>
 
     </ion-item>
 
     <ion-item no-lines (click)="presentTimePicker()">
 
       <ion-icon name="clock" item-left></ion-icon>
-      <span id="time">scegli una fascia oraria</span>
+      <ion-label id="time" align="right">scegli una fascia oraria</ion-label>
 
     </ion-item>
     <ion-item no-lines>
-      <ion-title>Descrizione</ion-title>
-      <!--imput type textarea-->
+      <ion-label floating>breve descrizione degli oggetti da ritirare</ion-label>
+      <ion-textarea id="description"></ion-textarea>
     </ion-item>
+
+    <br>
+
+    <button ion-button color="primary">Inoltra richiesta</button>
+
 
 
   </ion-list>

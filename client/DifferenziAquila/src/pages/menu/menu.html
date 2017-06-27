@@ -19,13 +19,13 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card (click)="this.navCtrl.push('CalendarPage')">
           <ion-icon name="calendar"></ion-icon>
           <ion-label>Calendario</ion-label>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card>
+        <ion-card (click)="this.navCtrl.push('MapPage')">
           <ion-icon name="map"></ion-icon>
           <ion-label>Mappa</ion-label>
         </ion-card>
@@ -33,13 +33,13 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-card>
-          <ion-icon name="trash" (click)="this.navCtrl.push('SwcrPage')"></ion-icon>
+        <ion-card (click)="this.navCtrl.push('SwcrPage')">
+          <ion-icon name="trash"></ion-icon>
           <ion-label>Prenota un ritiro</ion-label>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card>
+        <ion-card (click)="this.navCtrl.push('RsrPage')">
           <ion-icon name="basket"></ion-icon>
           <ion-label>Ordina sacchetti</ion-label>
         </ion-card>
@@ -47,13 +47,13 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card (click)="this.navCtrl.push('NewsListPage')">
           <ion-icon name="information-circle"></ion-icon>
           <ion-label>Avvisi</ion-label>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card>
+        <ion-card (click)="this.navCtrl.push('SettingsPage')">
           <ion-icon name="settings"></ion-icon>
           <ion-label>Impostazioni</ion-label>
         </ion-card>

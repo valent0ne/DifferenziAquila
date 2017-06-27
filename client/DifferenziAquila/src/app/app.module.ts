@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import {DatePicker} from "@ionic-native/date-picker";
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import {DatePicker} from "@ionic-native/date-picker";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatePicker,
     AlertController
   ]
 })
