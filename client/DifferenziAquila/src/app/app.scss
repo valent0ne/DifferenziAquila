@@ -91,4 +91,15 @@
   background-color: map-get($colors,secondary)!important;
 }
 
+.send-icon{
+  font-size: 30px!important;
+  color: map-get($colors, light)!important;
+  float:right!important;
+  padding-right: 10px!important;
+}
+
+.float-left-title{
+  float:left!important;
+}
+
 

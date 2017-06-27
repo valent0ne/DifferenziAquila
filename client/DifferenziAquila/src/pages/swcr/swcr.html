@@ -6,13 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>SWCR</ion-title>
+  <ion-navbar color="primary">
+    <ion-title align="right"><span class="light-text">DifferenziAquila</span></ion-title>
+  </ion-navbar>
+
+  <ion-navbar color="tertiary">
+    <ion-title class="float-left-title">Richiesta ritiro rifiuti speciali</ion-title>
+    <ion-icon name="send" class="send-icon"></ion-icon>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
 
+<ion-content padding class="background">
+
+  <ion-list>
+
+    <ion-item no-lines (click)="presentDatePicker()">
+      <ion-icon name="calendar" item-left></ion-icon>
+      <span id="date">scegli un giorno</span>
+
+    </ion-item>
+
+    <ion-item no-lines (click)="presentTimePicker()">
+
+      <ion-icon name="clock" item-left></ion-icon>
+      <span id="time">scegli una fascia oraria</span>
+
+    </ion-item>
+    <ion-item no-lines>
+      <ion-title>Descrizione</ion-title>
+      <!--imput type textarea-->
+    </ion-item>
+
+
+  </ion-list>
 </ion-content>

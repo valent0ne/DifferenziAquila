@@ -33,8 +33,8 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-card (click)="goLogin()">
-          <ion-icon name="trash"></ion-icon>
+        <ion-card>
+          <ion-icon name="trash" (click)="this.navCtrl.push('SwcrPage')"></ion-icon>
           <ion-label>Prenota un ritiro</ion-label>
         </ion-card>
       </ion-col>
