@@ -1,4 +1,9 @@
 page-menu {
+
+  ion-label{
+    margin-right:0px!important;
+  }
+
   ion-card{
     padding-top:25px;
     background-color: map-get($colors, tertiary)!important;
