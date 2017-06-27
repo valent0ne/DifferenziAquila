@@ -49,7 +49,7 @@ export class SwcrPage {
         {
           text: 'Ok',
           handler: () => {
-            console.log('Buy clicked');
+            console.log('Ok clicked');
           }
         }
       ]
