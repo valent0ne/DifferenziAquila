@@ -4,8 +4,15 @@ import {AlertController, IonicApp, IonicErrorHandler, IonicModule} from 'ionic-a
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 import { MyApp } from './app.component';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '678110e5'
+  }
+};
 
 @NgModule({
   declarations: [
@@ -13,7 +20,8 @@ import { MyApp } from './app.component';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
