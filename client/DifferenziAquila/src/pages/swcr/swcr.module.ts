@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SwcrPage } from './swcr';
+import { DictionaryModule } from '../../providers/dictionary-service/dictionary-module';
+
 
 
 @NgModule({
@@ -8,6 +10,7 @@ import { SwcrPage } from './swcr';
     SwcrPage,
   ],
   imports: [
+    DictionaryModule,
     IonicPageModule.forChild(SwcrPage),
   ],
   exports: [

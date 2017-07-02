@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
+
 
 /**
  * Generated class for the SettingsPage page.
@@ -14,7 +16,7 @@ import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angula
 })
 export class SettingsPage {
 
-  hh: any ='hh';
+  hh: any = 'hh';
   mm: any = 'mm';
   selectedHH: boolean = false;
   selectedMM: boolean = false;
@@ -22,70 +24,30 @@ export class SettingsPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public sDictionary: DictionaryService) {
 
-    this.isToggled=true;
+    this.isToggled = true;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
 
-  presentHourPicker(){
+  presentHourPicker() {
 
-    if(!this.isToggled){
+    if (!this.isToggled) {
       return;
     }
-
-      let inputs = [];
-
-      for (let i = 0; i < 7; i++) {
-        inputs[i] = new Array();
-
-        inputs[i]['type'] = "radio";
-        inputs[i]['value'] = i+18;
-        inputs[i]['label'] = i+18;
-      }
-
-      let alert = this.alertCtrl.create({
-        inputs: inputs,
-        buttons: [
-          {
-            text: 'Annulla',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
-          },
-          {
-            text: 'Ok',
-            handler: (data) => {
-              console.log('Ok clicked');
-              this.hh=data;
-              this.selectedHH=true;
-            }
-          }
-        ]
-      });
-      alert.present();
-  }
-
-  presentMinutePicker(){
-
-    if(!this.isToggled){
-      return;
-    }
-
-
 
     let inputs = [];
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 7; i++) {
       inputs[i] = new Array();
 
-      inputs[i]['type'] = 'radio';
-      inputs[i]['value'] = i*15;
-      inputs[i]['label'] = i*15;
+      inputs[i]['type'] = "radio";
+      inputs[i]['value'] = i + 18;
+      inputs[i]['label'] = i + 18;
     }
 
     let alert = this.alertCtrl.create({
@@ -102,8 +64,57 @@ export class SettingsPage {
           text: 'Ok',
           handler: (data) => {
             console.log('Ok clicked');
-            this.mm=data;
-            this.selectedMM=true;
+            if (data) {
+              this.hh = data;
+              this.selectedHH = true;
+            }
+
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentMinutePicker() {
+
+    if (!this.isToggled) {
+      return;
+    }
+
+    let inputs = [];
+
+    for (let i = 0; i < 4; i++) {
+      inputs[i] = new Array();
+
+      inputs[i]['type'] = 'radio';
+      if (i == 0) {
+        inputs[i]['value'] = "00";
+        inputs[i]['label'] = "00";
+      } else {
+        inputs[i]['value'] = i * 15;
+        inputs[i]['label'] = i * 15;
+      }
+    }
+
+    let alert = this.alertCtrl.create({
+      inputs: inputs,
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: (data) => {
+            console.log('Ok clicked');
+            if (data) {
+              this.mm = data;
+              this.selectedMM = true;
+            }
           }
         }
       ]
@@ -112,13 +123,13 @@ export class SettingsPage {
   }
 
 
-  toggleNotifications(){
-      if(!this.isToggled){
-        this.selectedMM=false;
-        this.selectedHH=false;
-        this.mm='mm';
-        this.hh='hh';
-      }
+  toggleNotifications() {
+    if (!this.isToggled) {
+      this.selectedMM = false;
+      this.selectedHH = false;
+      this.mm = 'mm';
+      this.hh = 'hh';
+    }
   }
 
 }

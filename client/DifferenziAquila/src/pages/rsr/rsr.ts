@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
+
 
 /**
  * Generated class for the RsrPage page.
@@ -14,16 +16,18 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 })
 export class RsrPage {
 
-
+  default_amount: any=1;
   amount = {
-    'organico': null,
-    'plastica': null,
-    'carta': null,
-    'indifferenziato': null,
-    'vetro': null
+    'organico': this.default_amount,
+    'plastica': this.default_amount,
+    'carta': this.default_amount,
+    'indifferenziato': this.default_amount,
+    'vetro': this.default_amount
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public sDictionary: DictionaryService) {
   }
 
   ionViewDidLoad() {

@@ -11,7 +11,7 @@
   </ion-navbar>
 
   <ion-navbar color="tertiary">
-    <ion-title class="float-left-title">Richiesta sachetti</ion-title>
+    <ion-title class="float-left-title">{{"RSR"|dictionary}}</ion-title>
     <ion-icon name="send" class="send-icon"></ion-icon>
   </ion-navbar>
 
@@ -26,14 +26,14 @@
         <ion-col col-6 text-center>
           <ion-card>
           <ion-icon name="basket" class="organico"></ion-icon>
-          <ion-label>Organico</ion-label>
+          <ion-label>{{"ORGANIC"|dictionary}}</ion-label>
           </ion-card>
         </ion-col>
 
         <ion-col col-6>
           <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>quantità</ion-label>
+            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
             <ion-input type="number" min="0" max="5" value="{{amount['organico']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
@@ -54,14 +54,14 @@
       <ion-col col-6 text-center>
         <ion-card>
           <ion-icon name="basket" class="plastica"></ion-icon>
-          <ion-label>Plastica</ion-label>
+          <ion-label>{{"PLASTIC"|dictionary}}</ion-label>
         </ion-card>
       </ion-col>
 
       <ion-col col-6>
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>quantità</ion-label>
+            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
             <ion-input type="number" min="0" max="5" value="{{amount['plastica']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
@@ -81,14 +81,14 @@
       <ion-col col-6 text-center>
         <ion-card>
           <ion-icon name="basket" class="carta"></ion-icon>
-          <ion-label>Carta</ion-label>
+          <ion-label>{{"PAPER"|dictionary}}</ion-label>
         </ion-card>
       </ion-col>
 
       <ion-col col-6>
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>quantità</ion-label>
+            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
             <ion-input type="number" min="0" max="5" value="{{amount['carta']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
@@ -108,14 +108,14 @@
       <ion-col col-6 text-center>
         <ion-card>
           <ion-icon name="basket" class="indifferenziato"></ion-icon>
-          <ion-label>Indifferenziato</ion-label>
+          <ion-label>{{"IND"|dictionary}}</ion-label>
         </ion-card>
       </ion-col>
 
       <ion-col col-6>
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>quantità</ion-label>
+            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
             <ion-input type="number" min="0" max="5" value="{{amount['indifferenziato']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
@@ -135,14 +135,14 @@
       <ion-col col-6 text-center>
         <ion-card>
           <ion-icon name="basket" class="vetro"></ion-icon>
-          <ion-label>Vetro</ion-label>
+          <ion-label>{{"GLASS"|dictionary}}</ion-label>
         </ion-card>
       </ion-col>
 
       <ion-col col-6>
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>quantità</ion-label>
+            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
             <ion-input type="number" min="0" max="5" value="{{amount['vetro']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
@@ -158,5 +158,5 @@
     </ion-row>
   </ion-grid>
 
-  <button ion-button color="primary" class="submit-button">Inoltra richiesta</button>
+  <button ion-button color="primary" class="submit-button">{{"FWD_REQUEST"|dictionary}}</button>
 </ion-content>

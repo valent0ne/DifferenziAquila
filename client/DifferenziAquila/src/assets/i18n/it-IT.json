@@ -6,6 +6,47 @@
   "COLLECTION":"Ritiro",
   "SETTINGS":"Impostazioni",
 
-  "ERROR" : "Errore";
-  "GEO_ERROR":"controlla di avere la geolocalizzazione attiva."
+  "ERROR" : "Errore",
+  "GEO_ERROR":"controlla di avere la geolocalizzazione attiva.",
+
+  "CHOOSE_DAY": "scegli un giorno",
+  "CHOOSE_TIME_SLOT":"scegli una fascia oraria",
+  "ITEMS_DESC":"breve descrizione degli oggetti da ritirare",
+
+  "FWD_REQUEST":"Inoltra richiesta",
+  "SWCR":"Richiesta ritiro rifiuti speciali",
+
+  "OK":"Ok",
+  "CANCEL":"Annulla",
+
+  "ORGANIC":"Organico",
+  "PLASTIC":"Plastica",
+  "GLASS":"Vetro",
+  "IND":"Indifferenziato",
+  "PAPER":"Carta",
+
+  "RSR":"Richiesta sacchetti",
+
+  "AMOUNT":"quantità",
+
+  "NOTIFICATIONS":"Notifiche",
+  "NOT_TIME":"Orario in cui ricevere le notifiche",
+  "INFO":"Informazioni",
+  "TEL":"Telefono",
+  "FAX":"Fax",
+  "ADDR":"Indirizzo",
+
+  "1":"Gen",
+  "2":"Feb",
+  "3":"Mar",
+  "4":"Apr",
+  "5":"Mag",
+  "6":"Giu",
+  "7":"Lug",
+  "8":"Ago",
+  "9":"Set",
+  "10":"Ott",
+  "11":"Nov",
+  "12":"Dic"
+
 }

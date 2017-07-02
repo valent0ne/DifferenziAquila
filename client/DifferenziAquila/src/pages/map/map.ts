@@ -48,7 +48,7 @@ export class MapPage {
 
     //qui for per aggiunta marker sulla mappa
     var latLng = {lat: 42.349790, lng: 13.399361};
-    this.addMarker(latLng, 'A', 'descrizione descrizione descrizione descrizione descrizione ');
+    this.addMarker(latLng, 'A', 'descrizione');
 
 
   }

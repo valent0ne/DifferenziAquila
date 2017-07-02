@@ -12,7 +12,7 @@
   </ion-navbar>
 
   <ion-navbar color="tertiary">
-    <ion-title text-center>Settings</ion-title>
+    <ion-title text-center>{{"SETTINGS"|dictionary}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,7 +24,7 @@
     <ion-card>
       <ion-card-content>
         <ion-item color="light" no-lines>
-          <ion-label>Notifiche</ion-label>
+          <ion-label>{{"NOTIFICATIONS"|dictionary}}</ion-label>
           <ion-toggle [(ngModel)]="isToggled" (ionChange)="toggleNotifications()"></ion-toggle>
         </ion-item>
       </ion-card-content>
@@ -33,7 +33,7 @@
     <ion-card>
       <ion-card-content>
         <ion-item color="light" no-lines>
-          <ion-label>Orario in cui ricevere la notifica</ion-label>
+          <ion-label>{{"NOT_TIME"|dictionary}}</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
           <ion-label align="right" class="padding-right" id="hh" [ngStyle]="{'color': selectedHH ? 'black' : 'silver'}" (click)="presentHourPicker()">{{hh}}   :</ion-label>
@@ -45,18 +45,18 @@
     <ion-card>
       <ion-card-content>
         <ion-item color="light" no-lines>
-          <ion-label class="title"><strong>Informazioni</strong></ion-label>
+          <ion-label class="title"><strong>{{"INFO"|dictionary}}</strong></ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label>Telefono: </ion-label>
+          <ion-label>{{"TEL"|dictionary}}: </ion-label>
           <ion-label>0862 123456</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label>Fax: </ion-label>
+          <ion-label>{{"FAX"|dictionary}}: </ion-label>
           <ion-label>0862 789012</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label>Indirizzo: </ion-label>
+          <ion-label>{{"ADDR"|dictionary}}: </ion-label>
           <ion-label>Via Casuale, n°1</ion-label>
         </ion-item>
       </ion-card-content>
@@ -65,49 +65,4 @@
   </ion-list>
 
 </ion-content>
-
-
-<!--
-
-    <ion-card>
-      <ion-row>
-        <ion-row>
-
-        </ion-row>
-        <ion-row>
-          <ion-col align-self-end>
-            <ion-input type="number" placeholder="00"></ion-input>
-          </ion-col>
-          <ion-col align-self-start>
-            <ion-input type="number" placeholder="00"></ion-input>
-          </ion-col>
-        </ion-row>
-      </ion-row>
-    </ion-card>
-
-
-    <ion-card>
-      <ion-row>
-       <ion-row>
-         <ion-label>ama</ion-label>
-       </ion-row>
-        <ion-row>
-         <ion-col align-items-start="">
-           <ion-label text-left>Numero Telefono</ion-label>
-         </ion-col>
-          <ion-col align-items-start="">
-            <ion-label text-left>Partita Iva</ion-label>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col align-items-start="">
-            <ion-label text-left>Numero Fax</ion-label>
-          </ion-col>
-          <ion-col align-items-start="">
-            <ion-label text-left>Un'altra Info</ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-row>
-    </ion-card>
-  </ion-grid>-->
 

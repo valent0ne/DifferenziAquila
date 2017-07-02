@@ -16,6 +16,14 @@ page-rsr {
   ion-row{
     height:100%!important;
     align-items: center!important;
+    ion-col{
+      ion-card{
+        .carta, .plastica, .indifferenziato, .vetro, .organico{
+          font-size: 100px!important;
+          margin:0 auto!important;
+        }
+      }
+    }
   }
   ion-col{
     button{
@@ -51,33 +59,23 @@ page-rsr {
   }
 
   .organico{
-    font-size: 100px!important;
-    color: #49311c!important;
-    margin:0 auto!important;
+    color: map-get($colors, organico)!important;
   }
 
   .plastica{
-    font-size: 100px!important;
-    color: #ffff00!important;
-    margin:0 auto!important;
+    color: map-get($colors, plastica)!important;
   }
 
   .carta{
-    font-size: 100px!important;
-    color: #d9d9d9!important;
-    margin:0 auto!important;
+    color: map-get($colors, carta)!important;
   }
 
   .indifferenziato{
-    font-size: 100px!important;
-    color: #006600!important;
-    margin:0 auto!important;
+    color: map-get($colors, ind)!important;
   }
 
   .vetro{
-    font-size: 100px!important;
-    color: #000099!important;
-    margin:0 auto!important;
+    color: map-get($colors, vetro)!important;
   }
 
   .submit-button{

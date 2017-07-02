@@ -6,6 +6,46 @@
   "COLLECTION":"Collection",
   "SETTINGS":"Settings",
 
-  "ERROR" : "Error";
-  "GEO_ERROR":"make sure you have activated the geolocalization."
+  "ERROR" : "Error",
+  "GEO_ERROR":"make sure you have activated the geolocalization.",
+
+  "CHOOSE_DAY": "choose a day",
+  "CHOOSE_TIME_SLOT":"choose a time slot",
+  "ITEMS_DESC":"short description of the items",
+
+  "FWD_REQUEST":"Forward request",
+  "SWCR":"Special wastes collection request",
+
+  "OK":"Ok",
+  "CANCEL":"Cancel",
+
+  "ORGANIC":"Organic",
+  "PLASTIC":"Plastic",
+  "GLASS":"Glass",
+  "IND":"Undifferentiated",
+  "PAPER":"Paper",
+
+  "RSR":"Recycling sacks request",
+
+  "AMOUNT":"amount",
+
+  "NOTIFICATIONS":"Notifications",
+  "NOT_TIME":"Time to receive the notification",
+  "INFO":"Information",
+  "TEL":"Telephone",
+  "FAX":"Fax",
+  "ADDR":"Address",
+
+  "1":"Jan",
+  "2":"Feb",
+  "3":"Mar",
+  "4":"Apr",
+  "5":"May",
+  "6":"Jun",
+  "7":"Jul",
+  "8":"Aug",
+  "9":"Sep",
+  "10":"Oct",
+  "11":"Nov",
+  "12":"Dec"
 }

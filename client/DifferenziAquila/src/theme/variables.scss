@@ -39,7 +39,14 @@ $colors: (
   tertiary:   #138d59,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+
+  carta:      #d9d9d9,
+  plastica:   rgb(234, 224, 13),
+  ind:        #006600,
+  organico:   #49311c,
+  vetro:      #1d1de4
+
 );
 
 
@@ -86,5 +93,10 @@ $toggle-md-track-background-color-on:  #d9d9d9;
 
 @import "roboto";
 @import "noto-sans";
-@import url(https://fonts.googleapis.com/css?family=Arima+Madurai|Lato|Pacifico);
-$font-family-base: "Lato", sans-serif !default;
+@import "../assets/fonts/Lato-Regular.ttf";
+
+$font-family-md-base: "Lato";
+$font-family-ios-base: "Lato";
+$font-family-wp-base: "Lato";
+
+

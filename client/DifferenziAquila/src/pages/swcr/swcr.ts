@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
+
 
 /**
  * Generated class for the SwcrPage page.
@@ -14,14 +16,15 @@ import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angula
 })
 export class SwcrPage {
 
-  date: string = "scegli un giorno";
-  time: string = "scegli una fascia oraria";
-  selectedDate : boolean = !(this.date == "scegli un giorno");
-  selectedTime : boolean = !(this.time == "scegli una fascia oraria");
+  date: string = this.sDictionary.get("CHOOSE_DAY");
+  time: string = this.sDictionary.get("CHOOSE_TIME_SLOT");
+  selectedDate: boolean = !(this.date == this.sDictionary.get("CHOOSE_DAY"));
+  selectedTime: boolean = !(this.time == this.sDictionary.get("CHOOSE_TIME_SLOT"));
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public sDictionary: DictionaryService) {
   }
 
   ionViewDidLoad() {
@@ -34,15 +37,14 @@ export class SwcrPage {
     let day = new Date();
 
     for (let i = 0; i < 14; i++) {
-
       let nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
       inputs[i] = new Array();
+      let item=nextDay.getDate()+' '+this.sDictionary.get((nextDay.getMonth()+1).toString())+' '+nextDay.getFullYear();
       inputs[i]['type'] = 'radio';
-      inputs[i]['label'] = nextDay.toDateString();
-      inputs[i]['value'] = nextDay.toDateString();
+      inputs[i]['label'] = item;
+      inputs[i]['value'] = item;
 
-
-      if(nextDay.getDay() == 0 || nextDay.getDay() == 6){
+      if (nextDay.getDay() == 0 || nextDay.getDay() == 6) {
         inputs[i]['disabled'] = "true";
       }
 
@@ -52,18 +54,21 @@ export class SwcrPage {
       inputs: inputs,
       buttons: [
         {
-          text: 'Annulla',
+          text: this.sDictionary.get("CANCEL"),
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Ok',
+          text: this.sDictionary.get("OK"),
           handler: (data) => {
             console.log('Ok clicked');
-            this.date = data;
-            this.selectedDate = true;
+            if (data) {
+              this.date = data;
+              this.selectedDate = true;
+            }
+
           }
         }
       ]
@@ -77,40 +82,42 @@ export class SwcrPage {
       inputs: [
         {
           type: 'radio',
-          label: '9-11',
-          value: '9-11'
+          label: '9 - 11',
+          value: '9 - 11'
         },
         {
           type: 'radio',
-          label: '11-13',
-          value: '11-13'
+          label: '11 - 13',
+          value: '11 - 13'
         },
         {
           type: 'radio',
-          label: '15-17',
-          value: '15-17'
+          label: '15 - 17',
+          value: '15 - 17'
         },
         {
           type: 'radio',
-          label: '17-19',
-          value: '17-19'
+          label: '17 - 19',
+          value: '17 - 19'
         }
 
       ],
       buttons: [
         {
-          text: 'Annulla',
+          text: this.sDictionary.get("CANCEL"),
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Ok',
+          text: this.sDictionary.get("OK"),
           handler: (data) => {
             console.log('Ok clicked');
-            this.time=data;
-            this.selectedTime = true;
+            if (data) {
+              this.time = data;
+              this.selectedTime = true;
+            }
           }
         }
       ]
