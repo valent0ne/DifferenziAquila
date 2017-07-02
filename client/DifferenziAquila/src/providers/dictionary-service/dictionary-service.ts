@@ -40,14 +40,18 @@ export class DictionaryService {
         this._getDictionaryFromAssets(language)
           .then((dict) => {
             this.dictionary = dict;
+            console.log("dict loaded");
             resolve();
           })
           .catch(() => {
+            console.log("dict not loaded");
             reject();
           });
       })
 
     });
+
+
   }
 
 
@@ -73,7 +77,7 @@ export class DictionaryService {
       }
       return val;
     }
-
+    console.log("dictionary null");
     return "";
   }
 

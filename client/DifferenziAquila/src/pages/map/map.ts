@@ -77,7 +77,7 @@ export class MapPage {
     }, (err) => {
       let alert = this.alertCtrl.create({
         title: 'Errore',
-        subTitle: 'errore nella geolocalizzazione, controlla di avere attivata la posizione',
+        subTitle: 'errore: controlla di avere la geolocalizzazione attiva',
         buttons: ['Dismiss']
       });
       alert.present();

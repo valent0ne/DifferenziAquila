@@ -27,7 +27,7 @@
       <ion-col>
         <ion-card (click)="this.navCtrl.push('MapPage')">
           <ion-icon name="map"></ion-icon>
-          <ion-label>Mappa</ion-label>
+          <ion-label>{{ 'MAP' | dictionary }}</ion-label>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -35,13 +35,13 @@
       <ion-col>
         <ion-card (click)="this.navCtrl.push('SwcrPage')">
           <ion-icon name="trash"></ion-icon>
-          <ion-label>Ritiro</ion-label>
+          <ion-label>{{ 'COLLECTION' | dictionary }}</ion-label>
         </ion-card>
       </ion-col>
       <ion-col>
         <ion-card (click)="this.navCtrl.push('RsrPage')">
           <ion-icon name="basket"></ion-icon>
-          <ion-label>Sacchetti</ion-label>
+          <ion-label>{{ 'SACKS' | dictionary }}</ion-label>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -49,13 +49,13 @@
       <ion-col>
         <ion-card (click)="this.navCtrl.push('NewsListPage')">
           <ion-icon name="information-circle"></ion-icon>
-          <ion-label>Avvisi</ion-label>
+          <ion-label>{{ 'NEWS' | dictionary }}</ion-label>
         </ion-card>
       </ion-col>
       <ion-col>
         <ion-card (click)="this.navCtrl.push('SettingsPage')">
           <ion-icon name="settings"></ion-icon>
-          <ion-label>Impostazioni</ion-label>
+          <ion-label>{{ 'SETTINGS' | dictionary }}</ion-label>
         </ion-card>
       </ion-col>
     </ion-row>

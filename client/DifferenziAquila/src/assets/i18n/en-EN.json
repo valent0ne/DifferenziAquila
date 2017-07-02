@@ -1,3 +1,8 @@
 {
-  "CALENDAR" : "Calendar"
+  "CALENDAR" : "Calendar",
+  "MAP": "Map",
+  "NEWS":"News",
+  "SACKS":"Sacks",
+  "COLLECTION":"Collection",
+  "SETTINGS":"Settings"
 }
