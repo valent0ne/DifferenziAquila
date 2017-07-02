@@ -62,7 +62,8 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-geolocation": {},
-            "cordova-plugin-datepicker": {}
+            "cordova-plugin-datepicker": {},
+            "cordova-plugin-globalization": {}
         },
         "platforms": [
             "android",
