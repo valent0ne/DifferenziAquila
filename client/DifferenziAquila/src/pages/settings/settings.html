@@ -25,7 +25,7 @@
       <ion-card-content>
         <ion-item color="light" no-lines>
           <ion-label>Notifiche</ion-label>
-          <ion-toggle checked="true"></ion-toggle>
+          <ion-toggle [(ngModel)]="isToggled" (ionChange)="toggleNotifications()"></ion-toggle>
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -36,8 +36,8 @@
           <ion-label>Orario in cui ricevere la notifica</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label align="right" class="padding-right" id="hh">hh</ion-label>
-          <ion-label class="padding-left" id="mm">mm</ion-label>
+          <ion-label align="right" class="padding-right" id="hh" [ngStyle]="{'color': selectedHH ? 'black' : 'silver'}" (click)="presentHourPicker()">{{hh}}   :</ion-label>
+          <ion-label class="padding-left" id="mm" [ngStyle]="{'color': selectedMM ? 'black' : 'silver'}"  (click)="presentMinutePicker()">{{mm}}</ion-label>
         </ion-item>
       </ion-card-content>
     </ion-card>

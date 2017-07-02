@@ -1,7 +1,15 @@
 page-rsr {
 
+  ion-label{
+    margin-right:0px!important;
+  }
+
   ion-input{
     font-size: large!important;
+  }
+
+  ion-card{
+    height: 141px!important;
   }
 
 
@@ -11,7 +19,7 @@ page-rsr {
   }
   ion-col{
     button{
-      padding:20px 8px 20px 8px!important;
+      margin:0!important;
       ion-icon{
         font-size:28px!important;
         color: map-get($colors, light)!important;
@@ -19,8 +27,27 @@ page-rsr {
     }
   }
 
+  .plus{
+    padding:17px 9px 16px 9px!important;
+    margin-right: 5px!important;
+    height: 35px!important;
+    width: 35px!important;
+  }
+
+  .minus{
+    padding:17px 8px 16px 8px!important;
+    margin-left: 5px!important;
+    height: 36px!important;
+    width: 36px!important;
+  }
+
+  .item-icons{
+    padding-left:10px!important;
+  }
+
   .label-amount{
     padding-right: 15px!important;
+    margin-bottom: 20px!important;
   }
 
   .organico{
@@ -54,9 +81,12 @@ page-rsr {
   }
 
   .submit-button{
-    margin-left:15px!important;
+    margin-left:19px!important;
   }
 
 
+  .card-right{
+
+  }
 
 }

@@ -11,7 +11,7 @@ import {DictionaryService} from "../providers/dictionary-service/dictionary-serv
   providers: [DictionaryService]
 })
 export class MyApp {
-  rootPage:any = 'SplashPage';
+  rootPage:any = 'MenuPage';
 
   constructor(platform: Platform,
               statusBar: StatusBar,
@@ -28,7 +28,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      // splashScreen.hide();
+      splashScreen.hide();
     });
   }
 }
