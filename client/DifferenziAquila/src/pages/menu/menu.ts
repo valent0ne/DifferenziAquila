@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
 
 /**
  * Generated class for the MenuPage page.
@@ -14,15 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public sDictionary: DictionaryService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
   }
 
-  goLogin(){
-    this.navCtrl.push('LoginPage');
-  }
+
 
 }
