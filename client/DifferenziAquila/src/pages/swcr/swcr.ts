@@ -14,6 +14,11 @@ import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angula
 })
 export class SwcrPage {
 
+  date: string = "scegli un giorno";
+  time: string = "scegli una fascia oraria";
+  selectedDate : boolean = !(this.date == "scegli un giorno");
+  selectedTime : boolean = !(this.time == "scegli una fascia oraria");
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController) {
@@ -25,15 +30,22 @@ export class SwcrPage {
 
   presentDatePicker() {
 
-    var inputs = [];
-    var day = new Date();
+    let inputs = [];
+    let day = new Date();
 
-    for (var i = 0; i < 30; i++) {
+    for (let i = 0; i < 14; i++) {
+
+      let nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
       inputs[i] = new Array();
-
-      var nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
       inputs[i]['type'] = 'radio';
       inputs[i]['label'] = nextDay.toDateString();
+      inputs[i]['value'] = nextDay.toDateString();
+
+
+      if(nextDay.getDay() == 0 || nextDay.getDay() == 6){
+        inputs[i]['disabled'] = "true";
+      }
+
     }
 
     let alert = this.alertCtrl.create({
@@ -48,8 +60,10 @@ export class SwcrPage {
         },
         {
           text: 'Ok',
-          handler: () => {
+          handler: (data) => {
             console.log('Ok clicked');
+            this.date = data;
+            this.selectedDate = true;
           }
         }
       ]
@@ -63,19 +77,23 @@ export class SwcrPage {
       inputs: [
         {
           type: 'radio',
-          label: '9-11'
+          label: '9-11',
+          value: '9-11'
         },
         {
           type: 'radio',
-          label: '11-13'
+          label: '11-13',
+          value: '11-13'
         },
         {
           type: 'radio',
-          label: '15-17'
+          label: '15-17',
+          value: '15-17'
         },
         {
           type: 'radio',
-          label: '17-19'
+          label: '17-19',
+          value: '17-19'
         }
 
       ],
@@ -89,8 +107,10 @@ export class SwcrPage {
         },
         {
           text: 'Ok',
-          handler: () => {
-            console.log('Buy clicked');
+          handler: (data) => {
+            console.log('Ok clicked');
+            this.time=data;
+            this.selectedTime = true;
           }
         }
       ]

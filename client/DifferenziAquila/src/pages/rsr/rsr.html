@@ -34,14 +34,14 @@
           <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
             <ion-label floating>quantità</ion-label>
-            <ion-input type="number" min="0" max="5" text-start></ion-input>
+            <ion-input type="number" min="0" max="5" value="{{amount['organico']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
             <button ion-button item-left class="minus">
-              <ion-icon name="remove" ></ion-icon>
+              <ion-icon name="remove" (click)="changeAmount('-','organico')"></ion-icon>
             </button>
             <button ion-button item-right class="plus">
-              <ion-icon name="add"></ion-icon>
+              <ion-icon name="add" (click)="changeAmount('+','organico')"></ion-icon>
             </button>
           </ion-item>
           </ion-card>
@@ -62,14 +62,14 @@
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
             <ion-label floating>quantità</ion-label>
-            <ion-input type="number" min="0" max="5" text-start></ion-input>
+            <ion-input type="number" min="0" max="5" value="{{amount['plastica']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
             <button ion-button item-left class="minus">
-              <ion-icon name="remove" ></ion-icon>
+              <ion-icon name="remove" (click)="changeAmount('-','plastica')"></ion-icon>
             </button>
             <button ion-button item-right class="plus">
-              <ion-icon name="add"></ion-icon>
+              <ion-icon name="add" (click)="changeAmount('+','plastica')"></ion-icon>
             </button>
           </ion-item>
         </ion-card>
@@ -89,14 +89,14 @@
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
             <ion-label floating>quantità</ion-label>
-            <ion-input type="number" min="0" max="5" text-start></ion-input>
+            <ion-input type="number" min="0" max="5" value="{{amount['carta']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
             <button ion-button item-left class="minus">
-              <ion-icon name="remove" ></ion-icon>
+              <ion-icon name="remove" (click)="changeAmount('-','carta')"></ion-icon>
             </button>
             <button ion-button item-right class="plus">
-              <ion-icon name="add"></ion-icon>
+              <ion-icon name="add" (click)="changeAmount('+','carta')"></ion-icon>
             </button>
           </ion-item>
         </ion-card>
@@ -116,14 +116,14 @@
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
             <ion-label floating>quantità</ion-label>
-            <ion-input type="number" min="0" max="5" text-start></ion-input>
+            <ion-input type="number" min="0" max="5" value="{{amount['indifferenziato']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
             <button ion-button item-left class="minus">
-              <ion-icon name="remove" ></ion-icon>
+              <ion-icon name="remove" (click)="changeAmount('-','indifferenziato')"></ion-icon>
             </button>
             <button ion-button item-right class="plus">
-              <ion-icon name="add"></ion-icon>
+              <ion-icon name="add" (click)="changeAmount('+','indifferenziato')"></ion-icon>
             </button>
           </ion-item>
         </ion-card>
@@ -143,14 +143,14 @@
         <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
             <ion-label floating>quantità</ion-label>
-            <ion-input type="number" min="0" max="5" text-start></ion-input>
+            <ion-input type="number" min="0" max="5" value="{{amount['vetro']}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
             <button ion-button item-left class="minus">
-              <ion-icon name="remove" ></ion-icon>
+              <ion-icon name="remove" (click)="changeAmount('-','vetro')"></ion-icon>
             </button>
             <button ion-button item-right class="plus">
-              <ion-icon name="add"></ion-icon>
+              <ion-icon name="add" (click)="changeAmount('+','vetro')"></ion-icon>
             </button>
           </ion-item>
         </ion-card>

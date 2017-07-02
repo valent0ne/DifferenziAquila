@@ -37,14 +37,14 @@ export class SettingsPage {
       return;
     }
 
-      var inputs = [];
+      let inputs = [];
 
-      for (var i = 0; i < 24; i++) {
+      for (let i = 0; i < 7; i++) {
         inputs[i] = new Array();
 
         inputs[i]['type'] = "radio";
-        inputs[i]['value'] = i;
-        inputs[i]['label'] = i;
+        inputs[i]['value'] = i+18;
+        inputs[i]['label'] = i+18;
       }
 
       let alert = this.alertCtrl.create({
@@ -78,14 +78,14 @@ export class SettingsPage {
 
 
 
-    var inputs = [];
+    let inputs = [];
 
-    for (var i = 0; i < 60; i++) {
+    for (let i = 0; i < 4; i++) {
       inputs[i] = new Array();
 
       inputs[i]['type'] = 'radio';
-      inputs[i]['value'] = i;
-      inputs[i]['label'] = i;
+      inputs[i]['value'] = i*15;
+      inputs[i]['label'] = i*15;
     }
 
     let alert = this.alertCtrl.create({

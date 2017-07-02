@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
 /**
  * Generated class for the RsrPage page.
@@ -14,11 +14,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RsrPage {
 
+
+  amount = {
+    'organico': null,
+    'plastica': null,
+    'carta': null,
+    'indifferenziato': null,
+    'vetro': null
+  };
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RsrPage');
+  }
+
+  changeAmount(action, target) {
+    switch(action){
+      case "+":
+      if (this.amount[target] < 5)
+        this.amount[target]++;
+      break;
+      case "-":
+      if (this.amount[target] > 0)
+        this.amount[target]--;
+      break;
+    }
+
   }
 
 }
