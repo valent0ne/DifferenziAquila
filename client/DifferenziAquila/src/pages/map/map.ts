@@ -1,6 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation';
+import {DictionaryService} from "../../providers/dictionary-service/dictionary-service";
 
 declare var google;
 
@@ -23,7 +24,8 @@ export class MapPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public geolocation: Geolocation,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public sDictionary: DictionaryService) {
   }
 
   ionViewDidLoad() {
@@ -76,8 +78,8 @@ export class MapPage {
       this.map.setCenter(currentLatLng);
     }, (err) => {
       let alert = this.alertCtrl.create({
-        title: 'Errore',
-        subTitle: 'errore: controlla di avere la geolocalizzazione attiva',
+        title: this.sDictionary.get("ERROR"),
+        subTitle: this.sDictionary.get("GEO_ERROR"),
         buttons: ['Dismiss']
       });
       alert.present();

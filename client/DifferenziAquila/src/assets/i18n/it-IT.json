@@ -4,5 +4,8 @@
   "NEWS":"Avvisi",
   "SACKS":"Sacchetti",
   "COLLECTION":"Ritiro",
-  "SETTINGS":"Impostazioni"
+  "SETTINGS":"Impostazioni",
+
+  "ERROR" : "Errore";
+  "GEO_ERROR":"controlla di avere la geolocalizzazione attiva."
 }

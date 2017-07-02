@@ -4,5 +4,8 @@
   "NEWS":"News",
   "SACKS":"Sacks",
   "COLLECTION":"Collection",
-  "SETTINGS":"Settings"
+  "SETTINGS":"Settings",
+
+  "ERROR" : "Error";
+  "GEO_ERROR":"make sure you have activated the geolocalization."
 }
