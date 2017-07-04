@@ -1,13 +1,25 @@
 page-menu {
 
-  ion-label{
-    margin-right:0px!important;
-  }
+ion-card{
+  background-color: map-get($colors, tertiary)!important;
+}
 
-  ion-card{
-    padding-top:25px;
+ion-card-content{
+  padding:20px 0px 5px 0px!important;
+}
+  
+
+  button{
+    text-transform: none!important; 
+    width:100%!important;
+    height: 100%!important;
+    margin:0!important;
+    color:map-get($colors, light)!important;
+    font-size:medium!important;
     background-color: map-get($colors, tertiary)!important;
-    color: map-get($colors,light)!important;
+  }
+  ion-label{
+   margin-right:0px!important;
   }
   ion-icon{
     font-size:60px!important;

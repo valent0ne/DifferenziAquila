@@ -36,6 +36,14 @@
   "FAX":"Fax",
   "ADDR":"Address",
 
+  "LOGIN":"Login",
+  "LOGINTXT1":"Enter your client code",
+  "LOGINTXT2":"in the box below",
+  "REMEMBERME":"Remember me",
+
+  "CLEAR":"Clear",
+
+
   "1":"Jan",
   "2":"Feb",
   "3":"Mar",

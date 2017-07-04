@@ -48,4 +48,11 @@ export class RsrPage {
 
   }
 
+  clear(){
+    this.amount.carta = 0;
+    this.amount.indifferenziato = 0;
+    this.amount.vetro = 0;
+    this.amount.organico = 0;
+    this.amount.plastica = 0;
+  }
 }

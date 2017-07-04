@@ -2,6 +2,7 @@ page-login {
 
   .logo-container{
     text-align: center;
+    margin-top:10px;
     img{
       width: 100%;
       max-width:225px;
@@ -10,19 +11,29 @@ page-login {
   }
 
   .how-to-login{
-    width:100%!important;
+    font-size:medium!important;
     height: 20px!important;
     border:0!important;
     background-color: transparent!important;
-    text-decoration-color: map-get($colors, dark)!important;
-    text-shadow: none!important;
+    color: map-get($colors, light)!important;
+  }
+
+  .ion-title-text{
+    font-size:medium!important;
+    color: map-get($colors, dark)!important;
   }
 
   .input-clientcode{
     margin-top: 20px;
-    width:100%;
-    height: auto;
+    padding-left:0!important;
+  }
 
+  .input-icon{
+    margin-left:15px!important;
+  }
+
+  .remember-me{
+    font-size:small!important;
   }
 
 

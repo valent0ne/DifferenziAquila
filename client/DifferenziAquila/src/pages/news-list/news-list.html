@@ -10,8 +10,8 @@
     <ion-title align="right"><span class="light-text">DifferenziAquila</span></ion-title>
   </ion-navbar>
 
-  <ion-navbar color="tertiary">
-    <ion-title align="center">NewsList</ion-title>
+  <ion-navbar color="tertiary" hideBackButton="true" class="secondNav">
+    <ion-title align="center" class=" secondNavTitleContainer"><span class="secondNavTitle">NewsList</span></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,7 +20,7 @@
 <ion-content class="background" padding>
 
   <ion-list>
-    <ion-card color="light" (click)="this.navCtrl.push('NewsPage')">
+    <ion-card tappable color="light" (click)="this.navCtrl.push('NewsPage')">
       <ion-title>Titolo News</ion-title>
       <ion-card-content>Prime parole news</ion-card-content>
     </ion-card>

@@ -78,13 +78,13 @@ page-rsr {
     color: map-get($colors, vetro)!important;
   }
 
-  .submit-button{
-    margin-left:19px!important;
+  .left-button{
+    margin-left:9px!important;
   }
 
-
-  .card-right{
-
+  .right-button{
+    float:right!important;
+    margin-right:9px!important;
   }
 
 }

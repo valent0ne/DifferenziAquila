@@ -12,8 +12,8 @@
   </ion-navbar>
 
 
-  <ion-navbar color="tertiary" hideBackButton="true">
-    <ion-title align="center">Login</ion-title>
+  <ion-navbar color="tertiary" hideBackButton="true" class="secondNav">
+    <ion-title align="center" class="secondNavTitleContainer"><span class="secondNavTitle">{{"LOGIN" | dictionary}}</span></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -26,13 +26,12 @@
 
   <br>
   <ion-item  no-lines class="how-to-login">
-    <ion-title align="center">Enter your client code </ion-title>
-    <ion-title align="center">in the box below</ion-title>
-
+    <ion-title color="dark" align="center"><span class="ion-title-text">{{"LOGINTXT1"|dictionary}}</span></ion-title>
+    <ion-title color="dark" align="center"><span class="ion-title-text">{{"LOGINTXT2"|dictionary}}</span></ion-title>
   </ion-item>
 
   <ion-item class="input-clientcode">
-      <ion-label class="icon-clientcode">
+      <ion-label class="input-icon">
         <ion-icon name="contact" ></ion-icon>
       </ion-label>
       <ion-input clearInput type="text"></ion-input>
@@ -40,14 +39,14 @@
 
   <ion-item class="how-to-login" no-lines>
     <ion-toggle  checked="true"></ion-toggle>
-    <ion-label  color="dark">Remember me</ion-label>
+    <ion-label class="remember-me" color="dark">{{"REMEMBERME"|dictionary}}</ion-label>
 
   </ion-item>
 
   <br>
 
   <div text-center>
-   <button ion-button color="primary" large >LogIn</button>
+   <button ion-button color="primary">{{"LOGIN"|dictionary}}</button>
   </div>
 
 

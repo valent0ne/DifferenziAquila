@@ -19,46 +19,86 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card (click)="this.navCtrl.push('CalendarPage')">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>{{ 'CALENDAR' | dictionary }}</ion-label>
+        <ion-card tappable (click)="this.navCtrl.push('CalendarPage')">
+          <button ion-button clear>
+            <ion-card-content>
+              <ion-icon name="calendar"></ion-icon>
+              <ion-label>
+              {{ 'CALENDAR' | dictionary }}
+              </ion-label>
+            </ion-card-content>
+          </button>
         </ion-card>
+        
       </ion-col>
       <ion-col>
-        <ion-card (click)="this.navCtrl.push('MapPage')">
-          <ion-icon name="map"></ion-icon>
-          <ion-label>{{ 'MAP' | dictionary }}</ion-label>
+        <ion-card tappable (click)="this.navCtrl.push('MapPage')">
+          <button ion-button clear>
+            <ion-card-content>
+              <ion-icon name="map"></ion-icon>
+              <ion-label>
+              {{ 'MAP' | dictionary }}
+              </ion-label>
+            </ion-card-content>
+          </button>
         </ion-card>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-card (click)="this.navCtrl.push('SwcrPage')">
-          <ion-icon name="trash"></ion-icon>
-          <ion-label>{{ 'COLLECTION' | dictionary }}</ion-label>
+        <ion-card tappable (click)="this.navCtrl.push('SwcrPage')">
+          <button ion-button clear>
+            <ion-card-content>
+              <ion-icon name="trash"></ion-icon>
+              <ion-label>
+              {{ 'COLLECTION' | dictionary }}
+              </ion-label>
+            </ion-card-content>
+          </button>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="this.navCtrl.push('RsrPage')">
-          <ion-icon name="basket"></ion-icon>
-          <ion-label>{{ 'SACKS' | dictionary }}</ion-label>
+        <ion-card tappable (click)="this.navCtrl.push('RsrPage')">
+          <button ion-button clear>
+            <ion-card-content>
+              <ion-icon name="basket"></ion-icon>
+              <ion-label>
+              {{ 'SACKS' | dictionary }}
+              </ion-label>
+            </ion-card-content>
+          </button>
         </ion-card>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-card (click)="this.navCtrl.push('NewsListPage')">
-          <ion-icon name="information-circle"></ion-icon>
-          <ion-label>{{ 'NEWS' | dictionary }}</ion-label>
+       <ion-card tappable (click)="this.navCtrl.push('NewsListPage')">
+          <button ion-button clear>
+            <ion-card-content>
+              <ion-icon name="information-circle"></ion-icon>
+              <ion-label>
+              {{ 'NEWS' | dictionary }}
+              </ion-label>
+            </ion-card-content>
+          </button>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="this.navCtrl.push('SettingsPage')">
-          <ion-icon name="settings"></ion-icon>
-          <ion-label>{{ 'SETTINGS' | dictionary }}</ion-label>
+        <ion-card tappable (click)="this.navCtrl.push('SettingsPage')">
+          <button ion-button clear>
+            <ion-card-content>
+              <ion-icon name="settings"></ion-icon>
+              <ion-label>
+              {{ 'SETTINGS' | dictionary }}
+              </ion-label>
+            </ion-card-content>
+          </button>
         </ion-card>
       </ion-col>
     </ion-row>
+    <a style="margin-top:10px" (click)="this.navCtrl.push('LoginPage')">temp goto login</a>
   </ion-grid>
+
+  
 
 </ion-content>

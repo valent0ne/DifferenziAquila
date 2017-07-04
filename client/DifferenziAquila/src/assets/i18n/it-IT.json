@@ -36,6 +36,13 @@
   "FAX":"Fax",
   "ADDR":"Indirizzo",
 
+  "LOGIN":"Accedi",
+  "LOGINTXT1":"Inserisci il tuo codice cliente",
+  "LOGINTXT2":"nel campo sotto",
+  "REMEMBERME":"Ricordami",
+
+  "CLEAR":"Pulisci",
+
   "1":"Gen",
   "2":"Feb",
   "3":"Mar",

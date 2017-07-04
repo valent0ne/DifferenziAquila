@@ -10,8 +10,8 @@
     <ion-title align="right"><span class="light-text">DifferenziAquila</span></ion-title>
   </ion-navbar>
 
-  <ion-navbar color="tertiary">
-    <ion-title class="float-left-title">{{"RSR"|dictionary}}</ion-title>
+  <ion-navbar color="tertiary" hideBackButton="true" class="secondNav">
+    <ion-title class="float-left-title  secondNavTitleContainer"><span class="secondNavTitle">{{"RSR"|dictionary}}</span></ion-title>
     <ion-icon name="send" class="send-icon"></ion-icon>
   </ion-navbar>
 
@@ -158,5 +158,14 @@
     </ion-row>
   </ion-grid>
 
-  <button ion-button color="primary" class="submit-button">{{"FWD_REQUEST"|dictionary}}</button>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+  <button ion-button color="primary" class="left-button">{{"FWD_REQUEST"|dictionary}}</button>
+  </ion-col>
+  <ion-col>
+  <button ion-button color="tertiary" (click)="clear()" class="right-button">{{"CLEAR"|dictionary}}</button>
+  </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>
