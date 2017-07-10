@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table (name="recycling_sacks_requests")
+@Table (name="recycling_sack_requests")
 public class RecyclingSackRequest implements java.io.Serializable{
 
 
@@ -26,9 +26,6 @@ public class RecyclingSackRequest implements java.io.Serializable{
 
     @Column(name="date", nullable = false)
     private Date date;
-
-
-
 
     public Long getId() {return id;}
 

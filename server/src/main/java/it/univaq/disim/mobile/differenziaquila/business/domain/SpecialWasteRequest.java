@@ -34,7 +34,7 @@ public class SpecialWasteRequest {
     private Date date;
 
     @Column(name="hour", nullable=false)
-    private int hour;
+    private String hour;
 
     public Long getId() {
         return id;
@@ -76,11 +76,11 @@ public class SpecialWasteRequest {
         this.date = date;
     }
 
-    public int getHour() {
+    public String getHour() {
         return hour;
     }
 
-    public void setHour(int hour) {
+    public void setHour(String hour) {
         this.hour = hour;
     }
 }

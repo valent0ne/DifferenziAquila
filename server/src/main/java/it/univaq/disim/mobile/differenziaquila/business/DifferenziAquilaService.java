@@ -15,7 +15,16 @@ public interface DifferenziAquilaService {
     User createUser(User user);
 
     User updateUser(String token, User user)throws Exception;
+
     //end user
+
+    //recyclingsackrequest
+    RecyclingSackRequest createRecyclingSackRequest(RecyclingSackRequest rsr, String token, Long id) throws Exception;
+    //end recyclingsackrequest
+
+    //recyclingsackrequest
+    SpecialWasteRequest createSpecialWasteRequest(SpecialWasteRequest swr, String token, Long id) throws Exception;
+    //end recyclingsackrequest
 
     //news
     List<News> findAllNews();

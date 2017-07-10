@@ -1,6 +1,7 @@
 package it.univaq.disim.mobile.differenziaquila.web;
 
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
+import it.univaq.disim.mobile.differenziaquila.business.domain.RecyclingSackRequest;
 import it.univaq.disim.mobile.differenziaquila.business.domain.Session;
 import it.univaq.disim.mobile.differenziaquila.business.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public Response login(@RequestBody User u) throws Exception{
+    public Response login(@RequestBody User u) throws Exception {
         Session session = service.login(u.getClientcode());
         if (session != null) {
             Response<Login> result = new Response<>(true, Response.DEFAULT_RESPONSE_OK.getMessage());
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/logout/{token}")
-    public Response logout(@PathVariable(value = "token") String token) throws Exception{
+    public Response logout(@PathVariable(value = "token") String token) throws Exception {
         service.logout(token);
         return Response.DEFAULT_RESPONSE_OK;
     }
@@ -48,17 +49,16 @@ public class UserController {
     @PostMapping("/users")
     public Response createUser(@RequestBody User user) {
         service.createUser(user);
-        Response<User> response= new Response<>(true, "user created");
+        Response<User> response = new Response<>(true, "user created");
         response.setData(user);
         return response;
     }
 
     @PutMapping("/users/{token}")
-    public Response updateUser(@RequestBody User user, @PathVariable(value = "token") String token) throws Exception{
+    public Response updateUser(@RequestBody User user, @PathVariable(value = "token") String token) throws Exception {
         User newUser = service.updateUser(token, user);
-        Response<User> response= new Response<>(true, "user updated");
+        Response<User> response = new Response<>(true, "user updated");
         response.setData(newUser);
         return response;
     }
-
 }

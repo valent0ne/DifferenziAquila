@@ -90,14 +90,4 @@ public class User implements java.io.Serializable {
     public void setRecyclingsackequests(Set<RecyclingSackRequest> recyclingsackequests) {
         this.recyclingsackequests = recyclingsackequests;
     }
-
-    public void addSpecialwasterequest(SpecialWasteRequest swr){
-        this.specialwasterequests.add(swr);
-        swr.setUser(this);
-    }
-
-    public void addRecyclingsackrequest(RecyclingSackRequest rsr){
-        this.recyclingsackequests.add(rsr);
-        rsr.setUser(this);
-    }
 }

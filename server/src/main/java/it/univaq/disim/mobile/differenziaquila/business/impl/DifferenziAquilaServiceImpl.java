@@ -31,6 +31,12 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     private RecyclingSackRepository recyclingsackRepository;
 
     @Autowired
+    private RecyclingSackRequestRepository recyclingsackrequestRepository;
+
+    @Autowired
+    private SpecialWasteRequestRepository specialwasterequestRepository;
+
+    @Autowired
     private WasteCategoryRepository wastecategoryRepository;
 
     @Autowired
@@ -65,7 +71,12 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
         throw new Exception("unauthorized");
     }
 
+
+
     //user
+
+
+
 
     @Override
     public User createUser(User user) {
@@ -86,6 +97,35 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     //end user
+
+    //recyclingsackrequest
+    @Override
+    public RecyclingSackRequest createRecyclingSackRequest(RecyclingSackRequest rsr, String token, Long id) throws Exception{
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            User user = session.getUser();
+            rsr.setUser(user);
+            rsr.setRecyclingSack(recyclingsackRepository.findOne(id));
+            return recyclingsackrequestRepository.save(rsr);
+        }
+        throw new Exception("unauthorized");
+    }
+    //end recyclingsackrequest
+
+    //specialwasterequest
+    @Override
+    public SpecialWasteRequest createSpecialWasteRequest(SpecialWasteRequest swr, String token, Long id) throws Exception{
+        Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            User user = session.getUser();
+            swr.setUser(user);
+            swr.setSpecialwaste(specialwasteRepository.findOne(id));
+            return specialwasterequestRepository.save(swr);
+        }
+        throw new Exception("unauthorized");
+    }
+    //end specialwasterequest
+
 
     //news
 

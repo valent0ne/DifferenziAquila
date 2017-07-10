@@ -25,6 +25,27 @@ public class SpecialWaste implements  java.io.Serializable{
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "specialwaste", fetch = FetchType.LAZY)
     private Set<CollectionPoint> collectionpoints = new HashSet<>();
 
+
+    public Set<CollectionPoint> getCollectionpoints() {
+        return collectionpoints;
+    }
+
+    public void setCollectionpoints(Set<CollectionPoint> collectionpoints) {
+        this.collectionpoints = collectionpoints;
+    }
+
+    public Set<SpecialWasteRequest> getSpecialwasterequest() {
+        return specialwasterequest;
+    }
+
+    public void setSpecialwasterequest(Set<SpecialWasteRequest> specialwasterequest) {
+        this.specialwasterequest = specialwasterequest;
+    }
+
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "specialwaste", fetch = FetchType.LAZY)
+    private Set<SpecialWasteRequest> specialwasterequest = new HashSet<>();
+
     public Long getId() {
         return id;
     }
