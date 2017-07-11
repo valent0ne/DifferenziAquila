@@ -4,9 +4,9 @@
 export class WasteCategory{
 
   public id: number=-1;
-  public name: string="";
-  public description: string="";
-  public icon: string="";
+  public name: String="";
+  public description: String="";
+  public icon: String="";
 
 
   constructor(obj?: any) {

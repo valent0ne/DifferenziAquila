@@ -3,7 +3,7 @@
 export class Calendar{
 
   public id: number=-1;
-  public day: Date; //FORSE E' ERRORE... LE STRINGHE LE METTO A VUOTO E LA DATA??? ANCHE SE SECONDO ME NON COMPORTA NULLA!!!!
+  public day: Date;
 
   constructor(obj?:any){
       this.setObj(obj);

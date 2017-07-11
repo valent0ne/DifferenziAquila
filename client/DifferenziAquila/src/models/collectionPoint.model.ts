@@ -3,8 +3,8 @@
 export class CollectionPoint{
 
   public id: number=-1;
-  public longitude: string="";
-  public latitude: string="";
+  public longitude: String="";
+  public latitude: String="";
 
   constructor(obj?: any) {
     this.setObj(obj);
