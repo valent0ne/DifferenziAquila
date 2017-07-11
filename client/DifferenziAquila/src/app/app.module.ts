@@ -10,6 +10,8 @@ import {MyApp} from './app.component';
 import {DictionaryModule} from '../providers/dictionary-service/dictionary-module';
 import {HttpModule} from '@angular/http';
 import {IonicStorageModule} from '@ionic/storage';
+import { MessageService } from '../providers/message-service/message-service';
+
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -40,7 +42,8 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AlertController
+    AlertController,
+    MessageService,
   ]
 })
 export class AppModule {

@@ -4,7 +4,6 @@ import { SwcrPage } from './swcr';
 import { DictionaryModule } from '../../providers/dictionary-service/dictionary-module';
 
 
-
 @NgModule({
   declarations: [
     SwcrPage,

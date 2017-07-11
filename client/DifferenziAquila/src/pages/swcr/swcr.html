@@ -78,12 +78,16 @@
   </ion-grid>
 
 
-  <a (click)="presentMessage('ok')">
+  <a (click)="sMessage.presentMessage('ok',this.sDictionary.get('SUCCESS'))">
     messaggio ok
   </a>
   <br>
-  <a (click)="presentMessage('ko')">
+  <a (click)="sMessage.presentMessage('ko',this.sDictionary.get('FAILURE'))">
     messaggio ko
+  </a>
+  <br>
+  <a (click)="sMessage.presentMessage('warning',this.sDictionary.get('WARNING'))">
+    messaggio warning
   </a>
 
 

@@ -40,6 +40,13 @@
   }
 }
 
+.warningMessage {
+  > div {
+    background-color: #FFCC00 !important;
+    text-align: center !important;
+  }
+}
+
 .button-icon{
   margin-left:10px!important;
   font-size:large!important;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {IonicPage, ToastController, NavController, NavParams, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
-
+import {MessageService} from '../../providers/message-service/message-service';
 
 /**
  * Generated class for the SwcrPage page.
@@ -28,12 +28,11 @@ export class SwcrPage {
   description: String = "";
 
 
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public sDictionary: DictionaryService,
-              public toastCtrl: ToastController) {
+              public sMessage: MessageService) {
   }
 
   ionViewDidLoad() {
@@ -216,36 +215,7 @@ export class SwcrPage {
     this.description="";
   }
 
-  presentMessage(result){
-    let message="";
-    let css="";
-    switch(result){
-      case 'ok':
-        css='okMessage';
-        message=this.sDictionary.get("SUCCESS");
-        break;
-      case 'ko':
-        css='koMessage';
-        message=this.sDictionary.get("FAILURE");
-        break;
-      default:
-        css='koMessage';
-        message=this.sDictionary.get("FAILURE");
-        break;
-    }
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: 2000,
-      cssClass: css,
-      position: 'top'
-    });
 
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
-  }
 
 }
 
