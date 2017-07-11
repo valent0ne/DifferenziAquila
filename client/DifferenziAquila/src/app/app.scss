@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/v2/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,35 +13,53 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.platform-android .secondNav{
-  min-height: 40px!important;
+.platform-android .secondNav {
+  min-height: 40px !important;
 }
 
-
-.secondNavTitle{
-  font-size:medium;
+.secondNavTitle {
+  font-size: medium;
 }
 
-.platform-ios .secondNavTitleContainer{
-  margin-top:-1px!important;
+.platform-ios .secondNavTitleContainer {
+  margin-top: -1px !important;
 }
 
-.platform-android .secondNavTitleContainer{
-  margin-top:-4px!important;
+.platform-android .secondNavTitleContainer {
+  margin-top: -4px !important;
 }
 
 .text-center {
   text-align: center;
 }
 
+.okMessage {
+  > div {
+    background-color: #18ab10 !important;
+    text-align: center !important;
+  }
+}
+
+.button-icon{
+  margin-left:10px!important;
+  font-size:large!important;
+}
+
+.koMessage {
+  > div {
+    background-color: map-get($colors, danger) !important;
+    text-align: center !important;
+  }
+}
+
 .full-height {
   height: 100%;
 }
 
-.vertical-align-content > *{
-  display: flex!important;
-  align-content: center!important;
-  align-items: center!important;
+.vertical-align-content > * {
+  display: flex !important;
+  align-content: center !important;
+  align-items: center !important;
 }
 
 .flex-container {
@@ -64,7 +81,7 @@
   }
 }
 
-.light-text{
+.light-text {
   color: map-get($colors, light);
 }
 
@@ -91,44 +108,40 @@
       text-decoration: underline;
     }
 
-
   }
 }
 
-.background{
-  background-color: map-get($colors,secondary)!important;
+.background {
+  background-color: map-get($colors, secondary) !important;
 }
 
-
-.send-icon{
-  font-size: 22px!important;
-  color: map-get($colors, light)!important;
-  float:right!important;
-  padding-right: 10px!important;
+.send-icon {
+  font-size: 22px !important;
+  color: map-get($colors, light) !important;
+  float: right !important;
+  padding-right: 10px !important;
 }
 
-.float-left-title{
-  float:left!important;
+.float-left-title {
+  float: left !important;
 }
 
-ion-card{
-  background-color: map-get($colors, light)!important;
+ion-card {
+  background-color: map-get($colors, light) !important;
 }
 
+.div-float-left {
+  float: left !important;
+  width: 50% !important;
+}
 
-.div-float-left{
-   float: left!important;
-  width:50%!important;
- }
-
-
-.div-float-right{
-  float: right!important;
-  margin:0 auto!important;
-  width:50%!important;
+.div-float-right {
+  float: right !important;
+  margin: 0 auto !important;
+  width: 50% !important;
 
 }
 
-ion-label{
+ion-label {
   font-size: medium;
 }

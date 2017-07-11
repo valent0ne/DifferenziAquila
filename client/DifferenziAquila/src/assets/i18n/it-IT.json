@@ -35,6 +35,12 @@
   "TEL":"Telefono",
   "FAX":"Fax",
   "ADDR":"Indirizzo",
+  "CHOOSE_HOUR":"scegli un'ora",
+  "CHOOSE_MINUTE":"scegli una fascia",
+  "CHOOSE_CAT":"scegli una categoria",
+  "SUCCESS":"Richiesta inoltrata con successo",
+  "FAILURE":"C'è stato un problema con la tua richiesta",
+
 
   "LOGIN":"Accedi",
   "LOGINTXT1":"Inserisci il tuo codice cliente",

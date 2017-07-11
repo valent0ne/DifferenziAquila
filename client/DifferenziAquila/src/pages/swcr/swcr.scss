@@ -10,4 +10,13 @@ page-swcr {
   ion-textarea{
     height:75px!important;
   }
+
+  .left-button{
+    margin-left:-10px!important;
+  }
+
+  .right-button {
+    margin-right:-10px!important;
+    float: right !important;
+  }
 }

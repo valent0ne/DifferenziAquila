@@ -16,10 +16,10 @@ import {DictionaryService} from '../../providers/dictionary-service/dictionary-s
 })
 export class SettingsPage {
 
-  hh: any = 'hh';
-  mm: any = 'mm';
-  selectedHH: boolean = false;
-  selectedMM: boolean = false;
+  mmDefault: String = 'mm';
+  hhDefault: String = 'hh';
+  hh: any = this.hhDefault;
+  mm: any = this.mmDefault;
   isToggled: boolean;
 
   constructor(public navCtrl: NavController,
@@ -51,24 +51,23 @@ export class SettingsPage {
     }
 
     let alert = this.alertCtrl.create({
+      title: this.sDictionary.get("CHOOSE_HOUR"),
       inputs: inputs,
       buttons: [
         {
-          text: 'Annulla',
+          text: this.sDictionary.get("CANCEL"),
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Ok',
+          text: this.sDictionary.get("OK"),
           handler: (data) => {
             console.log('Ok clicked');
             if (data) {
               this.hh = data;
-              this.selectedHH = true;
             }
-
           }
         }
       ]
@@ -98,22 +97,22 @@ export class SettingsPage {
     }
 
     let alert = this.alertCtrl.create({
+      title: this.sDictionary.get("CHOOSE_MINUTE"),
       inputs: inputs,
       buttons: [
         {
-          text: 'Annulla',
+          text: this.sDictionary.get("CANCEL"),
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Ok',
+          text: this.sDictionary.get("OK"),
           handler: (data) => {
             console.log('Ok clicked');
             if (data) {
               this.mm = data;
-              this.selectedMM = true;
             }
           }
         }
@@ -125,10 +124,8 @@ export class SettingsPage {
 
   toggleNotifications() {
     if (!this.isToggled) {
-      this.selectedMM = false;
-      this.selectedHH = false;
-      this.mm = 'mm';
-      this.hh = 'hh';
+      this.mm = this.mmDefault;
+      this.hh = this.hhDefault;
     }
   }
 

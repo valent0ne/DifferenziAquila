@@ -161,10 +161,17 @@
 <ion-grid>
   <ion-row>
     <ion-col>
-  <button ion-button color="primary" class="left-button">{{"FWD_REQUEST"|dictionary}}</button>
+  <button ion-button color="primary" class="left-button">
+    {{"FWD_REQUEST"|dictionary}}
+    <ion-icon name="send" class="button-icon" style="font-size:3px"></ion-icon>
+  </button>
   </ion-col>
   <ion-col>
-  <button ion-button color="tertiary" (click)="clear()" class="right-button">{{"CLEAR"|dictionary}}</button>
+  <button ion-button color="tertiary" (click)="clear()" class="right-button">
+    {{"CLEAR"|dictionary}}
+    <ion-icon name="trash" class="button-icon"></ion-icon>
+
+  </button>
   </ion-col>
   </ion-row>
 </ion-grid>

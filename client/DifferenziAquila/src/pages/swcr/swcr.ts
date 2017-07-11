@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import {IonicPage, ToastController, NavController, NavParams, AlertController} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
 
 
@@ -16,15 +16,24 @@ import {DictionaryService} from '../../providers/dictionary-service/dictionary-s
 })
 export class SwcrPage {
 
-  date: string = this.sDictionary.get("CHOOSE_DAY");
-  time: string = this.sDictionary.get("CHOOSE_TIME_SLOT");
-  selectedDate: boolean = !(this.date == this.sDictionary.get("CHOOSE_DAY"));
-  selectedTime: boolean = !(this.time == this.sDictionary.get("CHOOSE_TIME_SLOT"));
+  defaultAmount: String = this.sDictionary.get("AMOUNT");
+  defaultCategory: String = this.sDictionary.get("CHOOSE_CAT");
+  defaultDate: String = this.sDictionary.get("CHOOSE_DAY");
+  defaultTime: String = this.sDictionary.get("CHOOSE_TIME_SLOT");
+
+  date: String = this.defaultDate;
+  time: String = this.defaultTime;
+  amount: any = this.defaultAmount;
+  category: String = this.defaultCategory;
+  description: String = "";
+
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
-              public sDictionary: DictionaryService) {
+              public sDictionary: DictionaryService,
+              public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -38,7 +47,7 @@ export class SwcrPage {
 
     for (let i = 0; i < 14; i++) {
       let nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
-      inputs[i] = new Array();
+      inputs[i] = [];
       let item=nextDay.getDate()+' '+this.sDictionary.get((nextDay.getMonth()+1).toString())+' '+nextDay.getFullYear();
       inputs[i]['type'] = 'radio';
       inputs[i]['label'] = item;
@@ -51,6 +60,7 @@ export class SwcrPage {
     }
 
     let alert = this.alertCtrl.create({
+      title: this.sDictionary.get("CHOOSE_DAY"),
       inputs: inputs,
       buttons: [
         {
@@ -66,7 +76,6 @@ export class SwcrPage {
             console.log('Ok clicked');
             if (data) {
               this.date = data;
-              this.selectedDate = true;
             }
 
           }
@@ -76,9 +85,9 @@ export class SwcrPage {
     alert.present();
   }
 
-
-  presentTimePicker(item) {
+  presentTimePicker() {
     let alert = this.alertCtrl.create({
+      title: this.sDictionary.get("CHOOSE_TIME_SLOT"),
       inputs: [
         {
           type: 'radio',
@@ -116,7 +125,6 @@ export class SwcrPage {
             console.log('Ok clicked');
             if (data) {
               this.time = data;
-              this.selectedTime = true;
             }
           }
         }
@@ -124,6 +132,121 @@ export class SwcrPage {
     });
     alert.present();
   }
+
+  presentAmountPicker() {
+
+    let inputs = [];
+
+    for (let i = 0; i < 10; i++) {
+      inputs[i] = [];
+      inputs[i]['type'] = 'radio';
+      inputs[i]['label'] = i+1;
+      inputs[i]['value'] = i+1;
+
+    }
+
+    let alert = this.alertCtrl.create({
+      title: this.sDictionary.get("AMOUNT"),
+      inputs: inputs,
+      buttons: [
+        {
+          text: this.sDictionary.get("CANCEL"),
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: this.sDictionary.get("OK"),
+          handler: (data) => {
+            console.log('Ok clicked');
+            if (data) {
+              this.amount = data;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentCategoryPicker() {
+
+    let inputs = [];
+
+    for (let i = 0; i < 10; i++) {
+      //riempio con valori da database
+      inputs[i] = [];
+      inputs[i]['type'] = 'radio';
+      inputs[i]['label'] = 'pippo';
+      inputs[i]['value'] = 'pippo';
+
+    }
+
+    let alert = this.alertCtrl.create({
+      title: this.sDictionary.get("AMOUNT"),
+      inputs: inputs,
+      buttons: [
+        {
+          text: this.sDictionary.get("CANCEL"),
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: this.sDictionary.get("OK"),
+          handler: (data) => {
+            console.log('Ok clicked');
+            if (data) {
+              this.category = data;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  clear(){
+    this.date=this.defaultDate;
+    this.time=this.defaultTime;
+    this.category=this.defaultCategory;
+    this.amount=this.defaultAmount;
+    this.description="";
+  }
+
+  presentMessage(result){
+    let message="";
+    let css="";
+    switch(result){
+      case 'ok':
+        css='okMessage';
+        message=this.sDictionary.get("SUCCESS");
+        break;
+      case 'ko':
+        css='koMessage';
+        message=this.sDictionary.get("FAILURE");
+        break;
+      default:
+        css='koMessage';
+        message=this.sDictionary.get("FAILURE");
+        break;
+    }
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      cssClass: css,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
 }
 
 

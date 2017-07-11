@@ -35,6 +35,12 @@
   "TEL":"Telephone",
   "FAX":"Fax",
   "ADDR":"Address",
+  "CHOOSE_HOUR":"choose an hour",
+  "CHOOSE_MINUTE":"choose a slot",
+  "CHOOSE_CAT":"choose a category",
+  "SUCCESS":"Request successfully forwarded",
+  "FAILURE":"There was a problem with your request",
+
 
   "LOGIN":"Login",
   "LOGINTXT1":"Enter your client code",
