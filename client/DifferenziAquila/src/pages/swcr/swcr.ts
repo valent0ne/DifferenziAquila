@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
-import {MessageService} from '../../providers/message-service/message-service';
+import {MessageProvider} from '../../providers/message.provider';
 
 /**
  * Generated class for the SwcrPage page.
@@ -32,10 +32,15 @@ export class SwcrPage {
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public sDictionary: DictionaryService,
-              public sMessage: MessageService) {
+              public sMessage: MessageProvider) {
   }
 
   ionViewDidLoad() {
+    if(this.navParams.get("fromLogin")) {
+      this.navCtrl.remove(1);
+    }
+
+
     console.log('ionViewDidLoad SwcrPage');
   }
 
@@ -47,7 +52,7 @@ export class SwcrPage {
     for (let i = 0; i < 14; i++) {
       let nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
       inputs[i] = [];
-      let item=nextDay.getDate()+' '+this.sDictionary.get((nextDay.getMonth()+1).toString())+' '+nextDay.getFullYear();
+      let item = nextDay.getDate() + ' ' + this.sDictionary.get((nextDay.getMonth() + 1).toString()) + ' ' + nextDay.getFullYear();
       inputs[i]['type'] = 'radio';
       inputs[i]['label'] = item;
       inputs[i]['value'] = item;
@@ -139,8 +144,8 @@ export class SwcrPage {
     for (let i = 0; i < 10; i++) {
       inputs[i] = [];
       inputs[i]['type'] = 'radio';
-      inputs[i]['label'] = i+1;
-      inputs[i]['value'] = i+1;
+      inputs[i]['label'] = i + 1;
+      inputs[i]['value'] = i + 1;
 
     }
 
@@ -207,14 +212,13 @@ export class SwcrPage {
     alert.present();
   }
 
-  clear(){
-    this.date=this.defaultDate;
-    this.time=this.defaultTime;
-    this.category=this.defaultCategory;
-    this.amount=this.defaultAmount;
-    this.description="";
+  clear() {
+    this.date = this.defaultDate;
+    this.time = this.defaultTime;
+    this.category = this.defaultCategory;
+    this.amount = this.defaultAmount;
+    this.description = "";
   }
-
 
 
 }

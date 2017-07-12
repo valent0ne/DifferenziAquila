@@ -8,7 +8,7 @@ export class User{
   public lastname: String="";
   public address: String="";
 
-  token: string="";
+  public token: String="";
 
 
   constructor(obj?: any) {

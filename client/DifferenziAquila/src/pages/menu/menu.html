@@ -29,7 +29,7 @@
             </ion-card-content>
           </button>
         </ion-card>
-        
+
       </ion-col>
       <ion-col>
         <ion-card tappable (click)="this.navCtrl.push('MapPage')">
@@ -46,7 +46,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-card tappable (click)="this.navCtrl.push('SwcrPage')">
+        <ion-card tappable (click)="goTo('SwcrPage')">
           <button ion-button clear>
             <ion-card-content>
               <ion-icon name="trash"></ion-icon>
@@ -58,7 +58,7 @@
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card tappable (click)="this.navCtrl.push('RsrPage')">
+        <ion-card tappable (click)="goTo('RsrPage')">
           <button ion-button clear>
             <ion-card-content>
               <ion-icon name="basket"></ion-icon>
@@ -99,6 +99,6 @@
     <a style="margin-top:10px" (click)="this.navCtrl.push('LoginPage')">temp goto login</a>
   </ion-grid>
 
-  
+
 
 </ion-content>

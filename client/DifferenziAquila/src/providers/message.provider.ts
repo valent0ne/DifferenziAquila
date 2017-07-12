@@ -10,7 +10,7 @@ import {ToastController} from 'ionic-angular';
   for more info on providers and Angular DI.
 */
 @Injectable()
-export class MessageService {
+export class MessageProvider {
 
   constructor(public http: Http,
               public toastCtrl:ToastController

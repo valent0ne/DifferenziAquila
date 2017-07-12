@@ -10,7 +10,9 @@ import {MyApp} from './app.component';
 import {DictionaryModule} from '../providers/dictionary-service/dictionary-module';
 import {HttpModule} from '@angular/http';
 import {IonicStorageModule} from '@ionic/storage';
-import { MessageService } from '../providers/message-service/message-service';
+import { MessageProvider } from '../providers/message.provider';
+import { AccountProvider } from '../providers/account.provider';
+import { UserPersistanceProvider } from '../providers/user-persistance.provider';
 
 
 const cloudSettings: CloudSettings = {
@@ -43,7 +45,9 @@ const cloudSettings: CloudSettings = {
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AlertController,
-    MessageService,
+    MessageProvider,
+    AccountProvider,
+    UserPersistanceProvider
   ]
 })
 export class AppModule {

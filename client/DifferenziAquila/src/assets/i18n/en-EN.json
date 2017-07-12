@@ -46,7 +46,7 @@
   "ERROR_LOGIN":"Check your client code",
   "WARNING_CLIENTCODE_EMPTY":"Inseriasci il codice cliente",
   "LOADING_WAITING":"Please wait...",
-  "LOGIN_OK":"Login successful, redirecting...",
+  "LOGIN_OK":"Login successful",
 
 
   "LOGIN":"Login",

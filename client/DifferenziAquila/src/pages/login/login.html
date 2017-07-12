@@ -34,11 +34,11 @@
       <ion-label class="input-icon">
         <ion-icon name="contact" ></ion-icon>
       </ion-label>
-      <ion-input clearInput type="text"></ion-input>
+      <ion-input clearInput type="text" [(ngModel)]="clientcode"></ion-input>
   </ion-item>
 
   <ion-item class="how-to-login" no-lines>
-    <ion-toggle  checked="true"></ion-toggle>
+    <ion-toggle  [(ngModel)]="rememberMe"></ion-toggle>
     <ion-label class="remember-me" color="dark">{{"REMEMBERME"|dictionary}}</ion-label>
 
   </ion-item>
@@ -46,7 +46,7 @@
   <br>
 
   <div text-center>
-   <button ion-button color="primary">{{"LOGIN"|dictionary}}</button>
+   <button ion-button color="primary" (click)="login()">{{"LOGIN"|dictionary}}</button>
   </div>
 
 

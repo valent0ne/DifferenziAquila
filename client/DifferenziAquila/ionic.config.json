@@ -1,5 +1,11 @@
 {
   "name": "DifferenziAquila",
   "app_id": "678110e5",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:8080/differenziaquila/api"
+    }
+  ]
 }

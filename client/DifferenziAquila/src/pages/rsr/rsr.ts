@@ -30,7 +30,13 @@ export class RsrPage {
               public sDictionary: DictionaryService) {
   }
 
+
   ionViewDidLoad() {
+    if(this.navParams.get("fromLogin")) {
+      this.navCtrl.remove(1);
+    }
+
+
     console.log('ionViewDidLoad RsrPage');
   }
 
@@ -54,5 +60,9 @@ export class RsrPage {
     this.amount.vetro = 0;
     this.amount.organico = 0;
     this.amount.plastica = 0;
+  }
+
+  sendRequest(){
+
   }
 }
