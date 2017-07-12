@@ -42,12 +42,17 @@
   "FAILURE":"C'è stato un problema con la tua richiesta",
   "WARNING":"Quancosa è andato storto",
 
+  "ERROR_LOGIN":"Controlla il codice cliente",
+
   "LOGIN":"Accedi",
   "LOGINTXT1":"Inserisci il tuo codice cliente",
   "LOGINTXT2":"nel campo sotto",
   "REMEMBERME":"Ricordami",
 
   "CLEAR":"Pulisci",
+  "WARNING_CLIENTCODE_EMPTY":"Inseriasci il codice cliente",
+  "LOADING_WAITING":"Attendere...",
+  "LOGIN_OK":"Login avvenuto con successo",
 
   "1":"Gen",
   "2":"Feb",

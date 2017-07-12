@@ -27,6 +27,8 @@ export class MessageService {
       case 'ko':
         css='koMessage';
         break;
+      case 'warn':
+        css='warningMessage';
       default:
         css='warningMessage';
         break;

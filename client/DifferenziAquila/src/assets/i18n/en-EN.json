@@ -43,6 +43,11 @@
   "FAILURE":"There was a problem with your request",
   "WARNING":"Something went wrong",
 
+  "ERROR_LOGIN":"Check your client code",
+  "WARNING_CLIENTCODE_EMPTY":"Inseriasci il codice cliente",
+  "LOADING_WAITING":"Please wait...",
+  "LOGIN_OK":"Login successful, redirecting...",
+
 
   "LOGIN":"Login",
   "LOGINTXT1":"Enter your client code",
