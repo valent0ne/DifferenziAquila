@@ -4,8 +4,8 @@
 export class SpecialWaste{
 
   public id: number=-1;
-  public name: string="";
-  public description: string="";
+  public name: String="";
+  public description: String="";
 
   constructor(obj?: any) {
     this.setObj(obj);

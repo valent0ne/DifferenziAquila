@@ -1,12 +1,14 @@
 //Dobbiamo fare il controllo come fatto con l'id anche per gli altri attributi????
 
 
+import {isDate} from "rxjs/util/isDate";
+import {isString} from "ionic-angular/util/util";
 export class SpecialWasteRequest{
 
   public id: number=-1;
-  public amount: string="";
-  public date: Date;//stesso problema di calendar
-  public hour: string="";//come la rappresento l'ora?
+  public amount: number=0;
+  public date: Date;
+  public hour: String="";
 
 
   constructor(obj?: any) {
@@ -16,9 +18,9 @@ export class SpecialWasteRequest{
   setObj(obj?: any) {
     if (obj) {
       this.id=(typeof obj.id === "number" )? obj.id:this.id;
-      this.amount = obj.amount || this.amount;
-      this.date = obj.date || this.date;
-      this.hour = obj.hour || this.hour;
+      this.amount =(typeof obj.amount === "number" )? obj.amount : this.amount;
+      this.date = (isDate(obj.date))? obj.date : this.date;
+      this.hour = (isString(obj.hour))? obj.hour : this.hour;
 
     }
   }

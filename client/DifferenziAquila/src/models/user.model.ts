@@ -3,10 +3,10 @@
 
 export class User{
 
-  public clientcode: string="";
-  public firstname: string="";
-  public lastname: string="";
-  public address: string="";
+  public clientcode: String="";
+  public firstname: String="";
+  public lastname: String="";
+  public address: String="";
 
   token: string="";
 

@@ -4,9 +4,9 @@
 export class News{
 
   public id: number=-1;
-  public title: string="";
-  public body: string="";
-  public date: Date;//stesso problema con date di calendar
+  public title: String="";
+  public body: String="";
+  public date: Date;
 
 
   constructor(obj?: any) {

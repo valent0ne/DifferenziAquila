@@ -4,8 +4,8 @@
 export class RecyclingSack{
 
   public id: number=-1;
-  public icon: string="";
-  public color: string="";
+  public icon: String="";
+  public color: String="";
 
 
   constructor(obj?: any) {
