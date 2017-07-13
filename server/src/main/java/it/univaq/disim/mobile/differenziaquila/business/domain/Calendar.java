@@ -1,7 +1,8 @@
 package it.univaq.disim.mobile.differenziaquila.business.domain;
 
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "calendar")
@@ -12,14 +13,14 @@ public class Calendar {
     @Column(name = "id")
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "id_waste_category", nullable = false)
     private WasteCategory wastecategory;
 
-    @Column(name = "day", nullable = false, length = 255)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "day", nullable = false)
     private Date day;
-
-
 
     public Long getId() {
         return id;
@@ -29,9 +30,7 @@ public class Calendar {
         this.id = id;
     }
 
-    public WasteCategory getWastecategory() {
-        return wastecategory;
-    }
+    public WasteCategory getWastecategory(){ return this.wastecategory; }
 
     public void setWastecategory(WasteCategory wastecategory) {
         this.wastecategory = wastecategory;

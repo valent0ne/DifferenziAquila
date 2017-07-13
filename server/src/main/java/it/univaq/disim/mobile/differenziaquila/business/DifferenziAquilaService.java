@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.differenziaquila.business;
 
 import it.univaq.disim.mobile.differenziaquila.business.domain.*;
 
+import java.util.Date;
 import java.util.List;
 
 public interface DifferenziAquilaService {
@@ -70,6 +71,8 @@ public interface DifferenziAquilaService {
     Calendar updateCalendar(String token, Calendar calendar)throws Exception;
 
     List<Calendar> findAllCalendars();
+
+    List<Calendar> findAllCalendarsAfterDate(Date d) throws Exception;
 
     Calendar findCalendarById(Long id);
 

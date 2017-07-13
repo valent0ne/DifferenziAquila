@@ -1,15 +1,12 @@
 
 package it.univaq.disim.mobile.differenziaquila.business.impl;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
 import it.univaq.disim.mobile.differenziaquila.business.domain.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import it.univaq.disim.mobile.differenziaquila.business.domain.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -349,6 +346,13 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     @Override
     public List<Calendar> findAllCalendars(){
         return calendarRepository.findAll();
+    }
+
+    @Override
+    public List<Calendar> findAllCalendarsAfterDate(Date d) throws Exception{
+        System.out.println(d);
+        return calendarRepository.findCalendarsByDayGreaterThanEqualOrderByDay(d);
+
     }
 
     @Override
