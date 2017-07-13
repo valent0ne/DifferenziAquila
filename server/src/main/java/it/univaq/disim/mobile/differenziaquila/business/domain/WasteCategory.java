@@ -1,27 +1,29 @@
 package it.univaq.disim.mobile.differenziaquila.business.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "waste_categories")
 public class WasteCategory {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
+    @JsonIgnore
     @Column(name = "description", nullable = false, length = 255)
     private String description;
 
+    @JsonIgnore
     @Column(name = "icon", nullable = false, length = 255)
     private String icon;
-
-
 
     public Long getId() {return id;}
 

@@ -2,10 +2,12 @@ package it.univaq.disim.mobile.differenziaquila.web;
 
 import it.univaq.disim.mobile.differenziaquila.business.DifferenziAquilaService;
 import it.univaq.disim.mobile.differenziaquila.business.domain.Calendar;
-import it.univaq.disim.mobile.differenziaquila.business.domain.WasteCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,16 @@ public class CalendarController {
         Calendar c=service.updateCalendar(token, calendar);
         Response<Calendar> response=new Response<>(true, "calendar updated");
         response.setData(c);
+        return response;
+    }
+
+
+    @GetMapping("/after/{date}")
+    public Response findAllCalendarsAfterDate( @PathVariable(value="date") String date) throws Exception{
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        List<Calendar> calendars= service.findAllCalendarsAfterDate(df.parse(date));
+        Response<List<Calendar>> response= new Response<>(true, "all calendars after "+date);
+        response.setData(calendars);
         return response;
     }
 
