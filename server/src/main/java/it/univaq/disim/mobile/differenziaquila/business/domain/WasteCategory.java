@@ -25,7 +25,12 @@ public class WasteCategory {
     @Column(name = "icon", nullable = false, length = 255)
     private String icon;
 
-    public Long getId() {return id;}
+    @Column(name = "color", nullable = false, length = 255)
+    private String color;
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -53,5 +58,14 @@ public class WasteCategory {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

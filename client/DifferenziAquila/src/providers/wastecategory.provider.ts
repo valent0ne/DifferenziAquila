@@ -1,6 +1,5 @@
-import {RecyclingSack} from "../models/recyclingSack.model";
 import {Injectable} from '@angular/core';
-
+import {WasteCategory} from "../models/wasteCategory.model";
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -16,7 +15,7 @@ import {ResponseServer} from "../types";
 
 
 @Injectable()
-export class RecyclingSackProvider {
+export class WasteCategoryProvider {
 
 
   constructor(
@@ -28,28 +27,26 @@ export class RecyclingSackProvider {
 
 
 
-  public get() {
+  public get(): Promise<Array<WasteCategory>> {
     return new Promise((resolve, reject) => {
-        this._http.get(URL_BASE + URL.RS.GET)
+        this._http.get(URL_BASE + URL.WASTE_CATEGORY.GET)
         .toPromise()
         .then((res: Response) => {
           const json = res.json() as ResponseServer;
 
-          let rss= new Array<RecyclingSack>();
+          let wcs= new Array<WasteCategory>();
           if (json.result) {
             const data=json.data;
             for(let item of data){
-              console.log("inserting=> id: "+item.id+" name: "+item.name+" color: "+item.wastecategory.color);
-              rss.push(new RecyclingSack({"id":item.id,"name":item.name, "color":item.wastecategory.color.toString()}));
+              wcs.push(new WasteCategory(item));
             }
 
-            resolve(rss);
+            resolve(wcs);
           } else {
             reject();
           }
         })
-        .catch((err) => {
-          console.log("[RecyclingSackProvider] err: "+err.toString());
+        .catch(() => {
           reject();
         });
     });

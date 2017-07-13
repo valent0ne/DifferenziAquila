@@ -28,8 +28,6 @@ export class RsrPage {
   rsrs: Map<number,RecyclingSackRequest> = new Map();
 
 
-
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
@@ -48,8 +46,9 @@ export class RsrPage {
 
 
     }
-    console.log('ionViewDidLoad RsrPage');
     this.init();
+    console.log('ionViewDidLoad RsrPage');
+
   }
 
   init(){
@@ -60,13 +59,13 @@ export class RsrPage {
       for(let item of this.recyclingSacks){
         this.rsrs.set(item.id,new RecyclingSackRequest({"amount":SACK.DEFAULT, "date": new Date()}));
       }
-      loading.dismiss();
 
+      loading.dismiss();
     })
       .catch(()=>  {
         loading.dismiss().then(()=>{
           this.sMessage.presentMessage('ko',this.sDictionary.get("NO_CONNECTION"));
-
+          this.navCtrl.push("MenuPage");
         });
       });
   }
@@ -109,7 +108,7 @@ export class RsrPage {
     //se non ne ho nessura warning perchè gli amount sono tutti 0
     if(count==0){
       loading.dismiss().then(()=>{
-        this.sMessage.presentMessage("warn",this.sDictionary.get("WARNING"));
+        this.sMessage.presentMessage("warn",this.sDictionary.get("ITEMS_EMPTY"));
         return;
       })
     }

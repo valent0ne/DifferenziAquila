@@ -12,7 +12,6 @@ import {STORAGE_KEYS, URL_BASE, URL, CALENDAR} from '../constants';
 import {Http, Response} from "@angular/http";
 import {ResponseServer} from "../types";
 import {DatePipe} from "@angular/common";
-import {isUndefined} from "ionic-angular/util/util";
 
 @Injectable()
 export class CalendarPersistanceProvider implements CalendarPersistanceInterface {
@@ -60,8 +59,8 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
 
                   const calendars = json.data;
                   for (let calendar of calendars) {
-                    console.log("pushing days from server: "+calendar.id);
-                    this._calendars.push(new Calendar({"id":calendar.id, "id_waste":(calendar.wastegategory === null) ? null : calendar.wastecategory.id, "day":calendar.day}));
+
+                    this._calendars.push(new Calendar({"id":calendar.id, "color":((calendar.wastecategory === null) ? null : calendar.wastecategory.color.toString()), "day":calendar.day}));
                   }
                   this.save(this._calendars).then(()=>{
                     resolve(this._calendars);

@@ -53,6 +53,8 @@
   "LOGINTXT1":"Enter your client code",
   "LOGINTXT2":"in the box below",
   "REMEMBERME":"Remember me",
+  "NO_CONNECTION":"Please check your internet connection",
+  "ITEMS_EMPTY":"Insert amounts",
 
   "CLEAR":"Clear",
 

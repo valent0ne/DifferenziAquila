@@ -55,6 +55,9 @@
   "LOGIN_OK":"Login avvenuto con successo",
   "ERROR_CALENDAR":"Non riesco a recuperare i dati",
 
+  "NO_CONNECTION":"Controlla la tua connessione a internet",
+  "ITEMS_EMPTY":"Inserisci le quantità",
+
   "1":"Gennaio",
   "2":"Febbraio",
   "3":"Marzo",

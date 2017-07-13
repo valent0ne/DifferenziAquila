@@ -16,7 +16,7 @@ public class RecyclingSack {
     @Column(name = "id")
     private Long id;
 
-    @JsonIgnore
+
     @OneToOne
     @JoinColumn(name = "id_waste_category", nullable = false)
     private WasteCategory wastecategory;
@@ -36,8 +36,6 @@ public class RecyclingSack {
     private String name;
 
 
-    @Column(name = "color", nullable = false, length = 255)
-    private String color;
 
     @JsonIgnore
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "recyclingsack", fetch = FetchType.LAZY)
@@ -59,12 +57,7 @@ public class RecyclingSack {
 
     public void setWastecategory(WasteCategory wastecategory) { this.wastecategory = wastecategory;}
 
-
     public String getIcon() { return icon;}
     public void setIcon(String icon) { this.icon = icon;}
 
-
-    public String getColor() { return color;}
-
-    public void setColor(String color) {this.color = color;}
 }

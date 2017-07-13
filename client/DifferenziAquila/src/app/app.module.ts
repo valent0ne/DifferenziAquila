@@ -18,6 +18,7 @@ import {RecyclingSackRequestProvider} from "../providers/rsr.provider";
 import {CalendarProvider} from "../providers/calendar.provider";
 import {CalendarPersistanceProvider} from "../providers/calendar-persistance.provider";
 import {DatePipe} from "@angular/common";
+import {WasteCategoryProvider} from "../providers/wastecategory.provider";
 
 
 const cloudSettings: CloudSettings = {
@@ -54,10 +55,11 @@ const cloudSettings: CloudSettings = {
     AccountProvider,
     UserPersistanceProvider,
     RecyclingSackProvider,
-    RecyclingSackRequestProvider
+    RecyclingSackRequestProvider,
     CalendarProvider,
     CalendarPersistanceProvider,
-    DatePipe
+    DatePipe,
+    WasteCategoryProvider
   ]
 })
 export class AppModule {

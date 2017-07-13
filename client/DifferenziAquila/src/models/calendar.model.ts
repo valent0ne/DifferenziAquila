@@ -4,7 +4,7 @@
 export class Calendar{
 
   public id: number=-1;
-  public id_waste: any = null;
+  public color: any = null;
   public day: Date;
 
   constructor(obj?:any){
@@ -14,7 +14,7 @@ export class Calendar{
   setObj(obj?: any) {
     if (obj) {
       this.id=(typeof obj.id === "number" )? obj.id:this.id;
-      this.id_waste = obj.id_waste || this.id_waste;
+      this.color = obj.color || this.color;
       this.day = obj.day || this.day;
 
     }

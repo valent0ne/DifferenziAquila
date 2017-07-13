@@ -25,10 +25,10 @@
   <ion-list>
 
 
-    <ion-item *ngFor="let item of items" no-lines icon-right>
+    <ion-item *ngFor="let item of items" no-lines icon-right [style.color]="(item.color === null) ? 'silver' : ''">
 
-      <span>{{item.day| date:"dd"}} {{datepipe.transform(item.day, "M")|dictionary}} - {{ datepipe.transform(item.day,"EEE").toUpperCase() | dictionary }}  </span>
-      <ion-icon name="square" [style.color]="" item-right></ion-icon>
+      <span>{{item.day| date:"dd"}} {{datepipe.transform(item.day, "M")|dictionary}} - {{ datepipe.transform(item.day,"EEE").toUpperCase() | dictionary }} </span>
+      <ion-icon name="square" [style.color]="(item.color === null) ? 'white' :item.color" item-right></ion-icon>
 
     </ion-item>
 

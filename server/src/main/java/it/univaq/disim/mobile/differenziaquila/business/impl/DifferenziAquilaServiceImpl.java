@@ -192,7 +192,6 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
            if (recyclingsack!=null){
                recyclingsack.setWastecategory(newRecyclingsack.getWastecategory());
                recyclingsack.setIcon(newRecyclingsack.getIcon());
-               recyclingsack.setColor(newRecyclingsack.getColor());
                return recyclingsack;
            }
             throw new Exception("recycling sack not found");

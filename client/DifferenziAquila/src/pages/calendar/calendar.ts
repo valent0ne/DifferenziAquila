@@ -6,6 +6,7 @@ import {MessageProvider} from "../../providers/message.provider";
 import {DictionaryService} from "../../providers/dictionary-service/dictionary-service";
 import {CALENDAR} from "../../constants";
 import {DatePipe} from "@angular/common";
+import {WasteCategory} from "../../models/wasteCategory.model";
 
 
 /**
@@ -22,9 +23,11 @@ import {DatePipe} from "@angular/common";
 export class CalendarPage {
 
   items: Array<Calendar> = new Array();
+
   month: string = "";
   year: string = "";
   index: number = 0;
+  waste_categories: Map<number,WasteCategory> = new Map();
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -33,6 +36,8 @@ export class CalendarPage {
               public sMessage: MessageProvider,
               public sDictionary: DictionaryService,
               public datepipe: DatePipe) {
+
+
 
     this.initialize();
   }
@@ -44,36 +49,38 @@ export class CalendarPage {
   initialize() {
     const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
     loading.present();
-    this.sCalendar.initialize().then(() => {
-      this.sCalendar.getNextDays(this.index).then(() => {
-        let data = this.sCalendar.getTempCalendar();
-        console.log("[Calendar] size of data from nextDays, tempCalendar (and 1st item) " + data.length + " - " + data[0].id);
-        for (let obj of data) {
-          //console.log("[Calendar] pushing into items: "+obj.id+" "+obj.id_waste+" "+obj.day);
-          this.items.push(obj);
-        }
-        this.updateMonthYear(0).then(() => {
 
-          loading.dismiss();
-        }).catch(err => {
-          console.log("[Calendar] error update month-year initialize: " + err.toString());
+      //recupero
+      this.sCalendar.initialize().then(() => {
+        this.sCalendar.getNextDays(this.index).then(() => {
+          let data = this.sCalendar.getTempCalendar();
+          console.log("[Calendar] size of data from nextDays, tempCalendar (and 1st item) " + data.length + " - " + data[0].id);
+          for (let obj of data) {
+            this.items.push(obj);
+          }
+
+          this.updateMonthYear(0).then(() => {
+            loading.dismiss();
+
+          }).catch(err => {
+            console.log("[Calendar] error update month-year initialize: " + err.toString());
+          });
+
+        }).catch((err) => {
+          loading.dismiss().then(() => {
+            this.sMessage.presentMessage('warn', this.sDictionary.get("ERROR_CALENDAR"));
+            console.log("catch getNextDays " + err.toString());
+          })
+
+        });
+      }).catch(() => {
+        loading.dismiss().then(() => {
+          this.sMessage.presentMessage('ko', this.sDictionary.get("ERROR_CALENDAR"));
+          console.log("catch initialize");
         });
 
-      }).catch((err) => {
-        loading.dismiss().then(() => {
-          this.sMessage.presentMessage('warn', this.sDictionary.get("ERROR_CALENDAR"));
-          console.log("catch getNextDays " + err.toString());
-        })
 
       });
-    }).catch(() => {
-      loading.dismiss().then(() => {
-        this.sMessage.presentMessage('ko', this.sDictionary.get("ERROR_CALENDAR"));
-        console.log("catch initialize");
-      });
-
-
-    });
   }
 
 
