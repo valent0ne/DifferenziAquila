@@ -1,4 +1,4 @@
-import {RecyclingSackRequest} from "../models/recyclingSackRequest.model";
+import {RecyclingSack} from "../models/recyclingSack.model";
 import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
@@ -7,7 +7,8 @@ import 'rxjs/add/operator/toPromise';
 
 
 
-import {AccountProvider} from './account.provider';
+
+
 //Constants
 import {URL_BASE, URL} from '../constants';
 import {toPromise} from "rxjs/operator/toPromise";
@@ -16,12 +17,11 @@ import {ResponseServer} from "../types";
 
 
 @Injectable()
-export class RecyclingSackRequestProvider {
+export class RecyclingSackProvider {
 
 
   constructor(
     private _http: Http,
-    private _sAccount: AccountProvider
 
   ) {
     console.log('Hello Rsr Provider');
@@ -29,27 +29,21 @@ export class RecyclingSackRequestProvider {
 
 
 
-
-
-
-  saveRSRequest(rsr: RecyclingSackRequest, id: number): Promise<any>{
-    return this.createRSRequest(rsr, id);
-  }
-
-
-
-  private createRSRequest(newRsr: RecyclingSackRequest, id: number) {
+  public get() {
     return new Promise((resolve, reject) => {
-      this._http.post(URL_BASE + URL.RSR.CREATE + this._sAccount.getUser().token+"/"+ id, {
-        amount: newRsr.amount,
-        date: newRsr.date
-      })
+        this._http.get(URL_BASE + URL.RS.GET)
         .toPromise()
         .then((res: Response) => {
           const json = res.json() as ResponseServer;
 
+          let rss= new Array<RecyclingSack>();
           if (json.result) {
-            resolve();
+            const data=json.data;
+            for(let item of data){
+              rss.push(new RecyclingSack(item));
+            }
+
+            resolve(rss);
           } else {
             reject();
           }

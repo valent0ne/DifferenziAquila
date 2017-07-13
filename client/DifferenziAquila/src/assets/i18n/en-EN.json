@@ -13,7 +13,7 @@
   "CHOOSE_TIME_SLOT":"choose a time slot",
   "ITEMS_DESC":"short description of the items",
 
-  "FWD_REQUEST":"Forward request",
+  "FWD_REQUEST":"Send",
   "SWCR":"Special wastes collection request",
 
   "OK":"Ok",
@@ -22,7 +22,7 @@
   "ORGANIC":"Organic",
   "PLASTIC":"Plastic",
   "GLASS":"Glass",
-  "IND":"Undifferentiated",
+  "UNDIFFERENTIATED":"Undifferentiated",
   "PAPER":"Paper",
 
   "RSR":"Recycling sacks request",

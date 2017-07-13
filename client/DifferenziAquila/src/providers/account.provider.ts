@@ -9,7 +9,6 @@ import {Events} from 'ionic-angular';
 import {User} from '../models/user.model';
 
 //Interfaces
-import {UserSignupInterface} from '../interfaces/recycling-sacks-request.interface';
 import {UserPersistanceInterface} from '../interfaces/userpersistance.interface';
 
 //Providers

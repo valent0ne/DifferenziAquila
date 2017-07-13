@@ -1,7 +1,7 @@
 
-export interface UserSignupInterface {
+import {RecyclingSackRequest} from "../models/recyclingSackRequest.model";
+export interface RecyclingSacksRequestInterface {
 
-    amount: number;
-    date: Date;
+    rsr:RecyclingSackRequest;
 
 }

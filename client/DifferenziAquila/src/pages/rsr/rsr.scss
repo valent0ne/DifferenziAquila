@@ -18,7 +18,7 @@ page-rsr {
     align-items: center!important;
     ion-col{
       ion-card{
-        .carta, .plastica, .indifferenziato, .vetro, .organico{
+        .waste_icon{
           font-size: 100px!important;
           margin:0 auto!important;
         }
@@ -56,26 +56,6 @@ page-rsr {
   .label-amount{
     padding-right: 15px!important;
     margin-bottom: 20px!important;
-  }
-
-  .organico{
-    color: map-get($colors, organico)!important;
-  }
-
-  .plastica{
-    color: map-get($colors, plastica)!important;
-  }
-
-  .carta{
-    color: map-get($colors, carta)!important;
-  }
-
-  .indifferenziato{
-    color: map-get($colors, ind)!important;
-  }
-
-  .vetro{
-    color: map-get($colors, vetro)!important;
   }
 
   .left-button{

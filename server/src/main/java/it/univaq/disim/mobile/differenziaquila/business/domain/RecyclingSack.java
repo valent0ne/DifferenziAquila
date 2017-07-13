@@ -16,12 +16,25 @@ public class RecyclingSack {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "id_waste_category", nullable = false)
     private WasteCategory wastecategory;
 
     @Column(name = "icon", nullable = false, length = 255)
     private String icon;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "name", nullable = false, length = 255)
+    private String name;
+
 
     @Column(name = "color", nullable = false, length = 255)
     private String color;

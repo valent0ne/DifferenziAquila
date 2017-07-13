@@ -22,11 +22,11 @@
 
   <ion-grid>
 
-      <ion-row>
+      <ion-row *ngFor="let item of recyclingSacks">
         <ion-col col-6 text-center>
           <ion-card>
-          <ion-icon name="basket" class="organico"></ion-icon>
-          <ion-label>{{"ORGANIC"|dictionary}}</ion-label>
+          <ion-icon name="basket" class="waste_icon" [style.color]="item.color"></ion-icon>
+          <ion-label>{{item.name.toUpperCase()|dictionary}}</ion-label>
           </ion-card>
         </ion-col>
 
@@ -34,136 +34,28 @@
           <ion-card class="card-right">
           <ion-item class="label-amount" no-lines color="light" >
             <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
-            <ion-input type="number" min="0" max="5" value="{{amount['organico']}}" text-start></ion-input>
+            <ion-input type="number" min="0" max="5" value="{{rsrs.get(item.id).amount}}" text-start></ion-input>
           </ion-item>
           <ion-item no-lines color="light" class="item-icons">
             <button ion-button item-left class="minus">
-              <ion-icon name="remove" (click)="changeAmount('-','organico')"></ion-icon>
+              <ion-icon name="remove" (click)="changeAmount('-',item.id)"></ion-icon>
             </button>
             <button ion-button item-right class="plus">
-              <ion-icon name="add" (click)="changeAmount('+','organico')"></ion-icon>
+              <ion-icon name="add" (click)="changeAmount('+',item.id)"></ion-icon>
             </button>
           </ion-item>
           </ion-card>
         </ion-col>
       </ion-row>
-
-
-
-    <ion-row>
-      <ion-col col-6 text-center>
-        <ion-card>
-          <ion-icon name="basket" class="plastica"></ion-icon>
-          <ion-label>{{"PLASTIC"|dictionary}}</ion-label>
-        </ion-card>
-      </ion-col>
-
-      <ion-col col-6>
-        <ion-card class="card-right">
-          <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
-            <ion-input type="number" min="0" max="5" value="{{amount['plastica']}}" text-start></ion-input>
-          </ion-item>
-          <ion-item no-lines color="light" class="item-icons">
-            <button ion-button item-left class="minus">
-              <ion-icon name="remove" (click)="changeAmount('-','plastica')"></ion-icon>
-            </button>
-            <button ion-button item-right class="plus">
-              <ion-icon name="add" (click)="changeAmount('+','plastica')"></ion-icon>
-            </button>
-          </ion-item>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-
-    <ion-row>
-      <ion-col col-6 text-center>
-        <ion-card>
-          <ion-icon name="basket" class="carta"></ion-icon>
-          <ion-label>{{"PAPER"|dictionary}}</ion-label>
-        </ion-card>
-      </ion-col>
-
-      <ion-col col-6>
-        <ion-card class="card-right">
-          <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
-            <ion-input type="number" min="0" max="5" value="{{amount['carta']}}" text-start></ion-input>
-          </ion-item>
-          <ion-item no-lines color="light" class="item-icons">
-            <button ion-button item-left class="minus">
-              <ion-icon name="remove" (click)="changeAmount('-','carta')"></ion-icon>
-            </button>
-            <button ion-button item-right class="plus">
-              <ion-icon name="add" (click)="changeAmount('+','carta')"></ion-icon>
-            </button>
-          </ion-item>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-
-    <ion-row>
-      <ion-col col-6 text-center>
-        <ion-card>
-          <ion-icon name="basket" class="indifferenziato"></ion-icon>
-          <ion-label>{{"IND"|dictionary}}</ion-label>
-        </ion-card>
-      </ion-col>
-
-      <ion-col col-6>
-        <ion-card class="card-right">
-          <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
-            <ion-input type="number" min="0" max="5" value="{{amount['indifferenziato']}}" text-start></ion-input>
-          </ion-item>
-          <ion-item no-lines color="light" class="item-icons">
-            <button ion-button item-left class="minus">
-              <ion-icon name="remove" (click)="changeAmount('-','indifferenziato')"></ion-icon>
-            </button>
-            <button ion-button item-right class="plus">
-              <ion-icon name="add" (click)="changeAmount('+','indifferenziato')"></ion-icon>
-            </button>
-          </ion-item>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-
-    <ion-row>
-      <ion-col col-6 text-center>
-        <ion-card>
-          <ion-icon name="basket" class="vetro"></ion-icon>
-          <ion-label>{{"GLASS"|dictionary}}</ion-label>
-        </ion-card>
-      </ion-col>
-
-      <ion-col col-6>
-        <ion-card class="card-right">
-          <ion-item class="label-amount" no-lines color="light" >
-            <ion-label floating>{{"AMOUNT"|dictionary}}</ion-label>
-            <ion-input type="number" min="0" max="5" value="{{amount['vetro']}}" text-start></ion-input>
-          </ion-item>
-          <ion-item no-lines color="light" class="item-icons">
-            <button ion-button item-left class="minus">
-              <ion-icon name="remove" (click)="changeAmount('-','vetro')"></ion-icon>
-            </button>
-            <button ion-button item-right class="plus">
-              <ion-icon name="add" (click)="changeAmount('+','vetro')"></ion-icon>
-            </button>
-          </ion-item>
-        </ion-card>
-      </ion-col>
-    </ion-row>
   </ion-grid>
+
 
 <ion-grid>
   <ion-row>
     <ion-col>
-  <button ion-button color="primary" class="left-button">
+  <button ion-button color="primary" class="left-button"  (click)="sendRequest()">
     {{"FWD_REQUEST"|dictionary}}
-    <ion-icon name="send" class="button-icon" style="font-size:3px" (click)="sendRequest()"></ion-icon>
+    <ion-icon name="send" class="button-icon" style="font-size:3px"></ion-icon>
   </button>
   </ion-col>
   <ion-col>

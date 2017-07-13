@@ -13,6 +13,8 @@ import {IonicStorageModule} from '@ionic/storage';
 import { MessageProvider } from '../providers/message.provider';
 import { AccountProvider } from '../providers/account.provider';
 import { UserPersistanceProvider } from '../providers/user-persistance.provider';
+import {RecyclingSackProvider} from "../providers/rs.provider";
+import {RecyclingSackRequestProvider} from "../providers/rsr.provider";
 
 
 const cloudSettings: CloudSettings = {
@@ -47,7 +49,9 @@ const cloudSettings: CloudSettings = {
     AlertController,
     MessageProvider,
     AccountProvider,
-    UserPersistanceProvider
+    UserPersistanceProvider,
+    RecyclingSackProvider,
+    RecyclingSackRequestProvider
   ]
 })
 export class AppModule {

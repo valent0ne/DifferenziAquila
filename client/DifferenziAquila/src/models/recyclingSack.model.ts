@@ -6,6 +6,7 @@ export class RecyclingSack{
   public id: number=-1;
   public icon: String="";
   public color: String="";
+  public name: String="";
 
 
   constructor(obj?: any) {
@@ -17,6 +18,7 @@ export class RecyclingSack{
       this.id=(typeof obj.id === "number" )? obj.id:this.id;
       this.icon= obj.icon || this.icon;
       this.color= obj.color || this.color;
+      this.name= obj.name || this.name;
     }
   }
 }
