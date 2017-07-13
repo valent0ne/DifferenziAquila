@@ -12,6 +12,19 @@ export const URL = {
   RSR: {
       CREATE: "recyclingsackrequest/"
   },
+    },
+    CALENDAR: {
+      GET: "calendar/",
+      FROM: "from/",
+      TO: "to/"
+    }
+};
+
+export const CALENDAR={
+  DEFAULT_SIZE: 30,
+  DEFAULT_END: "2018-01-31",
+  INFINITE_SCROLL: 14
+};
 
   RS:{
       GET: "recyclingsack/"
@@ -27,5 +40,6 @@ export const SACK={
   DEFAULT:0
 };
 export const STORAGE_KEYS = {
-    USER: "differenziaquila_user"
+    USER: "differenziaquila_user",
+    CALENDAR: "differenziaquila_calendar"
 };

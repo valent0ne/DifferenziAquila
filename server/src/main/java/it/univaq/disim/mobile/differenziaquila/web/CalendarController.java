@@ -44,6 +44,15 @@ public class CalendarController {
         return response;
     }
 
+    @GetMapping("/from/{start}/to/{end}")
+    public Response findAllCalendarsBetween( @PathVariable(value="start") String start, @PathVariable(value="end") String end) throws Exception{
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        List<Calendar> calendars= service.findAllCalendarsBetween(df.parse(start), df.parse(end));
+        Response<List<Calendar>> response= new Response<>(true, "all calendars between "+start+" and "+end);
+        response.setData(calendars);
+        return response;
+    }
+
     @GetMapping("/")
     public Response findAllCalendars(){
         List<Calendar> calendars= service.findAllCalendars();

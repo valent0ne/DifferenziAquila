@@ -15,6 +15,9 @@ import { AccountProvider } from '../providers/account.provider';
 import { UserPersistanceProvider } from '../providers/user-persistance.provider';
 import {RecyclingSackProvider} from "../providers/rs.provider";
 import {RecyclingSackRequestProvider} from "../providers/rsr.provider";
+import {CalendarProvider} from "../providers/calendar.provider";
+import {CalendarPersistanceProvider} from "../providers/calendar-persistance.provider";
+import {DatePipe} from "@angular/common";
 
 
 const cloudSettings: CloudSettings = {
@@ -52,6 +55,9 @@ const cloudSettings: CloudSettings = {
     UserPersistanceProvider,
     RecyclingSackProvider,
     RecyclingSackRequestProvider
+    CalendarProvider,
+    CalendarPersistanceProvider,
+    DatePipe
   ]
 })
 export class AppModule {

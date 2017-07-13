@@ -13,60 +13,33 @@
 
 
   <ion-navbar color="tertiary" class="secondNav">
-    <ion-title align="center" class="secondNavTitleContainer"><span class="secondNavTitle">Mese Anno</span></ion-title>
+    <ion-title align="center" class="secondNavTitleContainer"><span class="secondNavTitle">{{month}} {{year}}</span></ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="background" padding>
+
+
   <ion-list>
 
 
+    <ion-item *ngFor="let item of items" no-lines icon-right>
 
-
-    <ion-item no-lines icon-right>
-
-      <span>Numero Giorno</span>
-      <ion-icon name="square" item-right></ion-icon>
+      <span>{{item.day| date:"dd"}} {{datepipe.transform(item.day, "M")|dictionary}} - {{ datepipe.transform(item.day,"EEE").toUpperCase() | dictionary }}  </span>
+      <ion-icon name="square" [style.color]="" item-right></ion-icon>
 
     </ion-item>
 
-
-
-
-
-    <ion-item no-lines icon-right>
-
-      <span>Numero Giorno</span>
-      <ion-icon name="square" item-right></ion-icon>
-
-    </ion-item>
-    <ion-item no-lines icon-right>
-
-      <span>Numero Giorno</span>
-      <ion-icon name="square" item-right></ion-icon>
-
-    </ion-item>
-    <ion-item no-lines icon-right>
-
-      <span>Numero Giorno</span>
-      <ion-icon name="square" item-right></ion-icon>
-
-    </ion-item>
-    <ion-item no-lines icon-right>
-
-      <span>Numero Giorno</span>
-      <ion-icon name="square" item-right></ion-icon>
-
-    </ion-item>
-    <ion-item no-lines icon-right>
-
-      <span>Numero Giorno</span>
-      <ion-icon name="square" item-right></ion-icon>
-
-    </ion-item>
 
   </ion-list>
+
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())" treshold="1px">
+    <ion-infinite-scroll-content>
+      loadingText={{"LOADING_WAITING"|dictionary}}>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

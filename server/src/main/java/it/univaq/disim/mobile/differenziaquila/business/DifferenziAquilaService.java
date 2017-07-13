@@ -74,6 +74,8 @@ public interface DifferenziAquilaService {
 
     List<Calendar> findAllCalendarsAfterDate(Date d) throws Exception;
 
+    List<Calendar> findAllCalendarsBetween(Date start, Date end) throws Exception;
+
     Calendar findCalendarById(Long id);
 
     void deleteCalendar( String token,Long id)throws Exception;

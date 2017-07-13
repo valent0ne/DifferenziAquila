@@ -16,4 +16,6 @@ public interface CalendarRepository extends JpaRepository<Calendar,Long> {
 
     List<Calendar> findCalendarsByDayGreaterThanEqualOrderByDay(Date date);
 
+    List<Calendar> findCalendarsByDayGreaterThanEqualAndDayLessThanEqualOrderByDay(Date start, Date end);
+
 }

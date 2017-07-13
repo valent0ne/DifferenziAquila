@@ -356,6 +356,12 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
     }
 
     @Override
+    public List<Calendar> findAllCalendarsBetween(Date start, Date end) throws Exception{
+        return calendarRepository.findCalendarsByDayGreaterThanEqualAndDayLessThanEqualOrderByDay(start, end);
+
+    }
+
+    @Override
     public Calendar findCalendarById(Long id){
         return calendarRepository.findOne(id);
     }
