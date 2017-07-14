@@ -1,15 +1,15 @@
 
 //Models
-import {User} from '../models/user.model';
+import {CollectionPoint} from "../models/collectionPoint.model";
 
 export interface CollectionPointPersistanceInterface {
 
-    save(user: User): Promise<any>;
+    save(c: Array<CollectionPoint>): Promise<any>;
 
-    get(): Promise<User>;
+    get(): Promise<Array<CollectionPoint>>;
 
     remove(): Promise<any>;
 
-    retrieveFromServer(): Promise<Array<Map>>;
+    retrieveFromServer(): Promise<Array<CollectionPoint>>;
 
 }

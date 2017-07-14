@@ -18,6 +18,7 @@ public class SpecialWaste implements  java.io.Serializable{
     @Column(name="name", nullable= false, length=255)
     private String name;
 
+    @JsonIgnore
     @Column(name="description", nullable=false, length=255)
     private String description;
 

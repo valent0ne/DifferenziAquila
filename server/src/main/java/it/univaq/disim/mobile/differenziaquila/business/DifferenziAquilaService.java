@@ -53,6 +53,7 @@ public interface DifferenziAquilaService {
     //END: RecyclingSack
 
 
+
     //START: WasteCategory
     WasteCategory createWasteCategory(String token, WasteCategory wastecategory)throws Exception;
 

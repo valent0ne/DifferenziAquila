@@ -1,8 +1,8 @@
 export class CollectionPoint{
 
   public id: number=-1;
-  public longitude: String="";
-  public latitude: String="";
+  public longitude: number = null;
+  public latitude: number = null;
   public description: String="";
   public specialwaste: String="";
 

@@ -23,6 +23,16 @@ public class CollectionPoint {
     @Column(name="latitude", nullable=false, length=255)
     private String latitude;
 
+    @Column(name="description", nullable=false)
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

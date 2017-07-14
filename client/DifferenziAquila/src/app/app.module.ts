@@ -19,6 +19,8 @@ import {CalendarProvider} from "../providers/calendar.provider";
 import {CalendarPersistanceProvider} from "../providers/calendar-persistance.provider";
 import {DatePipe} from "@angular/common";
 import {WasteCategoryProvider} from "../providers/wastecategory.provider";
+import {CollectionPointProvider} from "../providers/collectionpoint.provider";
+import {CollectionPointPersistanceProvider} from "../providers/collectionpoint-persistance.provider";
 
 
 const cloudSettings: CloudSettings = {
@@ -59,7 +61,9 @@ const cloudSettings: CloudSettings = {
     CalendarProvider,
     CalendarPersistanceProvider,
     DatePipe,
-    WasteCategoryProvider
+    WasteCategoryProvider,
+    CollectionPointProvider,
+    CollectionPointPersistanceProvider
   ]
 })
 export class AppModule {

@@ -43,8 +43,8 @@ export class CalendarProvider {
           }
           resolve();
         })
-        .catch((err) => {
-          console.log("[CalendarProvider] - catch initialize "+err.toString());
+        .catch(() => {
+          console.log("[CalendarProvider] - catch initialize ");
           reject();
         });
     });

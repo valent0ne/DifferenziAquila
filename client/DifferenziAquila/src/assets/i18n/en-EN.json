@@ -1,6 +1,7 @@
 {
   "CALENDAR" : "Calendar",
-  "MAP": "Map",
+  "MAP_MENU": "Map",
+  "MAP": "Collection points map",
   "NEWS":"News",
   "SACKS":"Sacks",
   "COLLECTION":"Collection",
@@ -48,6 +49,8 @@
   "LOADING_WAITING":"Please wait...",
   "LOGIN_OK":"Login successful",
   "ERROR_CALENDAR":"Can't retrieve data",
+  "ERROR_MAP":"Can't retrieve collection points location",
+  "YOU_ARE_HERE":"You are here",
 
   "LOGIN":"Login",
   "LOGINTXT1":"Enter your client code",
@@ -59,6 +62,15 @@
   "REFRESH_KO":"Can't refresh resources",
   "REFRESHING":"Refreshing...",
   "REFRESHING_INFO":"Pull to refresh",
+
+  "AGRICULTURAL":"Agricultural wastes",
+  "BIOMEDICAL":"Biomedical wastes",
+  "ELECTRONIC":"Electronic wastes",
+  "RADIOACTIVE":"Radioactive wastes",
+  "OILS":"Exhausted oils",
+  "DEMOLITION":"Demolition wastes",
+  "CHEMICAL":"Chemical wastes",
+
 
   "CLEAR":"Clear",
 

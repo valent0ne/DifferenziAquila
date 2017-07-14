@@ -1,6 +1,7 @@
 {
   "CALENDAR" : "Calendario",
-  "MAP": "Mappa",
+  "MAP_MENU": "Mappa",
+  "MAP": "Mappa dei punti di ritiro",
   "NEWS":"Avvisi",
   "SACKS":"Sacchetti",
   "COLLECTION":"Ritiro",
@@ -54,6 +55,8 @@
   "LOADING_WAITING":"Attendere...",
   "LOGIN_OK":"Login avvenuto con successo",
   "ERROR_CALENDAR":"Non riesco a recuperare i dati",
+  "ERROR_MAP":"Non riesco a recuperare i dati dei punti di ritiro",
+  "YOU_ARE_HERE":"Tu sei qui",
 
   "NO_CONNECTION":"Controlla la tua connessione a internet",
   "ITEMS_EMPTY":"Inserisci le quantità",
@@ -61,6 +64,14 @@
   "REFRESH_KO":"Non riesco ad aggiornare",
   "REFRESHING":"Aggiorno...",
   "REFRESHING_INFO":"Tira per aggiornare",
+
+  "AGRICULTURAL":"Rifiuti agricoli",
+  "BIOMEDICAL":"Rifiuti biomedici",
+  "ELECTRONIC":"Rifiuti elettronici",
+  "RADIOACTIVE":"Rifiuti radioativi",
+  "OILS":"Oli usati",
+  "DEMOLITION":"Rifiuti da demolizione",
+  "CHEMICAL":"Rifiuti chimici",
 
   "1":"Gennaio",
   "2":"Febbraio",

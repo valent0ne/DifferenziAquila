@@ -31,8 +31,8 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
         .then(() => {
           resolve();
         })
-        .catch((err) => {
-          console.log("[CalendarPersistanceProvider] save errore: " + err.toString());
+        .catch(() => {
+          console.log("[CalendarPersistanceProvider] save errore " );
           reject();
         });
     });
@@ -70,8 +70,8 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
             this.retrieveFromServer().then((calendar) => {
               console.log("[CalendarPersistanceProvider] retrieved calendar from server");
               resolve(calendar);
-            }).catch(err => {
-              console.log("[CalendarPersistanceProvider] error catch retrieve server: " + err.toString());
+            }).catch(() => {
+              console.log("[CalendarPersistanceProvider] error catch retrieve server ");
               reject();
             });
           }
@@ -110,8 +110,8 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
                 reject();
               });
               //in caso di errore
-            }).catch(err => {
-              console.log("[CalendarPersistanceProvider] error catch retrieve server: " + err.toString());
+            }).catch(() => {
+              console.log("[CalendarPersistanceProvider] error catch retrieve server ");
               reject();
             });
           }
@@ -167,8 +167,8 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
               console.log("[CalendarPersistanceProvider] - saved calendar in storage");
               resolve(out);
 
-            }).catch((err) => {
-              console.log("[CalendarPersistanceProvider] - catch save calendar storage: " + err.toString());
+            }).catch(() => {
+              console.log("[CalendarPersistanceProvider] - catch save calendar storage ");
               reject();
             })
           } else {
@@ -177,8 +177,8 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
           }
 
         })
-        .catch((err) => {
-          console.log("[CalendarPersistanceProvider] - api request fail " + err.toString());
+        .catch(() => {
+          console.log("[CalendarPersistanceProvider] - api request fail ");
           reject()
         });
     });

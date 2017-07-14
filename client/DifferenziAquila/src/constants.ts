@@ -25,8 +25,12 @@ export const URL = {
   },
   WASTE_CATEGORY: {
     GET: "wastecategory/"
+  },
+  COLLECTION_POINT: {
+    GET: "collectionpoint/"
   }
 };
+
 
 
 export const CALENDAR = {
@@ -42,5 +46,6 @@ export const SACK = {
 
 export const STORAGE_KEYS = {
   USER: "differenziaquila_user",
-  CALENDAR: "differenziaquila_calendar"
+  CALENDAR: "differenziaquila_calendar",
+  COLLECTION_POINT: "differenziaquila_collectionpoint"
 };

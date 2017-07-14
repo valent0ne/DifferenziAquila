@@ -35,8 +35,7 @@ export class CalendarPage {
               public sCalendar: CalendarProvider,
               public sMessage: MessageProvider,
               public sDictionary: DictionaryService,
-              public datepipe: DatePipe,
-              public viewCtrl: ViewController) {
+              public datepipe: DatePipe) {
 
 
     this.initialize();
@@ -63,23 +62,24 @@ export class CalendarPage {
         this.updateMonthYear(0).then(() => {
           loading.dismiss();
 
-        }).catch(err => {
-          console.log("[Calendar] error update month-year initialize: " + err.toString());
+        }).catch(() => {
+          console.log("[Calendar] error update month-year initialize: " );
         });
 
-      }).catch((err) => {
+      }).catch(() => {
         loading.dismiss().then(() => {
           this.sMessage.presentMessage('warn', this.sDictionary.get("ERROR_CALENDAR"));
-          console.log("catch getNextDays " + err.toString());
+          console.log("catch getNextDays ");
         })
 
       });
     }).catch(() => {
         console.log("[Calendar] catch initialize, return to main menu");
-        this.navCtrl.push("MenuPage").then(()=>{
+
           this.sMessage.presentMessage('ko', this.sDictionary.get("ERROR_CALENDAR"));
+          this.navCtrl.push("MenuPage");
           loading.dismiss();
-        });
+
     });
   }
 
@@ -119,12 +119,12 @@ export class CalendarPage {
           console.log('Async operation has ended');
           this.updateMonthYear(this.index - 1).then(() => {
             resolve();
-          }).catch(err => {
-            console.log("[Calendar] error update month-year infinite scroll: index -> " + this.index + " err: " + err.toString());
+          }).catch(() => {
+            console.log("[Calendar] error update month-year infinite scroll: index -> " + this.index);
             reject();
           })
-        }).catch((err => {
-          console.log("[Calendar] catch getNextDays in infinite scroll err: " + err);
+        }).catch((() => {
+          console.log("[Calendar] catch getNextDays in infinite scroll err: ");
           reject();
         }));
       }, 333);
