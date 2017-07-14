@@ -44,7 +44,8 @@
   "WARNING":"Quancosa è andato storto",
 
   "ERROR_LOGIN":"Controlla il codice cliente",
-
+  "WARNING_CLIENTCODE_EMPTY":"Inserisci il codice cliente",
+  "WARNING_EMPTY_SWCR":"Inserisci i dati",
   "LOGIN":"Accedi",
   "LOGINTXT1":"Inserisci il tuo codice cliente",
   "LOGINTXT2":"nel campo sotto",

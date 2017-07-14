@@ -19,6 +19,8 @@ import {CalendarProvider} from "../providers/calendar.provider";
 import {CalendarPersistanceProvider} from "../providers/calendar-persistance.provider";
 import {DatePipe} from "@angular/common";
 import {WasteCategoryProvider} from "../providers/wastecategory.provider";
+import {SpecialWasteCollectionRequestProvider} from "../providers/swcr.provider";
+import {SpecialWasteProvider} from "../providers/sw.provider";
 import {CollectionPointProvider} from "../providers/collectionpoint.provider";
 import {CollectionPointPersistanceProvider} from "../providers/collectionpoint-persistance.provider";
 
@@ -62,6 +64,8 @@ const cloudSettings: CloudSettings = {
     CalendarPersistanceProvider,
     DatePipe,
     WasteCategoryProvider,
+    SpecialWasteProvider,
+    SpecialWasteCollectionRequestProvider
     CollectionPointProvider,
     CollectionPointPersistanceProvider
   ]

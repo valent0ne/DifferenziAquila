@@ -5,7 +5,6 @@ export class SpecialWaste{
 
   public id: number=-1;
   public name: String="";
-  public description: String="";
 
   constructor(obj?: any) {
     this.setObj(obj);
@@ -15,7 +14,6 @@ export class SpecialWaste{
     if (obj){
       this.id=(typeof obj.id === "number") ? obj.id : this.id;
       this.name= obj.name || this.name;
-      this.description= obj.description || this.description;
     }
   }
 }

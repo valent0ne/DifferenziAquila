@@ -36,6 +36,9 @@ public class SpecialWasteRequest {
     @Column(name="hour", nullable=false)
     private String hour;
 
+    @Column(name="description", nullable=false)
+    private String description;
+
     public Long getId() {
         return id;
     }
@@ -82,5 +85,13 @@ public class SpecialWasteRequest {
 
     public void setHour(String hour) {
         this.hour = hour;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
