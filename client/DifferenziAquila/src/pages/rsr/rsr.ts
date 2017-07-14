@@ -26,6 +26,7 @@ export class RsrPage {
 
   recyclingSacks: RecyclingSack[];
   rsrs: Map<number,RecyclingSackRequest> = new Map();
+  hide: boolean = true;
 
 
   constructor(public navCtrl: NavController,
@@ -47,6 +48,7 @@ export class RsrPage {
 
     }
     this.init();
+
     console.log('ionViewDidLoad RsrPage');
 
   }
@@ -60,7 +62,9 @@ export class RsrPage {
         this.rsrs.set(item.id,new RecyclingSackRequest({"amount":SACK.DEFAULT, "date": new Date()}));
       }
 
-      loading.dismiss();
+      loading.dismiss().then(()=>{
+        this.hide=false;
+      });
     })
       .catch(()=>  {
         loading.dismiss().then(()=>{
@@ -126,6 +130,7 @@ export class RsrPage {
         if(count==0){
           loading.dismiss().then(()=>{
             this.sMessage.presentMessage('ok',this.sDictionary.get('SUCCESS'));
+            this.clear();
             return;
           });
         }//in caso di errore su una richiesta faccio comparire il popup ed esco

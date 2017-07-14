@@ -57,6 +57,10 @@
 
   "NO_CONNECTION":"Controlla la tua connessione a internet",
   "ITEMS_EMPTY":"Inserisci le quantità",
+  "REFRESH_OK":"Aggiornamento eseguito con successo",
+  "REFRESH_KO":"Non riesco ad aggiornare",
+  "REFRESHING":"Aggiorno...",
+  "REFRESHING_INFO":"Tira per aggiornare",
 
   "1":"Gennaio",
   "2":"Febbraio",

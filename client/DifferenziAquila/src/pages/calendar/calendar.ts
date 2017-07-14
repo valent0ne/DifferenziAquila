@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController, ViewController} from 'ionic-angular';
 import {Calendar} from "../../models/calendar.model";
 import {CalendarProvider} from "../../providers/calendar.provider";
 import {MessageProvider} from "../../providers/message.provider";
@@ -27,7 +27,7 @@ export class CalendarPage {
   month: string = "";
   year: string = "";
   index: number = 0;
-  waste_categories: Map<number,WasteCategory> = new Map();
+  waste_categories: Map<number, WasteCategory> = new Map();
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -35,8 +35,8 @@ export class CalendarPage {
               public sCalendar: CalendarProvider,
               public sMessage: MessageProvider,
               public sDictionary: DictionaryService,
-              public datepipe: DatePipe) {
-
+              public datepipe: DatePipe,
+              public viewCtrl: ViewController) {
 
 
     this.initialize();
@@ -50,37 +50,37 @@ export class CalendarPage {
     const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
     loading.present();
 
-      //recupero
-      this.sCalendar.initialize().then(() => {
-        this.sCalendar.getNextDays(this.index).then(() => {
-          let data = this.sCalendar.getTempCalendar();
-          console.log("[Calendar] size of data from nextDays, tempCalendar (and 1st item) " + data.length + " - " + data[0].id);
-          for (let obj of data) {
-            this.items.push(obj);
-          }
+    //inizializzo calendario
+    this.sCalendar.initialize().then(() => {
+      //ottengo primo slot di giorni
+      this.sCalendar.getNextDays(this.index).then(() => {
+        let data = this.sCalendar.getTempCalendar();
+        console.log("[Calendar] size of data from nextDays, tempCalendar (and 1st item) " + data.length + " - " + data[0].id);
+        for (let obj of data) {
+          this.items.push(obj);
+        }
+        //aggiorno mese/anno in alto
+        this.updateMonthYear(0).then(() => {
+          loading.dismiss();
 
-          this.updateMonthYear(0).then(() => {
-            loading.dismiss();
-
-          }).catch(err => {
-            console.log("[Calendar] error update month-year initialize: " + err.toString());
-          });
-
-        }).catch((err) => {
-          loading.dismiss().then(() => {
-            this.sMessage.presentMessage('warn', this.sDictionary.get("ERROR_CALENDAR"));
-            console.log("catch getNextDays " + err.toString());
-          })
-
+        }).catch(err => {
+          console.log("[Calendar] error update month-year initialize: " + err.toString());
         });
-      }).catch(() => {
+
+      }).catch((err) => {
         loading.dismiss().then(() => {
-          this.sMessage.presentMessage('ko', this.sDictionary.get("ERROR_CALENDAR"));
-          console.log("catch initialize");
-        });
-
+          this.sMessage.presentMessage('warn', this.sDictionary.get("ERROR_CALENDAR"));
+          console.log("catch getNextDays " + err.toString());
+        })
 
       });
+    }).catch(() => {
+        console.log("[Calendar] catch initialize, return to main menu");
+        this.navCtrl.push("MenuPage").then(()=>{
+          this.sMessage.presentMessage('ko', this.sDictionary.get("ERROR_CALENDAR"));
+          loading.dismiss();
+        });
+    });
   }
 
 
@@ -88,10 +88,22 @@ export class CalendarPage {
     return new Promise((resolve) => {
       console.log("index: " + index);
       console.log("items[index]: " + this.items[index].day);
-      this.month=this.sDictionary.get(this.datepipe.transform(this.items[index].day, "M"));
-      this.year=this.datepipe.transform(this.items[index].day, "y");
+      this.month = this.sDictionary.get(this.datepipe.transform(this.items[index].day, "M"));
+      this.year = this.datepipe.transform(this.items[index].day, "y");
       resolve();
     });
+  }
+
+  doRefresh(refresher){
+
+    this.sCalendar.refresh().then(()=>{
+        this.sMessage.presentMessage('ok', this.sDictionary.get("REFRESH_OK"));
+        refresher.complete();
+      }).catch(()=>{
+        this.sMessage.presentMessage('ko', this.sDictionary.get("REFRESH_KO"));
+        refresher.complete();
+    });
+
   }
 
   doInfinite(): Promise<any> {
@@ -104,8 +116,6 @@ export class CalendarPage {
           for (let obj of data) {
             this.items.push(obj);
           }
-
-
           console.log('Async operation has ended');
           this.updateMonthYear(this.index - 1).then(() => {
             resolve();
@@ -117,10 +127,9 @@ export class CalendarPage {
           console.log("[Calendar] catch getNextDays in infinite scroll err: " + err);
           reject();
         }));
-      }, 500);
+      }, 333);
     });
   }
-
 
 }
 

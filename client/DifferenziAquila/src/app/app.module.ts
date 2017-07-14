@@ -38,7 +38,7 @@ const cloudSettings: CloudSettings = {
     DictionaryModule,
     HttpModule,
     IonicStorageModule.forRoot({
-      name: '__differenziaquila',
+      name: '__differenziaquila'
     })
   ],
   bootstrap: [IonicApp],

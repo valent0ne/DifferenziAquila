@@ -16,7 +16,6 @@ export class Calendar{
       this.id=(typeof obj.id === "number" )? obj.id:this.id;
       this.color = obj.color || this.color;
       this.day = obj.day || this.day;
-
     }
   }
 }

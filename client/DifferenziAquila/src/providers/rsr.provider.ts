@@ -1,16 +1,12 @@
 import {RecyclingSackRequest} from "../models/recyclingSackRequest.model";
 import {Injectable} from '@angular/core';
-
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-
-
-
 import {AccountProvider} from './account.provider';
+
 //Constants
 import {URL_BASE, URL} from '../constants';
-import {toPromise} from "rxjs/operator/toPromise";
 import {ResponseServer} from "../types";
 
 

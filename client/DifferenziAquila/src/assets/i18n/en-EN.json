@@ -55,6 +55,10 @@
   "REMEMBERME":"Remember me",
   "NO_CONNECTION":"Please check your internet connection",
   "ITEMS_EMPTY":"Insert amounts",
+  "REFRESH_OK":"Resources reloaded successfully",
+  "REFRESH_KO":"Can't refresh resources",
+  "REFRESHING":"Refreshing...",
+  "REFRESHING_INFO":"Pull to refresh",
 
   "CLEAR":"Clear",
 

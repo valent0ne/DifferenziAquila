@@ -10,4 +10,6 @@ export interface CalendarPersistanceInterface {
 
     remove(): Promise<any>;
 
+    retrieveFromServer(): Promise<Array<Calendar>>;
+
 }

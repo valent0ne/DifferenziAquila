@@ -44,7 +44,7 @@ export class CalendarProvider {
           resolve();
         })
         .catch((err) => {
-          console.log("[CalendarProvider] - catch initialize "+err);
+          console.log("[CalendarProvider] - catch initialize "+err.toString());
           reject();
         });
     });
@@ -72,6 +72,19 @@ export class CalendarProvider {
         console.log("[CalendarProvider] tempCalendar length = 0");
         reject();
       }
+    });
+  }
+
+  refresh(): Promise<any>{
+    return new Promise((resolve, reject)=>{
+        console.log("[CalendarProvider] refreshing...");
+        this._sCalendarPersistance.retrieveFromServer().then(()=>{
+          console.log("[CalendarProvider] calendar refreshed");
+          resolve();
+        }).catch(()=>{
+          console.log("[CalendarProvider] calendar refreshed failed");
+          reject();
+        });
     });
   }
 

@@ -13,7 +13,8 @@
 
 
   <ion-navbar color="tertiary" class="secondNav">
-    <ion-title align="center" class="secondNavTitleContainer"><span class="secondNavTitle">{{month}} {{year}}</span></ion-title>
+    <ion-title align="center" class="secondNavTitleContainer"><span class="secondNavTitle">{{month}} {{year}}</span>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,12 +22,18 @@
 
 <ion-content class="background" padding>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="{{'REFRESHING_INFO'|dictionary}}"
+      refreshingText="{{'REFRESHING'|dictionary}}">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
 
   <ion-list>
 
-
     <ion-item *ngFor="let item of items" no-lines icon-right [style.color]="(item.color === null) ? 'silver' : ''">
-
       <span>{{item.day| date:"dd"}} {{datepipe.transform(item.day, "M")|dictionary}} - {{ datepipe.transform(item.day,"EEE").toUpperCase() | dictionary }} </span>
       <ion-icon name="square" [style.color]="(item.color === null) ? 'white' :item.color" item-right></ion-icon>
 
@@ -36,10 +43,11 @@
   </ion-list>
 
 
-  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())" treshold="1px">
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())" threshold="1px">
     <ion-infinite-scroll-content>
       loadingText={{"LOADING_WAITING"|dictionary}}>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
 
 </ion-content>
