@@ -60,7 +60,9 @@ export class SwcrPage {
   presentDatePicker() {
 
     let inputs = [];
-    let day = new Date();
+    let today=new Date();
+    //inizio da "domani"
+    let day = new Date(today.getTime() + (1 * 24 * 60 * 60 * 1000));
 
     for (let i = 0; i < 14; i++) {
       let nextDay = new Date(day.getTime() + (i * 24 * 60 * 60 * 1000));
@@ -284,6 +286,7 @@ export class SwcrPage {
       this.sSpecialWasteCollectionRequest.saveSWRequest(request,this.idCategory).then(()=> {
         loading.dismiss().then(() => {
           this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS'));
+          this.clear();
           return;
         })
       }).catch(()=>{

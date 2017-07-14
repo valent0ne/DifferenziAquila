@@ -20,7 +20,7 @@ export class CollectionPointPersistanceProvider implements CollectionPointPersis
 
   save(collectionpoint: Array<CollectionPoint>): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._storage.set(STORAGE_KEYS.CALENDAR, collectionpoint)
+      this._storage.set(STORAGE_KEYS.COLLECTION_POINT, collectionpoint)
         .then(() => {
           resolve();
         })
@@ -58,7 +58,7 @@ export class CollectionPointPersistanceProvider implements CollectionPointPersis
         }).catch(() => {
         console.log("[CollectionPointPersistanceProvider] - cp fail to retrieve from storage, trying from server");
         this.retrieveFromServer().then((cps) => {
-          resolve(cps)
+          resolve(cps);
           //recupero da server fallito
         }).catch(() => {
           console.log("[CollectionPointPersistanceProvider] error catch retrieve server");
@@ -106,11 +106,11 @@ export class CollectionPointPersistanceProvider implements CollectionPointPersis
             }
             this.save(out).then(() => {
               this._fromServer = true;
-              console.log("[CollectionPointPersistanceProvider] - saved calendar in storage");
+              console.log("[CollectionPointPersistanceProvider] - saved cp in storage");
               resolve(out);
 
-            }).catch((err) => {
-              console.log("[CollectionPointPersistanceProvider] - catch save calendar storage: " + err.toString());
+            }).catch(() => {
+              console.log("[CollectionPointPersistanceProvider] - catch cp calendar storage ");
               reject();
             })
           } else {

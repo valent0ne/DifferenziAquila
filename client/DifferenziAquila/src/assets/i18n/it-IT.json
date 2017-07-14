@@ -40,7 +40,7 @@
   "CHOOSE_MINUTE":"scegli una fascia",
   "CHOOSE_CAT":"scegli una categoria",
   "SUCCESS":"Richiesta inoltrata con successo",
-  "FAILURE":"C'è stato un problema con la tua richiesta",
+  "FAILURE":"C'è stato un problema, controlla la tua connessione a internet",
   "WARNING":"Quancosa è andato storto",
 
   "ERROR_LOGIN":"Controlla il codice cliente",
@@ -52,7 +52,6 @@
   "REMEMBERME":"Ricordami",
 
   "CLEAR":"Pulisci",
-  "WARNING_CLIENTCODE_EMPTY":"Inseriasci il codice cliente",
   "LOADING_WAITING":"Attendere...",
   "LOGIN_OK":"Login avvenuto con successo",
   "ERROR_CALENDAR":"Non riesco a recuperare i dati",

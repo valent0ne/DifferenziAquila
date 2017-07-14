@@ -28,7 +28,7 @@ export class CollectionPointProvider {
     console.log("[CoolectionPointProvider] _cps cleared, size: "+this._cps.length);
     return new Promise((resolve, reject) => {
       this._sCollectionPointPersistance.get()
-        .then(c => {
+        .then((c) => {
         console.log("[CollectionPointProvider] data from persistence: "+c.length);
           for(let item of c){
             this._cps.push(new CollectionPoint(item));

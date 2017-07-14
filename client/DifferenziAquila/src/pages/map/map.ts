@@ -54,7 +54,7 @@ export class MapPage {
       let defaultPosition = {lat: 42.349790, lng: 13.399361};
       let mapOptions = {
         center: defaultPosition,
-        zoom: 15,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 

@@ -41,7 +41,7 @@
   "CHOOSE_CAT":"choose a category",
 
   "SUCCESS":"Request successfully forwarded",
-  "FAILURE":"There was a problem with your request",
+  "FAILURE":"There was a problem, check your internet connection",
   "WARNING":"Something went wrong",
 
   "ERROR_LOGIN":"Check your client code",

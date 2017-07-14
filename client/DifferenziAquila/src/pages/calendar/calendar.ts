@@ -127,7 +127,7 @@ export class CalendarPage {
           console.log("[Calendar] catch getNextDays in infinite scroll err: ");
           reject();
         }));
-      }, 333);
+      }, 250);
     });
   }
 

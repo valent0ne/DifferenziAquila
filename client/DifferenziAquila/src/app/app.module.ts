@@ -65,7 +65,7 @@ const cloudSettings: CloudSettings = {
     DatePipe,
     WasteCategoryProvider,
     SpecialWasteProvider,
-    SpecialWasteCollectionRequestProvider
+    SpecialWasteCollectionRequestProvider,
     CollectionPointProvider,
     CollectionPointPersistanceProvider
   ]
