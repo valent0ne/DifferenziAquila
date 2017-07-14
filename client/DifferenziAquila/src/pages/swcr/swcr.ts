@@ -1,7 +1,13 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, LoadingController, NavParams, AlertController} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
 import {MessageProvider} from '../../providers/message.provider';
+
+import {SpecialWasteProvider} from "../../providers/sw.provider";
+import {SpecialWasteCollectionRequestProvider} from "../../providers/swcr.provider";
+import {SpecialWaste} from "../../models/specialWaste.model";
+import {SpecialWasteRequest} from "../../models/specialWasteRequest.model";
+import {DatePipe} from "@angular/common";
 
 /**
  * Generated class for the SwcrPage page.
@@ -26,13 +32,20 @@ export class SwcrPage {
   amount: any = this.defaultAmount;
   category: String = this.defaultCategory;
   description: String = "";
+  idCategory: number=null;
+
+  specialWastes: SpecialWaste[];
 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public loadingCtrl: LoadingController,
               public alertCtrl: AlertController,
               public sDictionary: DictionaryService,
-              public sMessage: MessageProvider) {
+              public sMessage: MessageProvider,
+              public sSpecialWaste: SpecialWasteProvider,
+              public sSpecialWasteCollectionRequest: SpecialWasteCollectionRequestProvider,
+              public datepipe: DatePipe) {
   }
 
   ionViewDidLoad() {
@@ -40,7 +53,7 @@ export class SwcrPage {
       this.navCtrl.remove(1);
     }
 
-
+    this.init();
     console.log('ionViewDidLoad SwcrPage');
   }
 
@@ -178,14 +191,17 @@ export class SwcrPage {
 
     let inputs = [];
 
-    for (let i = 0; i < 10; i++) {
+    let i=0;
+    for (let item of this.specialWastes){
+
       //riempio con valori da database
       inputs[i] = [];
       inputs[i]['type'] = 'radio';
-      inputs[i]['label'] = 'pippo';
-      inputs[i]['value'] = 'pippo';
+      inputs[i]['label'] = item.name;
+      inputs[i]['value'] = item.name;
+      i++;
+      }
 
-    }
 
     let alert = this.alertCtrl.create({
       title: this.sDictionary.get("AMOUNT"),
@@ -204,6 +220,7 @@ export class SwcrPage {
             console.log('Ok clicked');
             if (data) {
               this.category = data;
+              this.idCategory=this.getSwId(this.specialWastes, data).id;
             }
           }
         }
@@ -212,12 +229,77 @@ export class SwcrPage {
     alert.present();
   }
 
+  getSwId(data, filter){
+    let result = data.filter(function(obj){
+      return obj.name == filter;
+    });
+    return result ? result[0] : null;
+  }
+
   clear() {
     this.date = this.defaultDate;
     this.time = this.defaultTime;
     this.category = this.defaultCategory;
     this.amount = this.defaultAmount;
     this.description = "";
+  }
+
+
+  init(){
+    const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
+    loading.present();
+    this.sSpecialWaste.get().then((data: SpecialWaste[])=> {
+      this.specialWastes=data;
+      loading.dismiss();
+    })
+      .catch(()=>  {
+        loading.dismiss().then(()=>{
+          this.sMessage.presentMessage('ko',this.sDictionary.get("NO_CONNECTION"));
+          this.navCtrl.push("MenuPage");
+        });
+      });
+  }
+
+  validate():Promise<any>{
+    return new Promise((resolve,reject)=>{
+      if(this.date!==null && this.date!=this.defaultDate &&
+        this.time!==null && this.time!="" && this.time!=this.defaultTime &&
+        this.amount!==null && this.amount!= this.defaultAmount &&
+        this.category!==null && this.category!= "" && this.category!=this.defaultCategory &&
+        this.description!==null && this.description!="")
+        resolve();
+      reject();
+    });
+  }
+
+  sendRequest(){
+    const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
+    loading.present();
+    this.validate().then(()=>{
+      const request= new SpecialWasteRequest ({
+        "date":this.datepipe.transform(this.date, "yyyy-MM-dd"),
+        "hour":this.time,
+        "amount":this.amount,
+        "description":this.description});
+      this.sSpecialWasteCollectionRequest.saveSWRequest(request,this.idCategory).then(()=> {
+        loading.dismiss().then(() => {
+          this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS'));
+          return;
+        })
+      }).catch(()=>{
+        console.log("errore failure send request swcr");
+        loading.dismiss().then(()=>{
+          this.sMessage.presentMessage('ko',this.sDictionary.get("FAILURE"));
+          return;
+        });
+      });
+    }).catch(()=>{
+      loading.dismiss().then(()=>{
+        this.sMessage.presentMessage('warn',this.sDictionary.get("WARNING_EMPTY_SWCR"));
+        return;
+      })
+    })
+
   }
 
 

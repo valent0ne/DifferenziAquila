@@ -18,6 +18,9 @@ export const URL = {
   SWCR: {
     CREATE: "specialwasterequest/"
   },
+  SW: {
+    GET: "specialwaste/"
+  },
   CALENDAR: {
     GET: "calendar/",
     FROM: "from/",

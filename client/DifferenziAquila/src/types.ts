@@ -6,8 +6,5 @@ export type ResponseServer = {
     message: string;
 }
 
-export type Sack={
-  id:number,
-  amount:number
-}
+
 

@@ -44,7 +44,8 @@
   "WARNING":"Something went wrong",
 
   "ERROR_LOGIN":"Check your client code",
-  "WARNING_CLIENTCODE_EMPTY":"Inseriasci il codice cliente",
+  "WARNING_CLIENTCODE_EMPTY":"Insert client code",
+  "WARNING_EMPTY_SWCR":"Insert data",
   "LOADING_WAITING":"Please wait...",
   "LOGIN_OK":"Login successful",
   "ERROR_CALENDAR":"Can't retrieve data",
