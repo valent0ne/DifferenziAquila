@@ -1,4 +1,4 @@
-export const USE_PROXY = true;
+export const USE_PROXY = false;
 
 export const URL_BASE = USE_PROXY ? 'api/' : 'http://localhost:8080/differenziaquila/api/';
 
@@ -34,7 +34,10 @@ export const URL = {
   }
 };
 
-
+export const NOTIFICATION = {
+  DEFAULT_TITLE: "DifferenziAquila",
+  DEFAULT_LED: "#138d59"
+};
 
 export const CALENDAR = {
   DEFAULT_SIZE: 30,
@@ -50,5 +53,6 @@ export const SACK = {
 export const STORAGE_KEYS = {
   USER: "differenziaquila_user",
   CALENDAR: "differenziaquila_calendar",
-  COLLECTION_POINT: "differenziaquila_collectionpoint"
+  COLLECTION_POINT: "differenziaquila_collectionpoint",
+  NOTIFICATION: "differenziaquila_notification"
 };

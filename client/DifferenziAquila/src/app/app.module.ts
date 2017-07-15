@@ -23,6 +23,8 @@ import {SpecialWasteCollectionRequestProvider} from "../providers/swcr.provider"
 import {SpecialWasteProvider} from "../providers/sw.provider";
 import {CollectionPointProvider} from "../providers/collectionpoint.provider";
 import {CollectionPointPersistanceProvider} from "../providers/collectionpoint-persistance.provider";
+import {NotificationProvider} from "../providers/notification.provider";
+import {LocalNotifications} from "@ionic-native/local-notifications";
 
 
 const cloudSettings: CloudSettings = {
@@ -67,7 +69,9 @@ const cloudSettings: CloudSettings = {
     SpecialWasteProvider,
     SpecialWasteCollectionRequestProvider,
     CollectionPointProvider,
-    CollectionPointPersistanceProvider
+    CollectionPointPersistanceProvider,
+    NotificationProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {

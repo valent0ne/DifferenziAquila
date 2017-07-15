@@ -13,7 +13,6 @@ public class WasteCategory {
     @Column(name = "id")
     private Long id;
 
-    @JsonIgnore
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 

@@ -1,5 +1,4 @@
 
-import {isDate} from "rxjs/util/isDate";
 import {isString} from "ionic-angular/util/util";
 export class SpecialWasteRequest{
 

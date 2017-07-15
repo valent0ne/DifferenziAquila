@@ -3,7 +3,6 @@ import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angu
 import {Geolocation} from '@ionic-native/geolocation';
 import {DictionaryService} from "../../providers/dictionary-service/dictionary-service";
 import {CollectionPointProvider} from "../../providers/collectionpoint.provider";
-import {CollectionPoint} from "../../models/collectionPoint.model";
 import {MessageProvider} from "../../providers/message.provider";
 import {isUndefined} from "ionic-angular/util/util";
 

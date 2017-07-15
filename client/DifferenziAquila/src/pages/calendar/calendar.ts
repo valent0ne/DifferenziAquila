@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, LoadingController, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 import {Calendar} from "../../models/calendar.model";
 import {CalendarProvider} from "../../providers/calendar.provider";
 import {MessageProvider} from "../../providers/message.provider";
@@ -7,6 +7,7 @@ import {DictionaryService} from "../../providers/dictionary-service/dictionary-s
 import {CALENDAR} from "../../constants";
 import {DatePipe} from "@angular/common";
 import {WasteCategory} from "../../models/wasteCategory.model";
+import {isUndefined} from "ionic-angular/util/util";
 
 
 /**
@@ -54,7 +55,7 @@ export class CalendarPage {
       //ottengo primo slot di giorni
       this.sCalendar.getNextDays(this.index).then(() => {
         let data = this.sCalendar.getTempCalendar();
-        console.log("[Calendar] size of data from nextDays, tempCalendar (and 1st item) " + data.length + " - " + data[0].id);
+        console.log("[Calendar] size of data from nextDays, tempCalendar (and 1st item) " + data.length + " - " + data[0].id+", "+data[0].waste_name);
         for (let obj of data) {
           this.items.push(obj);
         }

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
+import {NotificationProvider} from "../../providers/notification.provider";
+import {MessageProvider} from "../../providers/message.provider";
 
 
 /**
@@ -24,10 +26,21 @@ export class SettingsPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public loadingCtrl: LoadingController,
+              public sMessage: MessageProvider,
               public alertCtrl: AlertController,
-              public sDictionary: DictionaryService) {
+              public sDictionary: DictionaryService,
+              public sNotifications: NotificationProvider) {
 
-    this.isToggled = true;
+    //controllo se ci sono notifiche già settate
+    this.sNotifications.areSet().then((result) => {
+      this.isToggled = result;
+      if (this.isToggled) {
+        this.hh = this.sNotifications.getHh();
+        this.mm = this.sNotifications.getMm();
+      }
+    });
+
   }
 
   ionViewDidLoad() {
@@ -67,6 +80,7 @@ export class SettingsPage {
             console.log('Ok clicked');
             if (data) {
               this.hh = data;
+              this.applyWatcher();
             }
           }
         }
@@ -113,6 +127,7 @@ export class SettingsPage {
             console.log('Ok clicked');
             if (data) {
               this.mm = data;
+              this.applyWatcher();
             }
           }
         }
@@ -121,11 +136,45 @@ export class SettingsPage {
     alert.present();
   }
 
+  validate(): boolean {
+    return (this.hh != this.hhDefault &&
+      this.hh !== null &&
+      this.hh != '' &&
+
+      this.mm != this.mmDefault &&
+      this.mm !== null &&
+      this.mm != ''
+    );
+  }
+
+  applyWatcher() {
+    if (this.validate()) {
+      const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
+      loading.present();
+      this.sNotifications.initialize(this.hh, this.mm).then(() => {
+        this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS'));
+        console.log("[Settings] notification applied")
+        loading.dismiss();
+      }).catch(() => {
+        this.sMessage.presentMessage('warn', this.sDictionary.get('WARNING'));
+        console.log("[Settings] cant apply notifications")
+        loading.dismiss();
+      });
+    } else {
+      //manca o hh o mm, non fare niente
+    }
+
+  }
 
   toggleNotifications() {
     if (!this.isToggled) {
-      this.mm = this.mmDefault;
-      this.hh = this.hhDefault;
+      this.sNotifications.clearNotifications().then(() => {
+        this.mm = this.mmDefault;
+        this.hh = this.hhDefault;
+      }).catch(() => {
+        console.log("[Settings] toggleNotifications");
+      })
+
     }
   }
 

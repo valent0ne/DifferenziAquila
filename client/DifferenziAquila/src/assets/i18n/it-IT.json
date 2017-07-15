@@ -23,8 +23,10 @@
   "ORGANIC":"Organico",
   "PLASTIC":"Plastica",
   "GLASS":"Vetro",
-  "UNDIFFERENTIATED":"Indifferenziato",
+  "UNDIFFERENTIATED":"Indiff.",
   "PAPER":"Carta",
+
+  "REMEMBER_TO_TAKE_OUT":"Domani verrà ritirato:",
 
   "RSR":"Richiesta sacchetti",
 

@@ -23,8 +23,10 @@
   "ORGANIC":"Organic",
   "PLASTIC":"Plastic",
   "GLASS":"Glass",
-  "UNDIFFERENTIATED":"Undifferentiated",
+  "UNDIFFERENTIATED":"Undiff.",
   "PAPER":"Paper",
+
+  "REMEMBER_TO_TAKE_OUT":"Remember to take out:",
 
   "RSR":"Recycling sacks request",
 

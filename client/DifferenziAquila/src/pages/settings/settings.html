@@ -33,7 +33,7 @@
     <ion-card>
       <ion-card-content>
         <ion-item color="light" no-lines>
-          <ion-label>{{"NOT_TIME"|dictionary}}</ion-label>
+          <ion-label [ngStyle]="{'color': isToggled ? 'black' : 'silver'}">{{"NOT_TIME"|dictionary}}</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
           <ion-label align="right" class="padding-right" id="hh" [ngStyle]="{'color': hh!=hhDefault ? 'black' : 'silver'}" (click)="presentHourPicker()">{{hh}}   :</ion-label>

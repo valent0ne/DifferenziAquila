@@ -1,13 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
-
-//Interface
 import {CalendarPersistanceInterface} from '../interfaces/calendarpersistance.interface';
-
-//Models
 import {Calendar} from '../models/calendar.model';
-
-//Constants
 import {STORAGE_KEYS, URL_BASE, URL, CALENDAR} from '../constants';
 import {Http, Response} from "@angular/http";
 import {ResponseServer} from "../types";
@@ -159,6 +153,7 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
               out.push(new Calendar({
                 "id": calendar.id,
                 "color": ((calendar.wastecategory === null) ? null : calendar.wastecategory.color.toString()),
+                "waste_name": ((calendar.wastecategory === null) ? null : calendar.wastecategory.name.toString()),
                 "day": calendar.day
               }));
             }
