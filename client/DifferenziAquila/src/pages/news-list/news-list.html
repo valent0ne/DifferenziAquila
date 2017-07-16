@@ -19,10 +19,18 @@
 
 <ion-content class="background" padding>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="{{'REFRESHING_INFO'|dictionary}}"
+      refreshingText="{{'REFRESHING'|dictionary}}">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
-    <ion-card tappable color="light" (click)="this.navCtrl.push('NewsPage')">
-      <ion-title>Titolo News</ion-title>
-      <ion-card-content>Prime parole news</ion-card-content>
+    <ion-card tappable color="light" (click)="this.navCtrl.push('NewsPage',{'id': item.id});" *ngFor="let item of newsList">
+      <ion-label style="float:right">{{item.date}}</ion-label>
+      <ion-title style="float: left">{{item.title}}</ion-title>
+      <ion-card-content style="float:left">{{item.body}}</ion-card-content>
     </ion-card>
 
   </ion-list>

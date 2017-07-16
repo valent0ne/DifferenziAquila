@@ -17,7 +17,7 @@ export class CollectionPointProvider {
 
   constructor(public events: Events,
               sCollectionPers: CollectionPointPersistanceProvider) {
-    console.log('Hello Calendar Provider');
+    console.log('Hello CollectionPoint Provider');
 
     this._sCollectionPointPersistance = sCollectionPers;
   }
@@ -25,7 +25,7 @@ export class CollectionPointProvider {
 
   initialize(): Promise<any> {
     this._cps=new Array<CollectionPoint>();
-    console.log("[CoolectionPointProvider] _cps cleared, size: "+this._cps.length);
+    console.log("[CollectionPointProvider] _cps cleared, size: "+this._cps.length);
     return new Promise((resolve, reject) => {
       this._sCollectionPointPersistance.get()
         .then((c) => {

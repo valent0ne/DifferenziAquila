@@ -1,4 +1,3 @@
-
 //Models
 import {CollectionPoint} from "../models/collectionPoint.model";
 

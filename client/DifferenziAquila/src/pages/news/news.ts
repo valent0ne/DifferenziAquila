@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {MessageProvider} from "../../providers/message.provider";
+import {DictionaryService} from "../../providers/dictionary-service/dictionary-service";
+import {NewsProvider} from "../../providers/news.provider";
+import {News} from "../../models/news.model";
 
 /**
  * Generated class for the NewsPage page.
@@ -14,11 +18,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public singleNews: News = null;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public sMessage: MessageProvider,
+              public sDictionary: DictionaryService,
+              public loadingCtrl: LoadingController,
+              public sNews: NewsProvider) {
+    this.singleNews=this.sNews.getSingleNews(this.navParams.get("id"));
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');
   }
+
 
 }

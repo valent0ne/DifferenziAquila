@@ -31,6 +31,9 @@ export const URL = {
   },
   COLLECTION_POINT: {
     GET: "collectionpoint/"
+  },
+  NEWS: {
+    GET: "news/"
   }
 };
 
@@ -55,5 +58,6 @@ export const STORAGE_KEYS = {
   USER: "differenziaquila_user",
   CALENDAR: "differenziaquila_calendar",
   COLLECTION_POINT: "differenziaquila_collectionpoint",
-  NOTIFICATION: "differenziaquila_notification"
+  NOTIFICATION: "differenziaquila_notification",
+  NEWS: "differenziaquila_news"
 };

@@ -1,5 +1,20 @@
 page-news-list {
   ion-card{
     padding-top:10px!important;
+    ion-label{
+      float:right!important;
+      padding: 0 12px 0 0!important;
+      margin: 4px 0 0 0!important;
+    }
+    ion-title{
+      float:left!important;
+    }
+    ion-card-content{
+      float:left!important;
+    }
+  }
+
+  .title-ios{
+    padding: 0 0 0 12px!important;
   }
 }

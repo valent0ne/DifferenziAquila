@@ -1,6 +1,3 @@
-
-
-
 export class Calendar{
 
   public id: number=-1;

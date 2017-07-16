@@ -1,5 +1,6 @@
-
 import {isString} from "ionic-angular/util/util";
+
+
 export class SpecialWasteRequest{
 
   public amount: number=0;

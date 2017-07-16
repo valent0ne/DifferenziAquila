@@ -40,8 +40,8 @@ export class CollectionPointPersistanceProvider implements CollectionPointPersis
           if (cps !== null && cps.length > 0) {
 
 
-            console.log("[CollectionPointPersistanceProvider] size of calendar in persistence: " + cps.length);
-            console.log("[CollectionPointPersistanceProvider] calendar exists in storage (1st item ->) " + cps[0].id);
+            console.log("[CollectionPointPersistanceProvider] size of cps in persistence: " + cps.length);
+            console.log("[CollectionPointPersistanceProvider] cps exists in storage (1st item ->) " + cps[0].id);
 
             resolve(cps);
             //se non c'è un cp valido nello storage lo recupero da server

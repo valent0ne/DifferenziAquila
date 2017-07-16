@@ -1,6 +1,3 @@
-//Dobbiamo fare il controllo come fatto con l'id anche per gli altri attributi????
-
-
 import {isDate} from "rxjs/util/isDate";
 export class RecyclingSackRequest{
 
