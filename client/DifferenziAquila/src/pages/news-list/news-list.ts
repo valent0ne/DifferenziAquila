@@ -34,6 +34,12 @@ export class NewsListPage {
     console.log('ionViewDidLoad NewsListPage');
   }
 
+  ionViewDidEnter(){
+    this.sNews.showBadge = false;
+    console.log('ionViewDidEnter NewsListPage');
+
+  }
+
   showNewsList(){
     const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
     loading.present();
@@ -56,6 +62,8 @@ export class NewsListPage {
     this.sNews.refresh().then(() => {
       this.sMessage.presentMessage('ok', this.sDictionary.get("REFRESH_OK"));
       refresher.complete();
+      this.navCtrl.insert(1, "NewsListPage");
+      this.navCtrl.pop();
     }).catch(() => {
       this.sMessage.presentMessage('ko', this.sDictionary.get("REFRESH_KO"));
       refresher.complete();

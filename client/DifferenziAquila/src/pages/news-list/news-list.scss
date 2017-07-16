@@ -1,20 +1,29 @@
 page-news-list {
-  ion-card{
-    padding-top:10px!important;
-    ion-label{
-      float:right!important;
-      padding: 0 12px 0 0!important;
-      margin: 4px 0 0 0!important;
+  ion-card {
+    ion-card-header {
+      ion-label {
+        float: right !important;
+        margin: 0px 0 0 0 !important;
+
+      }
+      ion-card-title {
+        float: left !important;
+      }
     }
-    ion-title{
-      float:left!important;
-    }
-    ion-card-content{
-      float:left!important;
+
+    ion-card-content {
+      float: left !important;
+      width: 100% !important;
+      margin-top: 0px !important;
+      ion-item {
+        padding: 0 !important;
+        margin-top:-20px!important;
+      }
     }
   }
 
-  .title-ios{
-    padding: 0 0 0 12px!important;
+  .has-refresher .scroll-content {
+    border: 0 !important;
   }
+
 }

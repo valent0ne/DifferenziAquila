@@ -12,6 +12,7 @@ export class NewsProvider {
 
   private _newsArray: Array<News> = new Array();
   private _sNewsPersistance: NewsPersistanceInterface;
+  public showBadge: boolean = false;
 
   constructor(public events: Events,
               sNewsPers: NewsPersistanceProvider) {
@@ -57,6 +58,24 @@ export class NewsProvider {
         reject();
       });
     });
+  }
+
+  thereAreNewNews(): Promise<any>{
+    return new Promise(resolve =>{
+      let old = this._newsArray.length;
+      console.log("[NewsProvider] old size: "+old);
+      this.refresh().then(()=>{
+        this.initialize().then(()=>{
+          console.log("[NewsProvider] new size: "+this._newsArray.length);
+          this.showBadge = (old < this._newsArray.length);
+          resolve();
+        })
+      }).catch(()=>{
+        console.log("[NewsProvider] cant check for news");
+        this.showBadge = false;
+        resolve();
+      })
+    })
   }
 
 

@@ -75,7 +75,7 @@ const cloudSettings: CloudSettings = {
     NotificationProvider,
     LocalNotifications,
     NewsProvider,
-    NewsPersistanceProvider
+    NewsPersistanceProvider,
     NotificationPersistanceProvider
   ]
 })

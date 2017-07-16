@@ -44,7 +44,9 @@
 
   "LANGUAGE":"Default language",
 
+  "NEW":"new",
 
+  "NEWSLIST":"News list",
   "SUCCESS":"Request successfully forwarded",
   "SUCCESS_NOTIF":"Notifications scheduled",
 

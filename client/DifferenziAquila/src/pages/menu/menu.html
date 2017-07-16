@@ -24,7 +24,7 @@
             <ion-card-content>
               <ion-icon name="calendar"></ion-icon>
               <ion-label>
-              {{ 'CALENDAR' | dictionary }}
+                {{ 'CALENDAR' | dictionary }}
               </ion-label>
             </ion-card-content>
           </button>
@@ -37,7 +37,7 @@
             <ion-card-content>
               <ion-icon name="map"></ion-icon>
               <ion-label>
-              {{ 'MAP_MENU' | dictionary }}
+                {{ 'MAP_MENU' | dictionary }}
               </ion-label>
             </ion-card-content>
           </button>
@@ -51,7 +51,7 @@
             <ion-card-content>
               <ion-icon name="trash"></ion-icon>
               <ion-label>
-              {{ 'COLLECTION' | dictionary }}
+                {{ 'COLLECTION' | dictionary }}
               </ion-label>
             </ion-card-content>
           </button>
@@ -63,7 +63,7 @@
             <ion-card-content>
               <ion-icon name="basket"></ion-icon>
               <ion-label>
-              {{ 'SACKS' | dictionary }}
+                {{ 'SACKS' | dictionary }}
               </ion-label>
             </ion-card-content>
           </button>
@@ -72,12 +72,15 @@
     </ion-row>
     <ion-row>
       <ion-col>
-       <ion-card tappable (click)="this.navCtrl.push('NewsListPage')">
-          <button ion-button clear>
+        <ion-card tappable (click)="this.navCtrl.push('NewsListPage')">
+          <button ion-button clear class="new_relative">
+            <ion-badge class="new_badge" [style.visibility]="(showBadge) ? 'visible' : 'hidden'">{{"NEW"|dictionary}}</ion-badge>
             <ion-card-content>
-              <ion-icon name="information-circle"></ion-icon>
+              <ion-icon name="information-circle">
+
+              </ion-icon>
               <ion-label>
-              {{ 'NEWS' | dictionary }}
+                {{ 'NEWS' | dictionary }}
               </ion-label>
             </ion-card-content>
           </button>
@@ -85,11 +88,13 @@
       </ion-col>
       <ion-col>
         <ion-card tappable (click)="this.navCtrl.push('SettingsPage')">
+
           <button ion-button clear>
             <ion-card-content>
               <ion-icon name="settings"></ion-icon>
+
               <ion-label>
-              {{ 'SETTINGS' | dictionary }}
+                {{ 'SETTINGS' | dictionary }}
               </ion-label>
             </ion-card-content>
           </button>
@@ -98,7 +103,6 @@
     </ion-row>
 
   </ion-grid>
-
 
 
 </ion-content>

@@ -128,7 +128,7 @@ public class DifferenziAquilaServiceImpl implements DifferenziAquilaService {
 
     @Override
     public List<News> findAllNews() {
-        return newsRepository.findAll();
+        return newsRepository.findAllByOrderByDateDesc();
     }
 
     @Override

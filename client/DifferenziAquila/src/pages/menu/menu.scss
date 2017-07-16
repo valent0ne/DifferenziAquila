@@ -7,10 +7,10 @@ ion-card{
 ion-card-content{
   padding:20px 0px 5px 0px!important;
 }
-  
+
 
   button{
-    text-transform: none!important; 
+    text-transform: none!important;
     width:100%!important;
     height: 100%!important;
     margin:0!important;
@@ -23,5 +23,16 @@ ion-card-content{
   }
   ion-icon{
     font-size:60px!important;
+  }
+
+
+  .new_badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  .new_relative{
+    position: relative;
+
   }
 }

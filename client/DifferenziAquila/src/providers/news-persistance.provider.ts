@@ -95,7 +95,7 @@ export class NewsPersistanceProvider implements NewsPersistanceInterface{
             const newsArray= json.data;
             let out = new Array<News>();
             for (let n of newsArray) {
-              console.log("[NewsPersistence] retriving item: "+n.id+" "+n.title+" "+n.body+" "+n.date);
+              //console.log("[NewsPersistence] retriving item: "+n.id+" "+n.title+" "+n.body+" "+n.date);
               out.push(new News({
                 "id": n.id,
                 "title": n.title,
