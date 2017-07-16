@@ -7,7 +7,6 @@ import {DictionaryService} from "../../providers/dictionary-service/dictionary-s
 import {CALENDAR} from "../../constants";
 import {DatePipe} from "@angular/common";
 import {WasteCategory} from "../../models/wasteCategory.model";
-import {isUndefined} from "ionic-angular/util/util";
 
 
 /**

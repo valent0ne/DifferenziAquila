@@ -1,4 +1,4 @@
-export const USE_PROXY = false;
+export const USE_PROXY = true;
 
 export const URL_BASE = USE_PROXY ? 'api/' : 'http://localhost:8080/differenziaquila/api/';
 
@@ -36,7 +36,8 @@ export const URL = {
 
 export const NOTIFICATION = {
   DEFAULT_TITLE: "DifferenziAquila",
-  DEFAULT_LED: "#138d59"
+  ICON: "res://icon.png",
+
 };
 
 export const CALENDAR = {

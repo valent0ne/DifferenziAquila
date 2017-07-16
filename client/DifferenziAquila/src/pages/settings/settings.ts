@@ -1,8 +1,12 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, App, IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
 import {NotificationProvider} from "../../providers/notification.provider";
 import {MessageProvider} from "../../providers/message.provider";
+import {LocalNotifications} from "@ionic-native/local-notifications";
+import {Notification} from "../../models/notification.model";
+import {DatePipe} from "@angular/common";
+import {Language} from "../../providers/dictionary-service/types";
 
 
 /**
@@ -23,24 +27,46 @@ export class SettingsPage {
   hh: any = this.hhDefault;
   mm: any = this.mmDefault;
   isToggled: boolean;
+  languages: Language[] = [];
+  prefLanguage: string = "";
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(public app: App,
+              public navCtrl: NavController,
               public loadingCtrl: LoadingController,
               public sMessage: MessageProvider,
               public alertCtrl: AlertController,
               public sDictionary: DictionaryService,
-              public sNotifications: NotificationProvider) {
+              public sNotifications: NotificationProvider,
+              public localNotif: LocalNotifications,
+              public datepipe: DatePipe) {
 
     //controllo se ci sono notifiche già settate
     this.sNotifications.areSet().then((result) => {
-      this.isToggled = result;
-      if (this.isToggled) {
-        this.hh = this.sNotifications.getHh();
-        this.mm = this.sNotifications.getMm();
+      if (result) {
+        this.sNotifications.getTime().then((n: Notification)=>{
+          this.hh = n.hh;
+          this.mm = n.mm;
+          this.isToggled = true;
+          console.log("[Settings} hh mm retrieved, isToggled = true");
+        }).catch(()=>{
+          //se per qualche motivo ci sono notifiche schedulate ma hh e mm non
+          // possono essere recuperati dallo storage, pulisco tutto
+          this.hh = this.hhDefault;
+          this.mm = this.mmDefault;
+          this.isToggled = false;
+          this.sNotifications.clearNotifications();
+          console.log("[Settings] cant retrieve hh mm");
+        })
+      }else{
+        this.isToggled = false;
+        console.log("[Settings] notifications not scheduled");
       }
     });
 
+    //controllo lingua
+    this.languages = this.sDictionary.getLanguages();
+    //prefLanguage conterrà EN_EN o IT_IT
+    this.prefLanguage = this.sDictionary.getPreferredLanguage();
   }
 
   ionViewDidLoad() {
@@ -55,7 +81,7 @@ export class SettingsPage {
 
     let inputs = [];
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 6; i++) {
       inputs[i] = new Array();
 
       inputs[i]['type'] = "radio";
@@ -80,7 +106,7 @@ export class SettingsPage {
             console.log('Ok clicked');
             if (data) {
               this.hh = data;
-              this.applyWatcher();
+              this.applyNotifications();
             }
           }
         }
@@ -127,7 +153,7 @@ export class SettingsPage {
             console.log('Ok clicked');
             if (data) {
               this.mm = data;
-              this.applyWatcher();
+              this.applyNotifications();
             }
           }
         }
@@ -147,20 +173,43 @@ export class SettingsPage {
     );
   }
 
-  applyWatcher() {
+  addNotification(){
+    let day = new Date(new Date().getTime() + 5000);
+    console.log("[Settings] notification will be fired at: "+this.datepipe.transform(day, "dd-MM-yyyy HH:mm:ss"));
+    this.localNotif.schedule({
+      "id": 99999,
+      "title": "DifferenziAquila",
+      "text": "Remember to take out: ORGANIC",
+      "icon": "icon_notif",
+      "at": day
+    });
+  }
+
+
+  applyNotifications() {
+
     if (this.validate()) {
       const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
       loading.present();
-      this.sNotifications.initialize(this.hh, this.mm).then(() => {
-        this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS'));
-        console.log("[Settings] notification applied")
+      this.sNotifications.initialize(new Notification({"hh":this.hh, "mm":this.mm})).then(() => {
+
+        console.log("[Settings] scheduling notifications");
+        let out = this.sNotifications.getNotifications();
+        for (let item of out) {
+
+          item.text = this.sDictionary.get("REMEMBER_TO_TAKE_OUT") + " " + this.sDictionary.get(item.text.toUpperCase()).toUpperCase();
+          this.localNotif.schedule(item);
+        }
+        this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS_NOTIF'));
+        console.log("[Settings] notifications applied");
         loading.dismiss();
       }).catch(() => {
         this.sMessage.presentMessage('warn', this.sDictionary.get('WARNING'));
-        console.log("[Settings] cant apply notifications")
+        console.log("[Settings] cant apply notifications");
         loading.dismiss();
       });
     } else {
+
       //manca o hh o mm, non fare niente
     }
 
@@ -171,11 +220,24 @@ export class SettingsPage {
       this.sNotifications.clearNotifications().then(() => {
         this.mm = this.mmDefault;
         this.hh = this.hhDefault;
-      }).catch(() => {
-        console.log("[Settings] toggleNotifications");
-      })
-
+      });
     }
+  }
+
+  onChangeLanguage() {
+    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+    loading.present();
+
+    this.sDictionary.setPreferredLanguage(this.prefLanguage)
+      .then(() => {
+        loading.dismiss().then(() => {
+          this.app.getRootNav().setRoot('MenuPage');
+        });
+      })
+      .catch(() => {
+        console.log("[Settings] cant load dictionary");
+        loading.dismiss();
+      });
   }
 
 }

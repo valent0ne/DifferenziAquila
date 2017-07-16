@@ -12,7 +12,8 @@
   </ion-navbar>
 
   <ion-navbar color="tertiary" hideBackButton="true" class="secondNav">
-    <ion-title text-center class=" secondNavTitleContainer"><span class="secondNavTitle">{{"SETTINGS"|dictionary}}</span></ion-title>
+    <ion-title text-center class=" secondNavTitleContainer"><span
+      class="secondNavTitle">{{"SETTINGS"|dictionary}}</span></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -36,8 +37,23 @@
           <ion-label [ngStyle]="{'color': isToggled ? 'black' : 'silver'}">{{"NOT_TIME"|dictionary}}</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label align="right" class="padding-right" id="hh" [ngStyle]="{'color': hh!=hhDefault ? 'black' : 'silver'}" (click)="presentHourPicker()">{{hh}}   :</ion-label>
-          <ion-label class="padding-left" id="mm" [ngStyle]="{'color': mm!=mmDefault ? 'black' : 'silver'}"  (click)="presentMinutePicker()">{{mm}}</ion-label>
+          <ion-label align="right" class="padding-right" id="hh"
+                     [ngStyle]="{'color': hh!=hhDefault ? 'black' : 'silver'}" (click)="presentHourPicker()">{{hh}} :
+          </ion-label>
+          <ion-label class="padding-left" id="mm" [ngStyle]="{'color': mm!=mmDefault ? 'black' : 'silver'}"
+                     (click)="presentMinutePicker()">{{mm}}
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-item color="light">
+          <ion-label color="dark">{{"LANGUAGE"|dictionary}}</ion-label>
+          <ion-select [(ngModel)]="prefLanguage" (ionChange)="onChangeLanguage()">
+            <ion-option *ngFor="let lang of languages" [value]="lang.value">{{lang.label}}</ion-option>
+          </ion-select>
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -48,19 +64,22 @@
           <ion-label class="title"><strong>{{"INFO"|dictionary}}</strong></ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label>{{"TEL"|dictionary}}: </ion-label>
+          <ion-label>{{"TEL"|dictionary}}:</ion-label>
           <ion-label>0862 123456</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label>{{"FAX"|dictionary}}: </ion-label>
+          <ion-label>{{"FAX"|dictionary}}:</ion-label>
           <ion-label>0862 789012</ion-label>
         </ion-item>
         <ion-item color="light" no-lines>
-          <ion-label>{{"ADDR"|dictionary}}: </ion-label>
+          <ion-label>{{"ADDR"|dictionary}}:</ion-label>
           <ion-label>Via Casuale, n°1</ion-label>
         </ion-item>
       </ion-card-content>
     </ion-card>
+
+    <button style="margin-left:10px" ion-button (click)="addNotification()">test n.</button>
+
 
   </ion-list>
 

@@ -8,7 +8,7 @@
   "SETTINGS":"Settings",
 
   "ERROR" : "Error",
-  "GEO_ERROR":"make sure you have activated the geolocalization.",
+  "GEO_ERROR":"Make sure you have activated the geolocalization",
 
   "CHOOSE_DAY": "choose a day",
   "CHOOSE_TIME_SLOT":"choose a time slot",
@@ -42,7 +42,12 @@
   "CHOOSE_MINUTE":"choose a slot",
   "CHOOSE_CAT":"choose a category",
 
+  "LANGUAGE":"Default language",
+
+
   "SUCCESS":"Request successfully forwarded",
+  "SUCCESS_NOTIF":"Notifications scheduled",
+
   "FAILURE":"There was a problem, check your internet connection",
   "WARNING":"Something went wrong",
 

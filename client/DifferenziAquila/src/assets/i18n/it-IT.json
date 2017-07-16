@@ -8,7 +8,7 @@
   "SETTINGS":"Impostazioni",
 
   "ERROR" : "Errore",
-  "GEO_ERROR":"controlla di avere la geolocalizzazione attiva.",
+  "GEO_ERROR":"Controlla di avere la geolocalizzazione attiva",
 
   "CHOOSE_DAY": "scegli un giorno",
   "CHOOSE_TIME_SLOT":"scegli una fascia oraria",
@@ -42,8 +42,11 @@
   "CHOOSE_MINUTE":"scegli una fascia",
   "CHOOSE_CAT":"scegli una categoria",
   "SUCCESS":"Richiesta inoltrata con successo",
+  "SUCCESS_NOTIF":"Notifiche programmate",
   "FAILURE":"C'è stato un problema, controlla la tua connessione a internet",
   "WARNING":"Quancosa è andato storto",
+
+  "LANGUAGE":"Lingua predefinita",
 
   "ERROR_LOGIN":"Controlla il codice cliente",
   "WARNING_CLIENTCODE_EMPTY":"Inserisci il codice cliente",

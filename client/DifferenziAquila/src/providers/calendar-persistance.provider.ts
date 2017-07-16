@@ -57,6 +57,7 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
             this.checkLength(calendar, today).then(()=>{
               resolve(calendar);
             }).catch(()=>{
+              console.log("[CalendarPersistanceProvider] catch length");
               reject();
             })
           //se non c'è un calendario valido nello storage lo recupero da server

@@ -25,6 +25,7 @@ import {CollectionPointProvider} from "../providers/collectionpoint.provider";
 import {CollectionPointPersistanceProvider} from "../providers/collectionpoint-persistance.provider";
 import {NotificationProvider} from "../providers/notification.provider";
 import {LocalNotifications} from "@ionic-native/local-notifications";
+import {NotificationPersistanceProvider} from "../providers/notification-persistance.provider";
 
 
 const cloudSettings: CloudSettings = {
@@ -71,7 +72,8 @@ const cloudSettings: CloudSettings = {
     CollectionPointProvider,
     CollectionPointPersistanceProvider,
     NotificationProvider,
-    LocalNotifications
+    LocalNotifications,
+    NotificationPersistanceProvider
   ]
 })
 export class AppModule {

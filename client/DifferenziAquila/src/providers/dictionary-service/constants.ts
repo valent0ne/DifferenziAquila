@@ -10,11 +10,11 @@ export const DICTIONARY_LANGUAGE_DEFAULT = "en-EN";
 
 export const LANGUAGES: Language[] = [
   {
-    label: "italiano",
+    label: "Italiano",
     value: "it-IT"
   },
   {
-    label: "english",
+    label: "English",
     value: "en-EN"
   }
 ]

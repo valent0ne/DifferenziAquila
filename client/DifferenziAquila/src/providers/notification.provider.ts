@@ -1,130 +1,135 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-
-//Models
-import {Notification} from '../models/notification.model';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 import {Calendar} from '../models/calendar.model';
-
-//Providers
-import {DictionaryService} from './dictionary-service/dictionary-service';
 import {CalendarPersistanceProvider} from './calendar-persistance.provider';
-
-//Constants
 import {NOTIFICATION} from '../constants';
 import {CalendarPersistanceInterface} from "../interfaces/calendarpersistance.interface";
 import {DatePipe} from "@angular/common";
 import {isUndefined} from "ionic-angular/util/util";
-
+import {NotificationPersistanceProvider} from "./notification-persistance.provider";
+import {NotificationPersistanceInterface} from "../interfaces/notificationpersistance.interface";
+import {Notification} from "../models/notification.model";
 
 @Injectable()
 export class NotificationProvider {
 
-  private _notifications: Array<Notification> = null;
   private _sCalendarPers: CalendarPersistanceInterface;
-  private _hh: number = null;
-  private _mm: number = null;
+  private _sNotifPers: NotificationPersistanceInterface;
+  private _notifications: any = null;
 
-  constructor(private _sDict: DictionaryService,
-              private sCalendarPers: CalendarPersistanceProvider,
+
+  constructor(private sCalendarPers: CalendarPersistanceProvider,
               private datepipe: DatePipe,
-              private localNotif: LocalNotifications
-              ) {
+              private sNotifPers: NotificationPersistanceProvider,
+              private localNotif: LocalNotifications) {
     console.log('Hello Notification Provider');
 
-    this.sCalendarPers = sCalendarPers;
+    this._sCalendarPers = sCalendarPers;
+    this._sNotifPers = sNotifPers;
   }
 
-  initialize(hh: number, mm: number): Promise<any> {
+  initialize(n: Notification): Promise<any> {
+
+
     return new Promise((resolve, reject) => {
-      this._hh = hh;
-      this._mm = mm;
       //pulisco tutto prima di cominciare
-      this.clearNotifications().then(()=>{
+      this.clearNotifications().then(() => {
         //recupero il calendario
         this._sCalendarPers.get()
           .then((calendar: Array<Calendar>) => {
+            console.log("[NotificationProvider] get calendar from persistance successfull");
+
             for (let day of calendar) {
               //se per qualche motivo il giorno attuale è precedente ad oggi lo ignoro
-              if (this.datepipe.transform(day.day, "yyy-MM-dd") < this.datepipe.transform(Date.now(), "yyy-MM-dd")) {
+              if (this.datepipe.transform(day.day, "yyy-MM-dd") < this.datepipe.transform(Date.now(), "yyyy-MM-dd")
+                || day.waste_name == null
+                || day.waste_name == ""
+                || isUndefined(day.waste_name)
+              ) {
                 continue;
               }
               console.log("[NotificationProvider] pushing notifications: day = " + day.day + " waste = " + day.waste_name);
               //creo ed inserisco una notifica nell'array per ogni giorno sul calendario
 
-              //calcolo "ieri" rispetto al calendario e aggiungo hh ore e mm minuti
-              let correctTime = (day.day.getTime() - (24 * 60 * 60 * 1000) + (hh* 60 * 60 * 1000) + (mm * 60 * 1000));
-              console.log("[NotificationProvider] notification will be pushed at -> "+this.datepipe.transform(correctTime, "yyy-MM-dd hh:mm"));
-              this._notifications.push(new Notification({
+
+              //imposto la notifica al giorno prima rispetto al giorno sul calendario
+              let d = new Date(day.day);
+              let correctTime: Date = new Date(d.getTime() - (24*60*60*1000) + (n.hh*60*60*1000) +  (n.mm*60*1000));
+
+              console.log("[NotificationProvider] notification will be pushed at -> " + this.datepipe.transform(correctTime, "yyyy-MM-dd HH:mm"));
+
+              this._notifications.push({
                 "id": day.id,
                 "title": NOTIFICATION.DEFAULT_TITLE,
-                "text": this._sDict.get("REMEMBER_TO_TAKE_OUT") + " " + this._sDict.get(day.waste_name.toString().toUpperCase()),
-                //imposto la notifica al giorno prima rispetto al giorno sul calendario
-                "at": correctTime,
-                "led": NOTIFICATION.DEFAULT_LED
-              }));
+                "text": day.waste_name,
+                "at": correctTime
+              });
+
+
             }
-            console.log("[NotificationProvider] notifications successfully pushed, amount: " + this._notifications.length);
-            //applico le notifiche caricate
-            this.applyNotifications().then(()=>{
-              console.log("[NotificationProvider] notifications pushed and applied successfully");
+            console.log("[NotificationProvider] notifications successfully scheduled");
+
+            this._sNotifPers.save(n).then(()=>{
+              console.log("[NotificationProvider] hh:mm saved in storage");
               resolve();
             }).catch(()=>{
               reject();
             });
-          })
-          .catch(() => {
+          }).catch(() => {
             console.log("[NotificationProvider] catch inizialize (get calendar)");
             reject();
           });
-      }).catch(()=>{
-        reject();
       });
     });
+
   }
 
-  applyNotifications(): Promise<any>{
-    return new Promise((resolve, reject)=>{
-      //se non ho notifiche
-      if(isUndefined(this._notifications) || this._notifications === null || this._notifications.length<1){
-        console.log("[NotificationProvider] no notifications from initialize");
-        reject();
-      }else{
-        //altrimenti setto le notifiche
-          this.localNotif.schedule(this._notifications);
-          console.log("[NoptificationProvider] notifications applied");
-          resolve();
-        }
-    });
+  getNotifications() {
+    return this._notifications;
   }
 
-  clearNotifications(): Promise<any>{
-    return new Promise((resolve)=>{
+
+  clearNotifications(): Promise<any> {
+    return new Promise((resolve => {
+      this._notifications = new Array<any>();
       //pulisco tutto
-      this.localNotif.cancelAll().then(()=>{
-        this._notifications = new Array();
+      this.localNotif.cancelAll().then(() => {
         console.log("[NotificationProvider] notifications cleared");
+        this._sNotifPers.remove().then(() => {
+          console.log("[NotificationProvider] notification data cleared from storage");
+          resolve();
+        }).catch(() => {
+          console.log("[NotificationProvider] cant clear notification data from storage");
+          resolve();
+        });
+      }).catch(() => {
+        console.log("[NotificationProvider] clear failed");
         resolve();
-        //se il cancellAll va male
-      }).catch(()=>{
-        console.log("[NotificationProvider] cant clear notifications");
-        resolve();
+      })
+    }));
+  }
+
+  areSet(): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.localNotif.getAllScheduled().then((num) => {
+        resolve(num.length > 0);
+      }).catch(() => {
+        resolve(false);
       });
     });
   }
 
-  areSet(): Promise<boolean>{
-    return new Promise((resolve)=>{
-      resolve(!isUndefined(this._notifications) && this._notifications !== null && this._notifications.length>0);
+  getTime(): Promise<Notification> {
+    return new Promise((resolve) => {
+      this._sNotifPers.get().then((n) => {
+        resolve(n);
+      }).catch(() => {
+        console.log("[NotificationProvider] cant retrieve hh mm");
+        resolve(null);
+      });
     });
   }
 
-  getHh(){
-    return this._hh;
-  }
-
-  getMm(){
-    return this._mm;
-  }
 }
