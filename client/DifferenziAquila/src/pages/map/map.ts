@@ -167,8 +167,15 @@ export class MapPage {
       });
     }).catch(() => {
       console.log("[Map] catch checkGps ");
-      this.sMessage.presentMessage('warn', this.sDictionary.get("GEO_ERROR"));
       loading.dismiss();
+
+      this.sMessage.presentMessage('warn', this.sDictionary.get("GEO_ERROR"));
+
+      //redirezione a impostazioni per accendere gps
+      setTimeout(() => {
+        this.diag.switchToLocationSettings();
+      }, 1000);
+
     })
   }
 

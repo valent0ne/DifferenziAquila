@@ -68,8 +68,12 @@ export class SettingsPage {
 
     //controllo lingua
     this.languages = this.sDictionary.getLanguages();
-    //prefLanguage conterrà EN_EN o IT_IT
+    //prefLanguage conterrà en_EN o it_IT
     this.prefLanguage = this.sDictionary.getPreferredLanguage();
+
+    console.log("[Settings] preferred language: "+this.prefLanguage);
+
+
 
     //controllo se è loggato
     this.isLogged = this.sAccount.isLogged();
@@ -185,7 +189,7 @@ export class SettingsPage {
     this.localNotif.schedule({
       "id": 99999,
       "title": "DifferenziAquila",
-      "text": "Remember to take out: ORGANIC",
+      "text": "Remember to take out ORGANIC",
       "icon": "icon_notif",
       "at": day
     });

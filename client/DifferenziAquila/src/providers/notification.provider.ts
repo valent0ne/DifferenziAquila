@@ -64,6 +64,7 @@ export class NotificationProvider {
                 "id": day.id,
                 "title": NOTIFICATION.DEFAULT_TITLE,
                 "text": day.waste_name,
+                "icon": 'icon_notif',
                 "at": correctTime
               });
 
