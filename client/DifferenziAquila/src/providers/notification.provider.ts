@@ -43,7 +43,7 @@ export class NotificationProvider {
 
             for (let day of calendar) {
               //se per qualche motivo il giorno attuale è precedente ad oggi lo ignoro
-              if (this.datepipe.transform(day.day, "yyy-MM-dd") < this.datepipe.transform(Date.now(), "yyyy-MM-dd")
+              if (this.datepipe.transform(day.day, "yyy-MM-dd") <= this.datepipe.transform(Date.now(), "yyyy-MM-dd")
                 || day.waste_name == null
                 || day.waste_name == ""
                 || isUndefined(day.waste_name)
