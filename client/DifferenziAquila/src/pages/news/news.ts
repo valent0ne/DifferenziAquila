@@ -26,7 +26,10 @@ export class NewsPage {
               public sDictionary: DictionaryService,
               public loadingCtrl: LoadingController,
               public sNews: NewsProvider) {
+
+
     this.singleNews=this.sNews.getSingleNews(this.navParams.get("id"));
+
   }
 
 

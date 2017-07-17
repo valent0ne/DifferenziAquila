@@ -3,11 +3,14 @@ page-news-list {
     ion-card-header {
       ion-label {
         float: right !important;
-        margin: 0px 0 0 0 !important;
+        margin: 1px 0 0 0 !important;
 
       }
       ion-card-title {
         float: left !important;
+        margin: 0!important;
+        padding-top: 0!important;
+        font-size: large!important;
       }
     }
 

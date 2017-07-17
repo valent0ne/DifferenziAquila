@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {MessageProvider} from "../../providers/message.provider";
 import {DictionaryService} from "../../providers/dictionary-service/dictionary-service";
@@ -34,27 +34,25 @@ export class NewsListPage {
     console.log('ionViewDidLoad NewsListPage');
   }
 
-  ionViewDidEnter(){
-    this.sNews.showBadge = false;
+  ionViewDidEnter() {
     console.log('ionViewDidEnter NewsListPage');
 
   }
 
-  showNewsList(){
+  showNewsList() {
     const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
     loading.present();
 
-    this.sNews.initialize().then(()=>{
-     this.newsList= this.sNews.getNewsLIst();
-     loading.dismiss();
-    }).catch(()=>{
+    this.sNews.initialize().then(() => {
+      this.newsList = this.sNews.getNewsLIst();
+      loading.dismiss();
+    }).catch(() => {
       console.log("[NewsList] catch initialize");
-      this.sMessage.presentMessage("warn", this.sDictionary.get("FAILURE"));
+      this.sMessage.presentMessage("ko", this.sDictionary.get("FAILURE"));
       this.navCtrl.push("MenuPage");
       loading.dismiss();
     })
   }
-
 
 
   doRefresh(refresher) {

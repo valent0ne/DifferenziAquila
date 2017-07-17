@@ -17,6 +17,9 @@
   "FWD_REQUEST":"Send",
   "SWCR":"Special wastes collection request",
 
+  "SUCCESS_LOGOUT":"You are now logged out",
+  "KO_LOGOUT":"Can't log you out",
+
   "OK":"Ok",
   "CANCEL":"Cancel",
 

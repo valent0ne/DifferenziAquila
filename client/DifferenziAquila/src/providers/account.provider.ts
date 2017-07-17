@@ -35,6 +35,9 @@ export class AccountProvider {
         console.log('Hello Account Provider');
 
         this._sUserPersistance = sUserPers;
+        this.initialize().then(()=>{
+          console.log("[AccountProvider] initializated");
+        })
     }
 
     initialize(): Promise<any> {
@@ -88,6 +91,7 @@ export class AccountProvider {
                     if (json.result) {
                         this._sUserPersistance.remove();
                         this.events.publish('user:logout');
+                        this._user = null;
 
                         resolve();
                     } else {

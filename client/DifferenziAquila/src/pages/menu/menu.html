@@ -74,7 +74,7 @@
       <ion-col>
         <ion-card tappable (click)="this.navCtrl.push('NewsListPage')">
           <button ion-button clear class="new_relative">
-            <ion-badge class="new_badge" [style.visibility]="(showBadge) ? 'visible' : 'hidden'">{{"NEW"|dictionary}}</ion-badge>
+            <ion-badge class="new_badge" [style.visibility]="(showBadge > 0) ? 'visible' : 'hidden'">{{showBadge}} {{"NEW"|dictionary}}</ion-badge>
             <ion-card-content>
               <ion-icon name="information-circle">
 

@@ -28,6 +28,7 @@ import {LocalNotifications} from "@ionic-native/local-notifications";
 import {NewsProvider} from "../providers/news.provider";
 import {NewsPersistanceProvider} from "../providers/news-persistance.provider";
 import {NotificationPersistanceProvider} from "../providers/notification-persistance.provider";
+import {Diagnostic} from "@ionic-native/diagnostic";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -76,7 +77,9 @@ const cloudSettings: CloudSettings = {
     LocalNotifications,
     NewsProvider,
     NewsPersistanceProvider,
-    NotificationPersistanceProvider
+    NotificationPersistanceProvider,
+    Diagnostic
+
   ]
 })
 export class AppModule {

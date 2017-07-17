@@ -7,6 +7,7 @@ import {LocalNotifications} from "@ionic-native/local-notifications";
 import {Notification} from "../../models/notification.model";
 import {DatePipe} from "@angular/common";
 import {Language} from "../../providers/dictionary-service/types";
+import {AccountProvider} from "../../providers/account.provider";
 
 
 /**
@@ -29,6 +30,7 @@ export class SettingsPage {
   isToggled: boolean;
   languages: Language[] = [];
   prefLanguage: string = "";
+  isLogged:boolean;
 
   constructor(public app: App,
               public navCtrl: NavController,
@@ -38,7 +40,8 @@ export class SettingsPage {
               public sDictionary: DictionaryService,
               public sNotifications: NotificationProvider,
               public localNotif: LocalNotifications,
-              public datepipe: DatePipe) {
+              public datepipe: DatePipe,
+              public sAccount:AccountProvider) {
 
     //controllo se ci sono notifiche già settate
     this.sNotifications.areSet().then((result) => {
@@ -67,6 +70,9 @@ export class SettingsPage {
     this.languages = this.sDictionary.getLanguages();
     //prefLanguage conterrà EN_EN o IT_IT
     this.prefLanguage = this.sDictionary.getPreferredLanguage();
+
+    //controllo se è loggato
+    this.isLogged = this.sAccount.isLogged();
   }
 
   ionViewDidLoad() {
@@ -238,6 +244,24 @@ export class SettingsPage {
         console.log("[Settings] cant load dictionary");
         loading.dismiss();
       });
+  }
+
+  logout(){
+    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+    loading.present();
+
+    this.sAccount.logout().then(()=>{
+      console.log("[Settings] logout ok");
+      this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS_LOGOUT'));
+      this.isLogged = false;
+      loading.dismiss();
+    }).catch(()=>{
+      console.log("[Settings] cant logout");
+      this.sMessage.presentMessage('ko', this.sDictionary.get('KO_LOGOUT'));
+      loading.dismiss();
+
+    })
+
   }
 
 }

@@ -5,6 +5,8 @@ import {DictionaryService} from "../../providers/dictionary-service/dictionary-s
 import {CollectionPointProvider} from "../../providers/collectionpoint.provider";
 import {MessageProvider} from "../../providers/message.provider";
 import {isUndefined} from "ionic-angular/util/util";
+import {Diagnostic} from '@ionic-native/diagnostic';
+
 
 declare var google;
 
@@ -32,7 +34,8 @@ export class MapPage {
               public sMessage: MessageProvider,
               public sDictionary: DictionaryService,
               public loadingCtrl: LoadingController,
-              public sCp: CollectionPointProvider) {
+              public sCp: CollectionPointProvider,
+              public diag: Diagnostic) {
 
   }
 
@@ -41,7 +44,6 @@ export class MapPage {
     this.loadMap();
     console.log('ionViewDidLoad MapPage');
   }
-
 
   loadMap() {
     const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
@@ -129,29 +131,46 @@ export class MapPage {
 
   }
 
+
+  checkGps(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.diag.isLocationEnabled().then((res)=>{
+        console.log("[Map] location enabled? "+res);
+        (res) ? resolve() : reject();
+      }).catch(()=>{
+        //provo lo stesso
+        resolve();
+      });
+    });
+  }
+
   geoLocalize() {
     const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
     loading.present();
 
-
-    let myPos = this.getMyPos(this.cps, "i");
-    if (!isUndefined(myPos)) {
-      myPos.setMap(null);
-    }
-
-
-    //carica la mappa sulla posizione attuale
-    this.geolocation.getCurrentPosition().then((position) => {
-      let currentLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      this.map.setCenter(currentLatLng);
-      loading.dismiss();
-      this.sMessage.presentMessage('ok', this.sDictionary.get("YOU_ARE_HERE"));
-      this.addMarker(currentLatLng, "i", this.sDictionary.get("YOU_ARE_HERE"));
-    }).catch((err) => {
-      console.log("[Map] catch geolocalize: " + err.toString());
+    this.checkGps().then(() => {
+      let myPos = this.getMyPos(this.cps, "i");
+      if (!isUndefined(myPos)) {
+        myPos.setMap(null);
+      }
+      //carica la mappa sulla posizione attuale
+      this.geolocation.getCurrentPosition().then((position) => {
+        let currentLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        this.map.setCenter(currentLatLng);
+        loading.dismiss();
+        this.sMessage.presentMessage('ok', this.sDictionary.get("YOU_ARE_HERE"));
+        this.addMarker(currentLatLng, "i", this.sDictionary.get("YOU_ARE_HERE"));
+      }).catch(() => {
+        console.log("[Map] catch geolocalize");
+        this.sMessage.presentMessage('warn', this.sDictionary.get("GEO_ERROR"));
+        loading.dismiss();
+      });
+    }).catch(() => {
+      console.log("[Map] catch checkGps ");
       this.sMessage.presentMessage('warn', this.sDictionary.get("GEO_ERROR"));
       loading.dismiss();
-    });
+    })
   }
+
 
 }

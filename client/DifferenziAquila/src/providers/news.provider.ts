@@ -12,7 +12,7 @@ export class NewsProvider {
 
   private _newsArray: Array<News> = new Array();
   private _sNewsPersistance: NewsPersistanceInterface;
-  public showBadge: boolean = false;
+  public showBadge: number;
 
   constructor(public events: Events,
               sNewsPers: NewsPersistanceProvider) {
@@ -22,14 +22,22 @@ export class NewsProvider {
   }
 
   initialize(): Promise<any> {
-    this._newsArray = new Array<News>();
-    console.log("[NewsProvider] _newsArray cleared, size: " + this._newsArray.length);
+    this._newsArray = new Array();
     return new Promise((resolve, reject) => {
       this._sNewsPersistance.get()
         .then((n) => {
           console.log("[NewsProvider] data from persistence: " + n.length);
           for (let item of n) {
             this._newsArray.push(new News(item));
+          }
+          if(this.showBadge > 0){
+            this.refresh().then((out)=>{
+              console.log("[NewsProvider] delta > 0, refreshing news from server...");
+              for (let item of out) {
+                this._newsArray.push(new News(item));
+              }
+              this.showBadge = 0;
+            })
           }
           resolve();
         })
@@ -50,42 +58,45 @@ export class NewsProvider {
     this._newsArray = new Array<News>();
     return new Promise((resolve, reject) => {
       console.log("[NewsProvider] refreshing...");
-      this._sNewsPersistance.retrieveFromServer().then(() => {
-        console.log("[NewsProvider] cps refreshed");
-        resolve();
+      this._sNewsPersistance.retrieveFromServer().then((out) => {
+        console.log("[NewsProvider] news refreshed");
+        this.showBadge = 0;
+        resolve(out);
       }).catch(() => {
-        console.log("[NewsProvider] cps refreshed failed");
+        console.log("[NewsProvider] news refreshed failed");
         reject();
       });
     });
   }
 
-  thereAreNewNews(): Promise<any>{
-    return new Promise(resolve =>{
-      let old = this._newsArray.length;
-      console.log("[NewsProvider] old size: "+old);
-      this.refresh().then(()=>{
-        this.initialize().then(()=>{
-          console.log("[NewsProvider] new size: "+this._newsArray.length);
-          this.showBadge = (old < this._newsArray.length);
-          resolve();
-        })
-      }).catch(()=>{
-        console.log("[NewsProvider] cant check for news");
-        this.showBadge = false;
-        resolve();
-      })
-    })
-  }
 
-
-  getSingleNews(id:number){
-    let result = this._newsArray.filter(function(obj){
+  getSingleNews(id: number) {
+    let result = this._newsArray.filter(function (obj) {
       return obj.id == id;
     });
     return result ? result[0] : null;
   }
 
+  updateAmount(): Promise<any> {
+    return new Promise((resolve) => {
+
+      this._sNewsPersistance.getAmountFromStorage().then((n) => {
+        let old = n;
+        this._sNewsPersistance.getAmountFromServer().then((s) => {
+          let updated = s;
+          let delta = updated - old;
+          this.showBadge = delta;
+          console.log("[NewsProvider] found new " + delta + " news on server");
+          resolve();
+        }).catch(()=>{
+          resolve();
+        })
+      }).catch(() => {
+        this.showBadge = 0;
+        resolve();
+      })
+    });
+  }
 }
 
 

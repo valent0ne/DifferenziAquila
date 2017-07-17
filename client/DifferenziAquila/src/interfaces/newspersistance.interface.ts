@@ -9,4 +9,8 @@ export interface NewsPersistanceInterface{
   remove(): Promise<any>;
 
   retrieveFromServer(): Promise<Array<News>>;
+
+  getAmountFromStorage(): Promise<number>;
+
+  getAmountFromServer(): Promise<number>;
 }

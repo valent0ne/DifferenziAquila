@@ -13,7 +13,7 @@
   <ion-navbar color="tertiary" hideBackButton="true" class="secondNav">
     <ion-title class="float-left-title secondNavTitleContainer"><span
       class="secondNavTitle">{{'SWCR' | dictionary}}</span></ion-title>
-    <ion-icon name="send" class="send-icon"></ion-icon>
+    <ion-icon name="send" class="send-icon" (click)="sendRequest()"></ion-icon>
   </ion-navbar>
 
 </ion-header>
@@ -45,7 +45,7 @@
     >
 
       <ion-icon name="paper" item-left></ion-icon>
-      <ion-label id="category" align="right">{{category}}</ion-label>
+      <ion-label id="category" align="right">{{category | dictionary}}</ion-label>
 
     </ion-item>
 

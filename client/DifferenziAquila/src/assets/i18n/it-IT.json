@@ -17,6 +17,9 @@
   "FWD_REQUEST":"Invia",
   "SWCR":"Richiesta ritiro rifiuti speciali",
 
+  "SUCCESS_LOGOUT":"Logout riuscito",
+  "KO_LOGOUT":"Logout fallito",
+
   "OK":"Ok",
   "CANCEL":"Annulla",
   "NEW":"new",
@@ -92,6 +95,20 @@
   "10":"Ottobre",
   "11":"Novembre",
   "12":"Dicembre",
+
+  "GENNAIO":"01",
+  "FEBBRAIO":"02",
+  "MARZO":"03",
+  "APRILE":"04",
+  "MAGGIO":"05",
+  "GIUGNO":"06",
+  "LUGLIO":"07",
+  "AGOSTO":"08",
+  "SETTEMBRE":"09",
+  "OTTOBRE":"10",
+  "NOVEMBRE":"11",
+  "DICEMBRE":"12",
+
 
   "MON":"Lunedì",
   "TUE":"Martedì",

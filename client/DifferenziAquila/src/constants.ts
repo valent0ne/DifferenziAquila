@@ -1,6 +1,6 @@
-export const USE_PROXY = true;
+export const USE_PROXY = false;
 
-export const URL_BASE = USE_PROXY ? 'api/' : 'http://localhost:8080/differenziaquila/api/';
+export const URL_BASE = USE_PROXY ? 'api/' : 'http://192.168.0.3:8080/differenziaquila/api/';
 
 export const URL = {
   USERS: {
@@ -59,5 +59,5 @@ export const STORAGE_KEYS = {
   CALENDAR: "differenziaquila_calendar",
   COLLECTION_POINT: "differenziaquila_collectionpoint",
   NOTIFICATION: "differenziaquila_notification",
-  NEWS: "differenziaquila_news"
+  NEWS: "differenziaquila_news",
 };

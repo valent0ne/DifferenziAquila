@@ -23,7 +23,7 @@ import {DatePipe} from "@angular/common";
 export class SwcrPage {
 
   defaultAmount: String = this.sDictionary.get("AMOUNT");
-  defaultCategory: String = this.sDictionary.get("CHOOSE_CAT");
+  defaultCategory: String = "CHOOSE_CAT";
   defaultDate: String = this.sDictionary.get("CHOOSE_DAY");
   defaultTime: String = this.sDictionary.get("CHOOSE_TIME_SLOT");
 
@@ -199,7 +199,7 @@ export class SwcrPage {
       //riempio con valori da database
       inputs[i] = [];
       inputs[i]['type'] = 'radio';
-      inputs[i]['label'] = item.name;
+      inputs[i]['label'] = this.sDictionary.get(item.name.toString());
       inputs[i]['value'] = item.name;
       i++;
       }
@@ -264,13 +264,25 @@ export class SwcrPage {
 
   validate():Promise<any>{
     return new Promise((resolve,reject)=>{
+      console.log("date: "+this.date+" time: "+this.time+" amount: "+this.amount+" category: "+this.category+" desc: "+this.description);
+
       if(this.date!==null && this.date!=this.defaultDate &&
         this.time!==null && this.time!="" && this.time!=this.defaultTime &&
         this.amount!==null && this.amount!= this.defaultAmount &&
-        this.category!==null && this.category!= "" && this.category!=this.defaultCategory &&
-        this.description!==null && this.description!="")
+        this.category!==null && this.category!="" && this.category!=this.defaultCategory &&
+        this.description!==null && this.description!=""){
         resolve();
-      reject();
+
+      }else{
+        console.log("date: "+this.date+" time: "+this.time+" amount: "+this.amount+" category: "+this.category+" desc: "+this.description);
+        console.log("check date: "+(this.date!==null && this.date!=this.defaultDate));
+        console.log("check time: "+(this.time!==null && this.time!="" && this.time!=this.defaultTime));
+        console.log("check amount: "+(this.amount!==null && this.amount!= this.defaultAmount ));
+        console.log("category: "+(this.category!==null && this.category!="" && this.category!=this.defaultCategory));
+        console.log("desc: "+(this.description!==null && this.description!=""));
+
+        reject();
+      }
     });
   }
 
@@ -278,11 +290,16 @@ export class SwcrPage {
     const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
     loading.present();
     this.validate().then(()=>{
+      console.log("[SWCR] form is valid");
+      console.log("[SWCR] idCategory: "+this.idCategory);
+      console.log("[SWCR] date: "+this.date.trim());
+      let fixedDate = this.handleDate();
       const request= new SpecialWasteRequest ({
-        "date":this.datepipe.transform(this.date, "yyyy-MM-dd"),
+        "date":this.datepipe.transform(fixedDate, "yyyy-MM-dd"),
         "hour":this.time,
         "amount":this.amount,
         "description":this.description});
+      console.log("[SWCR] idCategory: "+this.idCategory);
       this.sSpecialWasteCollectionRequest.saveSWRequest(request,this.idCategory).then(()=> {
         loading.dismiss().then(() => {
           this.sMessage.presentMessage('ok', this.sDictionary.get('SUCCESS'));
@@ -303,6 +320,24 @@ export class SwcrPage {
       })
     })
 
+  }
+
+  handleDate(){
+    console.log("[SWCR] preferred language: "+this.sDictionary.getPreferredLanguage() );
+    if(this.sDictionary.getPreferredLanguage() == "it-IT"){
+      //caso italiano
+      let day = this.date.trim().substr(0, 2);
+      let month = this.date.trim().substring(3, this.date.trim().length - 5);
+      let year = this.date.trim().slice(-4);
+
+      console.log("[SWCR] month "+month);
+      let correctMonth = this.sDictionary.get(month.toUpperCase());
+      console.log("[SWCR] computing date: "+year+"-"+correctMonth+"-"+day);
+      let out = this.datepipe.transform(year+"-"+correctMonth+"-"+day);
+      return out;
+    }else{
+      return this.date;
+    }
   }
 
 

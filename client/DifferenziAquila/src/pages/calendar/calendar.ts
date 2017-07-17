@@ -109,7 +109,6 @@ export class CalendarPage {
   doInfinite(): Promise<any> {
     console.log('Begin async operation');
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
         this.index += CALENDAR.INFINITE_SCROLL;
         this.sCalendar.getNextDays(this.index).then(() => {
           let data = this.sCalendar.getTempCalendar();
@@ -127,7 +126,6 @@ export class CalendarPage {
           console.log("[Calendar] catch getNextDays in infinite scroll err: ");
           reject();
         }));
-      }, 250);
     });
   }
 

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {DictionaryService} from '../../providers/dictionary-service/dictionary-service';
 import {AccountProvider} from "../../providers/account.provider";
 import {NewsProvider} from "../../providers/news.provider";
@@ -17,12 +17,13 @@ import {NewsProvider} from "../../providers/news.provider";
 })
 export class MenuPage {
 
-  public showBadge: boolean = false;
+  public showBadge: number=0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public sDictionary: DictionaryService,
               public sAccount: AccountProvider,
+              public loadingCtrl: LoadingController,
               public sNews: NewsProvider) {
 
 
@@ -34,15 +35,10 @@ export class MenuPage {
   }
 
   ionViewDidEnter() {
-    this.showBadge = this.sNews.showBadge;
-      if(!this.showBadge){
-        this.sNews.thereAreNewNews().then(() => {
-          this.showBadge = this.sNews.showBadge;
-          console.log("[Menu] there are new news? "+this.showBadge);
-        });
-      }
-
-
+          this.sNews.updateAmount().then(() => {
+            this.showBadge = this.sNews.showBadge;
+            console.log("[Menu] there are "+this.showBadge+" new news");
+          });
 
     console.log("ionViewDidEnter MenuPage");
   }

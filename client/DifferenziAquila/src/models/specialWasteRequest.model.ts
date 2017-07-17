@@ -1,5 +1,3 @@
-import {isString} from "ionic-angular/util/util";
-
 
 export class SpecialWasteRequest{
 
@@ -15,10 +13,10 @@ export class SpecialWasteRequest{
 
   setObj(obj?: any) {
     if (obj) {
-      this.amount =(typeof obj.amount === "number" )? obj.amount : this.amount;
+      this.amount = obj.amount || this.amount;
       this.date = obj.date || this.date;
-      this.hour = (isString(obj.hour))? obj.hour : this.hour;
-      this.description=(isString(obj.description))? obj.description : this.description;
+      this.hour = obj.hour || this.hour;
+      this.description=obj.description || this.description;
 
     }
   }
