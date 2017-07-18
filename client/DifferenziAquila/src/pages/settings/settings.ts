@@ -184,13 +184,13 @@ export class SettingsPage {
   }
 
   addNotification(){
-    let day = new Date(new Date().getTime() + 5000);
+    let day = new Date(new Date().getTime() + 3000);
     console.log("[Settings] notification will be fired at: "+this.datepipe.transform(day, "dd-MM-yyyy HH:mm:ss"));
     this.localNotif.schedule({
       "id": 99999,
       "title": "DifferenziAquila",
-      "text": "Remember to take out ORGANIC",
-      "icon": "icon_notif",
+      "text": this.sDictionary.get("REMEMBER_TO_TAKE_OUT")+" "+this.sDictionary.get("GLASS"),
+      "icon": "icon_notif_glass",
       "at": day
     });
   }

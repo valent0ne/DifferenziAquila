@@ -55,7 +55,7 @@ export class CalendarPersistanceProvider implements CalendarPersistanceInterface
             console.log("[CalendarPersistenceProvider] calendar is valid, today is at index: " + today.day + " "+today.id+" "+today.color+" -> " + calendar.indexOf(today));
 
             this.checkLength(calendar, today).then(()=>{
-              resolve(calendar);
+              resolve(calendar.slice(calendar.indexOf(today)));
             }).catch(()=>{
               console.log("[CalendarPersistanceProvider] catch length");
               reject();

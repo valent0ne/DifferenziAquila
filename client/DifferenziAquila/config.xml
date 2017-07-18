@@ -3,7 +3,7 @@
     <name>DifferenziAquila</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.0.2:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://192.168.0.2:8100" />
@@ -46,7 +46,11 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <resource-file src="resources/android/icon/icon_notif.png" target="res/drawable/icon_notif.png" />
+        <resource-file src="resources/android/icon/icon_notif_paper.png" target="res/drawable/icon_notif_paper.png" />
+        <resource-file src="resources/android/icon/icon_notif_glass.png" target="res/drawable/icon_notif_glass.png" />
+        <resource-file src="resources/android/icon/icon_notif_plastic.png" target="res/drawable/icon_notif_plastic.png" />
+        <resource-file src="resources/android/icon/icon_notif_undifferentiated.png" target="res/drawable/icon_notif_undifferentiated.png" />
+        <resource-file src="resources/android/icon/icon_notif_organic.png" target="res/drawable/icon_notif_organic.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
