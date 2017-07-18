@@ -39,15 +39,16 @@ export class NotificationProvider {
         //recupero il calendario
         this._sCalendarPers.get()
           .then((calendar: Array<Calendar>) => {
-            console.log("[NotificationProvider] get calendar from persistance successfull");
+            console.log("[NotificationProvider] get calendar from persistance successfull, 1st day"+calendar[0].day);
 
             for (let day of calendar) {
               //se per qualche motivo il giorno attuale è precedente ad oggi lo ignoro
-              if (new Date(day.day) <= new Date(Date.now())
+              if (new Date(day.day).toString() < this.datepipe.transform(new Date(Date.now()), "yyyy-MM-dd")
                 || day.waste_name == null
                 || day.waste_name == ""
                 || isUndefined(day.waste_name)
               ) {
+                console.log("[NotificationProvider] skipping "+day.day+" < "+new Date(Date.now()));
                 continue;
               }
               console.log("[NotificationProvider] pushing notifications: day = " + day.day + " waste = " + day.waste_name);

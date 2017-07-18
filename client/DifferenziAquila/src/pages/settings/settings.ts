@@ -189,7 +189,7 @@ export class SettingsPage {
     this.localNotif.schedule({
       "id": 99999,
       "title": "DifferenziAquila",
-      "text": this.sDictionary.get("REMEMBER_TO_TAKE_OUT")+" "+this.sDictionary.get("GLASS"),
+      "text": this.sDictionary.get("REMEMBER_TO_TAKE_OUT")+" "+this.sDictionary.get("GLASS").toUpperCase(),
       "icon": "icon_notif_glass",
       "at": day
     });

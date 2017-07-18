@@ -1,6 +1,6 @@
-export const USE_PROXY = false;
+export const USE_PROXY = true;
 
-export const URL_BASE = USE_PROXY ? 'api/' : 'http://192.168.0.2:8080/differenziaquila/api/';
+export const URL_BASE = USE_PROXY ? 'api/' : 'http://192.168.0.3:8080/differenziaquila/api/';
 
 export const URL = {
   USERS: {

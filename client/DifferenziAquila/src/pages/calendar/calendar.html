@@ -33,12 +33,16 @@
 
   <ion-list>
 
-    <ion-item *ngFor="let item of items" no-lines icon-right [style.color]="(item.color === null) ? 'silver' : ''">
-      <span>
+    <ion-item *ngFor="let item of items; let i = index" no-lines icon-right [style.color]="(item.color === null) ? 'silver' : ''">
+      <span [style.fontWeight]="((i==1)?'bold':'')">
+
+
         {{item.day| date:"dd"}} / {{datepipe.transform(item.day, "MM")}} - {{ datepipe.transform(item.day,"EEE").toUpperCase() | dictionary }}
+
+
       </span>
 
-      <span class="waste_name " [style.color]="(item.color === null) ? 'white' :item.color">
+      <span class="waste_name " [style.color]="(item.color === null) ? 'white' :item.color" [style.fontWeight]="((i==1)?'bold':'')">
         {{(item.waste_name === null) ? '': (item.waste_name.toUpperCase() | dictionary)}}
       </span>
       <ion-icon
